@@ -9,12 +9,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use LogicException;
 
 #[Fillable(['number', 'customer_id', 'payment_method_id', 'sale_channel_id', 'installments_count', 'first_due_date', 'subtotal', 'pix_discount', 'other_discount', 'total', 'sold_at', 'cancelled_at', 'cancel_reason'])]
 class Sale extends Model
 {
     /** @use HasFactory<SaleFactory> */
     use HasFactory;
+
+    protected static function booted(): void
+    {
+        // Venda não se edita: só o cancelamento (e a reativação) altera o registro.
+        static::updating(function (Sale $sale) {
+            $allowed = ['cancelled_at', 'cancel_reason', 'updated_at'];
+
+            if (array_diff(array_keys($sale->getDirty()), $allowed) !== []) {
+                throw new LogicException('Vendas não podem ser editadas. Cancele e lance de novo.');
+            }
+        });
+    }
 
     protected function casts(): array
     {
