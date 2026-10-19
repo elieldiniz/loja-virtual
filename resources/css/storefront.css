@@ -493,11 +493,12 @@ header.site .search input::-webkit-search-cancel-button { display: none; }
 .care-fab { font-size: 0; }
 @media (max-width: 860px) { .logo .brand-logo { height: 38px; } }
 
-/* Hero com foto de fundo: coloque a imagem em public/images/hero.webp (sem o arquivo, vale o degradê do mockup). */
+/* Hero com foto de fundo (public/images/hero.webp). O texto fica à esquerda e as joias à direita. */
 .hero--photo { background: #F8E5E3 url('/images/hero.webp') right center / cover no-repeat; }
 .hero--photo .hero-art { visibility: hidden; }
-.hero--photo .hero-copy { max-width: 480px; }
+.hero--photo .hero-copy { max-width: 500px; }
+@media (max-width: 1100px) { .hero--photo { background-position: 72% center; } }
 @media (max-width: 760px) {
-  .hero--photo { background-size: auto 300px; background-position: right top; }
-  .hero--photo .hero-art { min-height: 250px; }
+  .hero--photo { background-image: url('/images/hero-mobile.webp'); background-size: auto 280px; background-position: 88% 12px; }
+  .hero--photo .hero-art { min-height: 260px; }
 }
