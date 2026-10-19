@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\Admin\LogoutController;
 use App\Livewire\Admin\Categories;
-use App\Livewire\Admin\ComingSoon;
 use App\Livewire\Admin\Customers\Form as CustomerForm;
 use App\Livewire\Admin\Customers\Index as CustomerIndex;
+use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Login;
 use App\Livewire\Admin\Products\Form as ProductForm;
 use App\Livewire\Admin\Products\Index as ProductIndex;
@@ -22,7 +22,7 @@ Route::prefix('painel')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('sair', LogoutController::class)->name('admin.logout');
 
-        Route::get('/', ComingSoon::class)->defaults('heading', 'Painel')->defaults('current', 'dash')->name('admin.dashboard');
+        Route::get('/', Dashboard::class)->name('admin.dashboard');
         Route::get('vendas', SaleIndex::class)->name('admin.sales');
         Route::get('vendas/nova', SaleCreate::class)->name('admin.sales.create');
         Route::get('vendas/{sale}', SaleShow::class)->name('admin.sales.show');

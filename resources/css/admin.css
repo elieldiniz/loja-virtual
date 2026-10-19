@@ -461,3 +461,5 @@ button.nav-btn { font-family: inherit; font-size: inherit; }
 .flash { display: flex; gap: 8px; align-items: center; padding: 10px 14px; background: #EAF5EE; border: 1px solid #CFE6D8; color: var(--ok); font-weight: 500; }
 .flash.warn { background: var(--wine-soft); border-color: #E3C3CA; color: var(--wine); }
 .err-box { padding: 10px 14px; background: var(--wine-soft); border: 1px solid #E3C3CA; color: var(--wine); font-weight: 500; }
+/* Cada página do painel é um componente Livewire com um único elemento raiz: ele "some" para os filhos herdarem o layout flex de .main. */
+.main > [wire\:id] { display: contents; }
