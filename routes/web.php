@@ -8,6 +8,7 @@ use App\Livewire\Admin\Customers\Index as CustomerIndex;
 use App\Livewire\Admin\Login;
 use App\Livewire\Admin\Products\Form as ProductForm;
 use App\Livewire\Admin\Products\Index as ProductIndex;
+use App\Livewire\Admin\Sales\Create as SaleCreate;
 use App\Livewire\Admin\StoreSettings;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::prefix('painel')->group(function () {
 
         Route::get('/', ComingSoon::class)->defaults('heading', 'Painel')->defaults('current', 'dash')->name('admin.dashboard');
         Route::get('vendas', ComingSoon::class)->defaults('heading', 'Vendas')->defaults('current', 'sales')->name('admin.sales');
-        Route::get('vendas/nova', ComingSoon::class)->defaults('heading', 'Nova venda')->defaults('current', 'sales')->name('admin.sales.create');
+        Route::get('vendas/nova', SaleCreate::class)->name('admin.sales.create');
         Route::get('vendas/{sale}', ComingSoon::class)->defaults('heading', 'Venda')->defaults('current', 'sales')->name('admin.sales.show');
         Route::get('clientes', CustomerIndex::class)->name('admin.customers');
         Route::get('clientes/nova', CustomerForm::class)->name('admin.customers.create');
