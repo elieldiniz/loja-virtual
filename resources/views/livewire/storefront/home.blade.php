@@ -154,7 +154,9 @@
     <section class="care-banner" aria-labelledby="realH">
         <h2 id="realH" class="sr-only">Atendimento de verdade: aqui quem te responde é gente, não robô.</h2>
         <button type="button" class="feature feature--image" data-reveal x-on:click="$store.ui.openCare()" aria-label="Falar com a gente no WhatsApp">
+            @if (file_exists(public_path('images/atendimento-mobile.webp')))<picture><source media="(max-width: 760px)" srcset="{{ asset('images/atendimento-mobile.webp') }}">@endif
             <img class="feature-photo" src="{{ asset('images/atendimento.webp') }}" alt="Atendimento de verdade: aqui quem te responde é gente, não robô. Fale com a gente!" loading="lazy" width="2000" height="750">
+            @if (file_exists(public_path('images/atendimento-mobile.webp')))</picture>@endif
         </button>
         @if ($addressLine)<p class="care-addr">{{ $addressLine }}</p>@endif
     </section>

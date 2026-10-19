@@ -487,8 +487,9 @@ header.site .search input::-webkit-search-cancel-button { display: none; }
 .hero--photo .hero-copy { max-width: 500px; }
 @media (max-width: 1100px) { .hero--photo { background-position: 72% center; } }
 @media (max-width: 760px) {
-  .hero--photo { background-image: url('/images/hero-mobile.webp'); background-size: auto 280px; background-position: 88% 12px; }
-  .hero--photo .hero-art { min-height: 260px; }
+  .hero--photo { background-image: url('/images/hero-mobile.webp'); background-size: auto 280px; background-position: 88% calc(100% - 12px); }
+  .hero--photo .hero-art { order: 1; min-height: 280px; padding-top: 0; }
+  .hero--photo .hero-copy { padding-block: 36px 0; }
 }
 
 /* ---------- banner largo editável (tela Loja) ---------- */
