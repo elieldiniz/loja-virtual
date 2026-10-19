@@ -1,0 +1,1 @@
+<circle cx="66" cy="112" r="38" fill="none" stroke="url(#gold)" stroke-width="9"/><circle cx="136" cy="112" r="38" fill="none" stroke="url(#gold)" stroke-width="9"/><rect x="62" y="66" width="8" height="10" rx="3" fill="url(#gold)"/><rect x="132" y="66" width="8" height="10" rx="3" fill="url(#gold)"/>

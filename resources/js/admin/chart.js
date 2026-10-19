@@ -1,0 +1,1 @@
+// gráfico do painel
