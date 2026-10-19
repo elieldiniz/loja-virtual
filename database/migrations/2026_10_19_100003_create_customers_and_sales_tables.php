@@ -20,7 +20,13 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement('CREATE SEQUENCE IF NOT EXISTS sales_number_seq START 1');
+        // Numeração sequencial das vendas (#0616): contador travado com lockForUpdate na hora de registrar.
+        Schema::create('counters', function (Blueprint $table) {
+            $table->string('name')->primary();
+            $table->unsignedBigInteger('value')->default(0);
+        });
+
+        DB::table('counters')->insert(['name' => 'sales', 'value' => 0]);
 
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
@@ -80,7 +86,7 @@ return new class extends Migration
         Schema::dropIfExists('installments');
         Schema::dropIfExists('sale_items');
         Schema::dropIfExists('sales');
-        DB::statement('DROP SEQUENCE IF EXISTS sales_number_seq');
+        Schema::dropIfExists('counters');
         Schema::dropIfExists('customers');
     }
 };

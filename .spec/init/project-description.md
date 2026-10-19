@@ -42,7 +42,7 @@ Repositório pré-código (apenas README); stack derivada da intenção do desen
 | Vitrine (frontend) | Blade + Livewire + Alpine.js, renderizada no servidor; sacola e favoritos em localStorage |
 | Painel admin | Livewire + Blade custom, portando fielmente o `Orvalha_Admin.html` (sem Filament) |
 | Estilo | CSS fiel aos mockups (tokens de cor), Bodoni Moda + Jost via Google Fonts |
-| Banco de dados | PostgreSQL |
+| Banco de dados | MySQL 8 |
 | Mídia | Spatie Media Library, fotos no Cloudflare R2 |
 | Autenticação | Login do painel por e-mail e senha (nível único) |
 | Testes | Pest |

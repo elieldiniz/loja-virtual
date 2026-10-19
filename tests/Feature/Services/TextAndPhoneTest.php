@@ -19,12 +19,10 @@ it('normalizes and validates phones', function () {
         ->and(Phone::forWhatsApp('5569999990000'))->toBe('5569999990000');
 });
 
-it('normalizes text in SQL the same way as in PHP', function () {
-    $names = ['Anéis Dourados', 'ÂNCORA', 'Coração', 'Pingente Ñandu'];
+it('matches accents and case in SQL searches through the collation', function () {
+    foreach (['Anéis Dourados' => 'aneis', 'ÂNCORA' => 'ancora', 'Coração' => 'coracao', 'Pingente Ñandu' => 'nandu'] as $name => $term) {
+        $found = DB::selectOne('select ? like ? as hit', [$name, '%'.SearchText::normalize($term).'%'])->hit;
 
-    foreach ($names as $name) {
-        $sql = DB::selectOne('select '.SearchText::sqlNormalized('?').' as v', [$name])->v;
-
-        expect($sql)->toBe(SearchText::normalize($name));
+        expect((bool) $found)->toBeTrue("{$name} deveria casar com {$term}");
     }
 });

@@ -1,6 +1,6 @@
 # Orvalha Semijoias — User Stories
 
-<!-- inputs: project-description.md@sha256:217727624c12 -->
+<!-- inputs: project-description.md@sha256:9aca46ff8072 -->
 
 ## Overview
 

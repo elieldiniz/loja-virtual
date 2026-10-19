@@ -47,3 +47,21 @@ it('generates sequential sale numbers formatted with leading zeros', function ()
         ->and(SaleNumberGenerator::format(616))->toBe('#0616')
         ->and(SaleNumberGenerator::format(12345))->toBe('#12345');
 });
+
+it('never repeats a sale number inside concurrent-looking calls and reuses a number after a rollback', function () {
+    $generator = app(SaleNumberGenerator::class);
+
+    $numbers = collect(range(1, 5))->map(fn () => $generator->next());
+    expect($numbers->unique())->toHaveCount(5)->and($numbers->all())->toBe(range($numbers->first(), $numbers->first() + 4));
+
+    $before = $generator->next();
+    try {
+        DB::transaction(function () use ($generator) {
+            $generator->next();
+            throw new RuntimeException('falhou no meio do registro');
+        });
+    } catch (RuntimeException) {
+    }
+
+    expect($generator->next())->toBe($before + 1);
+});

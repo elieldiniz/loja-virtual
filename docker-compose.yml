@@ -1,15 +1,17 @@
 services:
-  postgres:
-    image: postgres:16
+  mysql:
+    image: mysql:8.0
     environment:
-      POSTGRES_USER: orvalha
-      POSTGRES_PASSWORD: orvalha
-      POSTGRES_DB: orvalha
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orvalha
+      MYSQL_USER: orvalha
+      MYSQL_PASSWORD: orvalha
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./docker/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysqldata:/var/lib/mysql
+      - ./docker/mysql-init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
-  pgdata:
+  mysqldata:

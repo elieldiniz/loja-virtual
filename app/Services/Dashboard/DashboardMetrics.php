@@ -56,7 +56,7 @@ class DashboardMetrics
     {
         $rows = $this->sales($period->start, $period->end)
             ->leftJoin(DB::raw('(select sale_id, sum(quantity) as pieces from sale_items group by sale_id) as si'), 'si.sale_id', '=', 'sales.id')
-            ->selectRaw('sales.sold_at::date as day, count(*) as sales_count, coalesce(sum(sales.total), 0) as revenue, coalesce(sum(si.pieces), 0) as pieces')
+            ->selectRaw('date(sales.sold_at) as day, count(*) as sales_count, coalesce(sum(sales.total), 0) as revenue, coalesce(sum(si.pieces), 0) as pieces')
             ->groupBy('day')->get()->keyBy('day');
 
         $days = [];
@@ -102,8 +102,8 @@ class DashboardMetrics
             ->join('sales', 'sales.id', '=', 'sale_items.sale_id')
             ->whereNull('sales.cancelled_at')
             ->whereBetween('sales.sold_at', [$start, $end])
-            ->selectRaw('coalesce(sale_items.product_id::text, sale_items.product_name) as grp, max(sale_items.product_id) as product_id, max(sale_items.product_name) as name, sum(sale_items.quantity) as quantity, '.$this->allocatedRevenue().' as revenue')
-            ->groupBy('grp')
+            ->selectRaw('max(sale_items.product_id) as product_id, max(sale_items.product_name) as name, sum(sale_items.quantity) as quantity, '.$this->allocatedRevenue().' as revenue')
+            ->groupByRaw('sale_items.product_id, (case when sale_items.product_id is null then sale_items.product_name end)')
             ->orderByDesc('quantity')->orderByDesc('revenue')->orderBy('name')
             ->limit($limit)->get()
             ->map(fn ($r) => [

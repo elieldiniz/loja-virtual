@@ -28,7 +28,7 @@ class SalesQuery
 
                 $q->where(function ($w) use ($text, $digits) {
                     if ($digits !== '') {
-                        $w->orWhereRaw("lpad(sales.number::text, 4, '0') like ?", ['%'.$digits.'%']);
+                        $w->orWhereRaw("lpad(sales.number, 4, '0') like ?", ['%'.$digits.'%']);
                     }
 
                     $w->orWhereHas('customer', fn ($c) => $c->whereRaw(SearchText::sqlNormalized('customers.name').' like ?', ['%'.$text.'%']))

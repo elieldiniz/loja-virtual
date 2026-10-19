@@ -6,14 +6,13 @@ use Illuminate\Support\Str;
 
 class SearchText
 {
-    private const ACCENTED = 'áàâãäåÁÀÂÃÄÅéèêëÉÈÊËíìîïÍÌÎÏóòôõöÓÒÔÕÖúùûüÚÙÛÜçÇñÑ';
-
-    private const PLAIN = 'aaaaaaaaaaaaeeeeeeeeiiiiiiiioooooooooouuuuuuuuccnn';
-
-    /** Expressão SQL (PostgreSQL) que normaliza uma coluna como {@see normalize()}: minúsculo e sem acentos. */
+    /**
+     * Expressão SQL usada nas buscas sem acento. No MySQL a collation utf8mb4_unicode_ci já ignora
+     * acentos e maiúsculas em LIKE e ORDER BY, então a coluna é usada como está.
+     */
     public static function sqlNormalized(string $column): string
     {
-        return "lower(translate({$column}, '".self::ACCENTED."', '".self::PLAIN."'))";
+        return $column;
     }
 
     public static function normalize(?string $text): string

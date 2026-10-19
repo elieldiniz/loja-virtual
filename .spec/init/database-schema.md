@@ -1,12 +1,12 @@
 # Orvalha Semijoias — Database Schema
 
-<!-- inputs: project-description.md@sha256:217727624c12 user-stories.md@sha256:1305fd60c0db -->
+<!-- inputs: project-description.md@sha256:9aca46ff8072 user-stories.md@sha256:30cc64bc0805 -->
 
 ## Overview
 
 O modelo gira em torno de **products** (peças) organizados em **categories** e feitos de um **material**, e de **sales** (vendas registradas no painel), que têm **sale_items** com nome e preço congelados, uma forma de pagamento, um canal de venda e, opcionalmente, uma **customer**. Vendas no crediário geram **installments** (parcelas). As configurações da loja ficam em uma única linha de **store_settings**, com listas filhas (**promo_phrases**, **chat_shortcuts**).
 
-Convenções (Laravel + Eloquent + PostgreSQL): tabelas plurais em snake_case, `id` bigint, chaves estrangeiras `<singular>_id`, `created_at`/`updated_at`. Campos categóricos (material, forma de pagamento, canal) usam **tabelas de lookup**, sem enums. Fotos das peças usam a tabela `media` do Spatie Media Library (Cloudflare R2). A vitrine é pública e não guarda dados da cliente no servidor; sacola e favoritos ficam no navegador e por isso não têm tabela.
+Convenções (Laravel + Eloquent + MySQL 8): tabelas plurais em snake_case, `id` bigint, chaves estrangeiras `<singular>_id`, `created_at`/`updated_at`. Campos categóricos (material, forma de pagamento, canal) usam **tabelas de lookup**, sem enums. Fotos das peças usam a tabela `media` do Spatie Media Library (Cloudflare R2). A vitrine é pública e não guarda dados da cliente no servidor; sacola e favoritos ficam no navegador e por isso não têm tabela.
 
 ## Schema (DBML)
 
@@ -124,6 +124,12 @@ Table customers {
   indexes {
     birth_month
   }
+}
+
+// Contador usado para a numeração sequencial das vendas (#0616).
+Table counters {
+  name varchar [pk]
+  value bigint [not null, default: 0]
 }
 
 Table sales {
@@ -253,7 +259,7 @@ Table chat_shortcuts {
 - **Categorias:** `name_normalized` (minúsculo, sem acento) garante nome único sem diferenciar maiúsculas; excluir exige categoria sem peças (`restrictOnDelete` em `products.category_id`).
 - **Fotos:** usam `media` do Spatie (exceção deliberada à regra do `_path`, já que a biblioteca é parte do stack). A capa é a de menor `order_column` e a segunda é a do hover. "No site" só liga com pelo menos 1 foto (validação de aplicação). `chat_button_photo_path` é a foto da loja para o botão de atendimento.
 - **Aniversário:** `birth_day` e `birth_month` (dia/mês, sem ano), conforme US-6.1 e US-9.5.
-- **`sales.number`:** sequencial exibido como `#0616`, gerado com bloqueio/sequence para evitar duplicidade; `sold_at` guarda a data escolhida (nunca futura) com a hora do registro.
+- **`sales.number`:** sequencial exibido como `#0616`, gerado pela tabela de apoio `counters` (linha `sales`) travada com `lockForUpdate` dentro da transação do registro, sem duplicidade e sem buracos; `sold_at` guarda a data escolhida (nunca futura) com a hora do registro.
 - **Limites** a validar na aplicação e, quando possível, com `CHECK`: `price > 0`, `pix_discount_percent` 0–30, `max_installments` 1–12, `birthday_gift_percent` 0–50, `help_invite_minutes` em 1, 2, 3 ou 5, `installments_count` 1–6.
 - **Tabelas padrão do Laravel** (`sessions`, `cache`, `jobs`, `password_reset_tokens`, `failed_jobs`, `migrations`) vêm das migrations do framework e não foram repetidas aqui.
 - **Conceitos sem tabela:** Vitrine, Sacola e Favoritos (ficam no navegador, RN-01), Preço no Pix, Parcelamento sem juros e Selo de desconto (calculados a partir de `products` e `store_settings`), Painel de métricas (consultas agregadas sobre `sales`, `sale_items` e `installments`), Convite de ajuda, Ajuda para presente e Guia de cuidados (comportamento e conteúdo da vitrine; só os parâmetros ficam em `store_settings`) e Atendimento (WhatsApp por link, sem persistir conversas).

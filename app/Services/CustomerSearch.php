@@ -23,7 +23,7 @@ class CustomerSearch
             ->when($text !== '' || $digits !== '', function ($q) use ($text, $digits, $name) {
                 $q->where(function ($w) use ($text, $digits, $name) {
                     if ($text !== '') {
-                        $w->whereRaw("(' ' || {$name}) LIKE ?", ['% '.addcslashes($text, '%_\\').'%']);
+                        $w->whereRaw("CONCAT(' ', {$name}) LIKE ?", ['% '.addcslashes($text, '%_\\').'%']);
                     }
 
                     if (strlen($digits) >= 3) {
