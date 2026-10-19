@@ -37,7 +37,7 @@ A Orvalha Semijoias é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem p
 **So that** eu saiba quanto vou pagar
 
 **Acceptance Criteria:**
-- [ ] Preço no Pix = preço × (1 − desconto Pix); R$ 99,90 com 5% mostra R$ 94,90
+- [ ] Preço no Pix = preço × (1 − desconto Pix); R$ 99,90 com 5% mostra R$ 94,91 (arredondamento para cima em centavos)
 - [ ] Parcelado = preço ÷ parcelas sem juros; R$ 99,90 em 3x mostra 3x de R$ 33,30
 - [ ] Preço antigo só aparece riscado quando é maior que o preço de venda
 - [ ] Peça com desconto mostra selo com `round((1 − preço ÷ preço antigo) × 100)`%; R$ 139,90 → R$ 119,90 mostra −14%
@@ -72,7 +72,6 @@ A Orvalha Semijoias é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem p
 **Acceptance Criteria:**
 - [ ] A página mostra fotos, categoria, preços, detalhes (banho, antialérgico, garantia, caixinha) e descrição
 - [ ] Botões "Quero essa" e "Tirar dúvida sobre esta peça" (abre o WhatsApp com a pergunta pronta)
-- [ ] Anéis exibem o guia de tamanhos com "Na dúvida, a gente troca"
 - [ ] O prazo da garantia vem das configurações da loja
 
 **Expected Result:** A cliente tem as informações para adicionar à sacola ou tirar dúvida.

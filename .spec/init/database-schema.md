@@ -1,6 +1,6 @@
 # Orvalha Semijoias — Database Schema
 
-<!-- inputs: project-description.md@sha256:217727624c12 user-stories.md@sha256:4eaf054ec898 -->
+<!-- inputs: project-description.md@sha256:217727624c12 user-stories.md@sha256:1305fd60c0db -->
 
 ## Overview
 

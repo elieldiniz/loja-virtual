@@ -1,6 +1,6 @@
 # Orvalha Semijoias — Project Phases
 
-<!-- inputs: project-description.md@sha256:217727624c12 user-stories.md@sha256:4eaf054ec898 database-schema.md@sha256:f87d0258249d -->
+<!-- inputs: project-description.md@sha256:217727624c12 user-stories.md@sha256:1305fd60c0db database-schema.md@sha256:90ab720eea6e -->
 
 ## Overview
 
@@ -232,8 +232,8 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
     - Pix = preço × (1 − desconto Pix); parcela = preço ÷ parcelas sem juros
     - Preço antigo só é considerado se maior que o preço de venda
     - Selo = `round((1 − preço ÷ preço antigo) × 100)`; sem desconto e peça Lançamento → "Novo"
-    - Regra de arredondamento centralizada em um único ponto (ver Open Questions)
-  - **Feature tests:** `PricingCalculatorTest` → R$ 99,90 em 3x = R$ 33,30; R$ 139,90 → R$ 119,90 = −14%; preço antigo igual ou menor é ignorado; peça Lançamento sem desconto = "Novo"; desconto Pix 0% mantém o preço.
+    - Arredondamento: meio para cima em centavos (R$ 99,90 com 5% = R$ 94,91; R$ 279,70 com 5% = R$ 265,72), centralizado em um único ponto
+  - **Feature tests:** `PricingCalculatorTest` → R$ 99,90 em 3x = R$ 33,30; R$ 99,90 com Pix 5% = R$ 94,91; R$ 139,90 → R$ 119,90 = −14%; preço antigo igual ou menor é ignorado; peça Lançamento sem desconto = "Novo"; desconto Pix 0% mantém o preço.
   - **Traces:** US-1.2; RN-15 a RN-19
 
 - [ ] **Task:** `InstallmentSplitter`: divide o total do crediário em parcelas mensais.
@@ -949,12 +949,12 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#modal`, `#mMain`, `#mThumbs`, `#mInfo`)
   - **Traces:** US-1.4; RN-23
 
-- [ ] **Task:** Botões "Quero essa" e "Tirar dúvida sobre esta peça", e guia de tamanhos para anéis.
+- [ ] **Task:** Botões "Quero essa" e "Tirar dúvida sobre esta peça".
   - **Acceptance criteria:**
     - "Tirar dúvida" abre o WhatsApp com a pergunta pronta citando a peça
-    - Categoria de anéis exibe o guia de tamanhos com "Na dúvida, a gente troca" (ver Open Questions sobre como identificar anéis)
+    - Dúvidas de tamanho (ex.: anéis) são resolvidas pelo botão "Tirar dúvida" no WhatsApp; não há guia de tamanhos no site
   - **Feature tests:** `ProductQuestionLinkTest` → o link contém o nome da peça e usa o WhatsApp da loja.
-  - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#sizeBox`, `#mInfo`)
+  - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#mInfo`)
   - **Traces:** US-1.4; RN-23
 
 ### Phase 16.3: Favoritos
@@ -1129,7 +1129,5 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ## Open Questions
 
-- **Arredondamento do preço no Pix:** o spec mostra R$ 99,90 × 0,95 = R$ 94,90 (arredondamento para baixo) e R$ 279,70 × 0,95 = R$ 265,72 (arredondamento para cima) — as duas contas só batem por artefato de ponto flutuante do mockup. Definir a regra oficial (sugerido: meio para cima em centavos, o que daria R$ 94,91 e R$ 265,72). Até lá, a regra fica em um único ponto do `PricingCalculator` (Phase 4.1).
-- **Guia de tamanhos de anel:** não há coluna que identifique anéis; a Phase 16.2 assume a categoria cujo nome normalizado seja `aneis`. Confirmar se isso basta ou se deve virar um campo da categoria.
 - Pendências da loja que afetam textos: prazo da garantia do banho, política de troca, regra de entrega em Ji-Paraná, WhatsApp/endereço/CNPJ e fotos reais.
 - Fora do MVP até decisão da loja: controle de estoque, juros/multa/entrada no crediário, múltiplos perfis no painel, juros do cartão acima de 3x e política de privacidade (LGPD).
