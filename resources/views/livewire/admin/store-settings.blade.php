@@ -71,9 +71,10 @@
                 </div>
                 <div class="fab-box">
                     <span class="flabel">Foto do banner <small>Quanto mais larga, melhor (ex.: 1600 × 600)</small></span>
+                    @if ($usingDefaultBanner)<p class="hint" style="margin:0">Sem foto enviada, o site usa a capa padrão da STyli Prates ("Mais que joias, é sobre você"). Sem título, a foto aparece sozinha; com título, o texto vai por cima da foto.</p>@endif
                     @if ($bannerUrl)<img src="{{ $bannerUrl }}" alt="" style="width:100%;aspect-ratio:8/3;object-fit:cover;border:1px solid var(--line)">@endif
                     <label class="add-photo slim" for="bPhotoIn"><x-icon name="camera" />{{ $bannerUrl ? 'Trocar foto' : 'Enviar foto do banner' }}<input id="bPhotoIn" type="file" accept="image/*" wire:model="bannerPhoto"></label>
-                    @if ($bannerUrl)<button class="link-btn" type="button" wire:click="removeBannerPhoto" style="align-self:flex-start">Remover foto</button>@endif
+                    @if (! $usingDefaultBanner)<button class="link-btn" type="button" wire:click="removeBannerPhoto" style="align-self:flex-start">Voltar para a capa padrão</button>@endif
                     @error('bannerPhoto')<span class="err">{{ $message }}</span>@enderror
                 </div>
             </div>

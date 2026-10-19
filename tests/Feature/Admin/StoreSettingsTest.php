@@ -102,8 +102,13 @@ it('saves the wide banner text, button and destination', function () {
         ->and($s->banner_link)->toBe((string) $category->id)->and($s->hasBanner())->toBeTrue();
 });
 
-it('only treats the banner as active with the switch on and a title', function () {
+it('is active with the switch on and either a title or a photo (default cover counts)', function () {
     Livewire::test(StoreSettings::class)->set('bannerEnabled', true)->set('bannerTitle', '')->call('save');
+    $s = StoreSetting::current();
+
+    expect($s->hasBanner())->toBeTrue()->and($s->bannerPhotoUrl())->toContain('images/banner-capa.webp');
+
+    Livewire::test(StoreSettings::class)->set('bannerEnabled', false)->call('save');
 
     expect(StoreSetting::current()->hasBanner())->toBeFalse();
 });

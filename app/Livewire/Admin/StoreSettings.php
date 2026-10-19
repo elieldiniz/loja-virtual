@@ -324,9 +324,11 @@ class StoreSettings extends Component
             }
         } elseif ($this->bannerPhotoPath) {
             $bannerUrl = Storage::disk(config('media-library.disk_name'))->url($this->bannerPhotoPath);
+        } elseif (file_exists(public_path(StoreSetting::DEFAULT_BANNER))) {
+            $bannerUrl = asset(StoreSetting::DEFAULT_BANNER);
         }
 
-        return view('livewire.admin.store-settings', ['photoUrl' => $photoUrl, 'bannerUrl' => $bannerUrl, 'categories' => Category::query()->ordered()->get()])
+        return view('livewire.admin.store-settings', ['photoUrl' => $photoUrl, 'bannerUrl' => $bannerUrl, 'usingDefaultBanner' => ! $this->bannerPhoto && ! $this->bannerPhotoPath, 'categories' => Category::query()->ordered()->get()])
             ->layoutData(['current' => 'store', 'title' => 'Loja']);
     }
 }

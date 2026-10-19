@@ -22,6 +22,7 @@ class StoreSettingSeeder extends Seeder
             'help_invite_enabled' => true,
             'help_invite_minutes' => 2,
             'birthday_gift_percent' => 10,
+            'banner_enabled' => true,
         ]);
 
         foreach ([

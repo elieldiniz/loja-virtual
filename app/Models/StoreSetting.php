@@ -46,17 +46,22 @@ class StoreSetting extends Model
             : null;
     }
 
+    public const DEFAULT_BANNER = 'images/banner-capa.webp';
+
+    /** Foto enviada no painel; sem ela, vale a capa padrão da STyli Prates (public/images/banner-capa.webp). */
     public function bannerPhotoUrl(): ?string
     {
-        return $this->banner_photo_path
-            ? Storage::disk(config('media-library.disk_name'))->url($this->banner_photo_path)
-            : null;
+        if ($this->banner_photo_path) {
+            return Storage::disk(config('media-library.disk_name'))->url($this->banner_photo_path);
+        }
+
+        return file_exists(public_path(self::DEFAULT_BANNER)) ? asset(self::DEFAULT_BANNER) : null;
     }
 
-    /** O banner só aparece ligado e com título. */
+    /** Banner ligado e com título ou foto. Sem título, a foto (que já traz o texto) aparece sozinha. */
     public function hasBanner(): bool
     {
-        return $this->banner_enabled && filled($this->banner_title);
+        return $this->banner_enabled && (filled($this->banner_title) || $this->bannerPhotoUrl() !== null);
     }
 
     protected function casts(): array

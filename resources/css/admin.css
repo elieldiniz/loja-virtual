@@ -1,16 +1,16 @@
 /* Layout: back-office — wine rail on desktop, bottom tabs on phone, product editor with live card preview. Single light theme. */
 :root {
   color-scheme: light;
-  --bg: #F8F4F2;
+  --bg: #FFF9F4;
   --surface: #FFFFFF;
-  --ink: #221C1D;
-  --muted: #6E6466;
-  --line: #ECE4E1;
-  --soft: #F7EFEC;
-  --gold: #A9803F;
-  --gold-deep: #8A6630;
-  --wine: #6A494C;
-  --wine-soft: #F7E8E6;
+  --ink: #3B2E34;
+  --muted: #74656B;
+  --line: #EDE0DA;
+  --soft: #FFF1EC;
+  --gold: #C2A477;
+  --gold-deep: #9A7D4E;
+  --wine: #59454D;
+  --wine-soft: #F6E4E7;
   --ok: #1A7F45;
   --f-display: "Bodoni Moda", "Didot", Georgia, serif;
   --f-body: "Jost", "Helvetica Neue", Arial, sans-serif;
@@ -37,7 +37,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .anim > *:nth-child(2) { animation-delay: 60ms; } .anim > *:nth-child(3) { animation-delay: 120ms; } .anim > *:nth-child(4) { animation-delay: 180ms; }
 
 /* login */
-.login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; background: radial-gradient(circle at 50% 0%, #8A6368 0%, #4A3235 70%); }
+.login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; background: radial-gradient(circle at 50% 0%, #7A6068 0%, #3E2F35 70%); }
 .login-card { width: 100%; max-width: 380px; background: var(--surface); padding: 36px 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.35); animation: up 600ms cubic-bezier(.2,.7,.2,1) both; }
 .brand-mark { text-align: center; line-height: 1; }
 .brand-mark b { font: 500 34px/1 var(--f-display); letter-spacing: 0.18em; display: block; }
@@ -209,7 +209,7 @@ label.f small { font-weight: 400; color: var(--muted); }
 .hbar .val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; font-size: 14px; }
 .hbar .track { grid-column: 1 / -1; height: 8px; background: #F3ECEA; }
 .hbar .fill { height: 100%; background: var(--wine); border-radius: 0 4px 4px 0; transform-origin: left; animation: grow 700ms cubic-bezier(.2,.7,.2,1) both; }
-.hbar:hover .fill { background: #8A6368; }
+.hbar:hover .fill { background: #7A6068; }
 .hbar .mini { width: 34px; height: 40px; flex: none; background: var(--soft); display: flex; align-items: center; justify-content: center; }
 .hbar .mini svg { width: 80%; height: auto; }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }

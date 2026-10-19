@@ -158,14 +158,17 @@ it('does not render the strip of phrases under the hero', function () {
     $this->get('/')->assertDontSee('Feito para presentear')->assertDontSee('Entrega rápida')->assertDontSee('class="marquee"', false);
 });
 
-it('hides the wide banner until the store turns it on and fills the title', function () {
-    $this->get('/')->assertDontSee('class="feature', false);
-
-    StoreSetting::current()->update(['banner_enabled' => true, 'banner_title' => '']);
-    $this->get('/')->assertDontSee('class="feature', false);
+it('shows the default cover image-only until a title is set, then overlays the copy', function () {
+    $this->get('/')->assertSee('feature--image', false)->assertSee('images/banner-capa.webp', false)->assertDontSee('feature-copy', false);
 
     StoreSetting::current()->update(['banner_title' => 'Conheça os conjuntos', 'banner_text' => 'Colar e brincos que combinam', 'banner_button' => 'Ver conjuntos', 'banner_eyebrow' => 'Coleção nova']);
-    $this->get('/')->assertSee('Conheça os conjuntos')->assertSee('Colar e brincos que combinam')->assertSee('Ver conjuntos')->assertSee('Coleção nova');
+    $this->get('/')->assertSee('Conheça os conjuntos')->assertSee('Colar e brincos que combinam')->assertSee('Ver conjuntos')->assertSee('Coleção nova')->assertSee('feature-copy', false);
+});
+
+it('hides the wide banner when the store turns it off', function () {
+    StoreSetting::current()->update(['banner_enabled' => false]);
+
+    $this->get('/')->assertDontSee('class="feature', false);
 });
 
 it('shows the banner photo and falls back to the button label "Ver peças"', function () {

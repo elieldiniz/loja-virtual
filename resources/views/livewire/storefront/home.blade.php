@@ -90,17 +90,20 @@
         $link = ctype_digit((string) $link) && ! $linkCategory ? 'all' : $link;
         $bannerPhoto = $settings->bannerPhotoUrl();
     @endphp
-    <section class="block wrap" aria-label="{{ $settings->banner_title }}">
-        <button class="feature {{ $bannerPhoto ? 'has-photo' : '' }}" type="button" data-reveal
+    @php $imageOnly = blank($settings->banner_title) && $bannerPhoto; @endphp
+    <section class="block wrap" aria-label="{{ $settings->banner_title ?: 'Destaque STyli Prates' }}">
+        <button class="feature {{ $bannerPhoto ? 'has-photo' : '' }} {{ $imageOnly ? 'feature--image' : '' }}" type="button" data-reveal
             @if ($link === 'gift') x-on:click="document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth', block: 'start' })"
             @else wire:click="selectCategory('{{ $link }}')" x-on:click="{{ $scrollToShop }}" @endif>
-            @if ($bannerPhoto)<img class="feature-photo" src="{{ $bannerPhoto }}" alt="" loading="lazy">@endif
+            @if ($bannerPhoto)<img class="feature-photo" src="{{ $bannerPhoto }}" alt="{{ $imageOnly ? ($settings->banner_text ?: 'STyli Prates') : '' }}" loading="lazy">@endif
+            @unless ($imageOnly)
             <span class="feature-copy">
                 @if ($settings->banner_eyebrow)<span class="eyebrow">{{ $settings->banner_eyebrow }}</span>@endif
                 <h3>{{ $settings->banner_title }}</h3>
                 @if ($settings->banner_text)<p>{{ $settings->banner_text }}</p>@endif
                 <span class="btn">{{ $settings->banner_button ?: 'Ver peças' }}</span>
             </span>
+            @endunless
         </button>
     </section>
     @endif
@@ -178,7 +181,7 @@
     <section class="block wrap" aria-labelledby="igH">
         <div class="sec-head" data-reveal><div><span class="eyebrow">Siga a gente</span><h2 id="igH">{{ '@'.ltrim($instagram, '@') }}</h2></div><a href="{{ $instagramUrl }}" target="_blank" rel="noopener">Ver Instagram</a></div>
         <div class="insta" id="insta">
-            @php $tones = ['#F7EFEC', '#EFDDD7', '#E9E4DF', '#F3E6E1', '#EADBD3', '#F6F1EE']; $arts = [['point', 'gold'], ['tennis', 'silver'], ['drop', 'gold'], ['band', 'gold'], ['heart', 'gold'], ['cuff', 'silver']]; @endphp
+            @php $tones = ['#FFF1EC', '#E8C9CF', '#F3E9E2', '#F4DDE0', '#EBD3D3', '#FBEFE8']; $arts = [['point', 'gold'], ['tennis', 'silver'], ['drop', 'gold'], ['band', 'gold'], ['heart', 'gold'], ['cuff', 'silver']]; @endphp
             @foreach (range(0, 5) as $i)
                 @php $tile = $instagramTiles[$i] ?? null; @endphp
                 <div data-reveal style="--i:{{ $i }};background:{{ $tones[$i] }}">
