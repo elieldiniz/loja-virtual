@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\Category;
 use App\Models\StoreSetting;
+use App\Support\ImageUploader;
 use App\Support\Phone;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +57,23 @@ class StoreSettings extends Component
     /** @var list<array{label: string, message: string, gift: bool}> */
     public array $shortcuts = [];
 
+    public bool $bannerEnabled = false;
+
+    public string $bannerEyebrow = '';
+
+    public string $bannerTitle = '';
+
+    public string $bannerText = '';
+
+    public string $bannerButton = '';
+
+    /** all | sale | gift | id da categoria */
+    public string $bannerLink = 'all';
+
+    public $bannerPhoto = null;
+
+    public ?string $bannerPhotoPath = null;
+
     public bool $helpInviteEnabled = true;
 
     public string $helpInviteMinutes = '2';
@@ -86,6 +105,13 @@ class StoreSettings extends Component
             'message' => (string) $c->whatsapp_message,
             'gift' => $c->opens_gift_section,
         ])->all();
+        $this->bannerEnabled = $s->banner_enabled;
+        $this->bannerEyebrow = (string) $s->banner_eyebrow;
+        $this->bannerTitle = (string) $s->banner_title;
+        $this->bannerText = (string) $s->banner_text;
+        $this->bannerButton = (string) $s->banner_button;
+        $this->bannerLink = (string) ($s->banner_link ?: 'all');
+        $this->bannerPhotoPath = $s->banner_photo_path;
         $this->helpInviteEnabled = $s->help_invite_enabled;
         $this->helpInviteMinutes = (string) $s->help_invite_minutes;
     }
@@ -119,6 +145,12 @@ class StoreSettings extends Component
         $this->buttonMode = 'logo';
     }
 
+    public function removeBannerPhoto(): void
+    {
+        $this->bannerPhoto = null;
+        $this->bannerPhotoPath = null;
+    }
+
     public function save(): void
     {
         $this->validate([
@@ -142,7 +174,25 @@ class StoreSettings extends Component
             'birthdayGiftPercent' => 'required|integer|between:0,50',
             'helpInviteMinutes' => 'required|in:1,2,3,5',
             'buttonPhoto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
+            'bannerEyebrow' => 'nullable|string|max:60',
+            'bannerTitle' => 'nullable|string|max:80',
+            'bannerText' => 'nullable|string|max:160',
+            'bannerButton' => 'nullable|string|max:30',
+            'bannerLink' => ['required', function ($attribute, $value, $fail) {
+                $valid = in_array($value, ['all', 'sale', 'gift'], true) || (ctype_digit((string) $value) && Category::whereKey((int) $value)->exists());
+
+                if (! $valid) {
+                    $fail('Escolha para onde o banner leva.');
+                }
+            }],
+            'bannerPhoto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:8192',
         ], [
+            'bannerTitle.max' => 'O título do banner pode ter até 80 caracteres.',
+            'bannerText.max' => 'O texto do banner pode ter até 160 caracteres.',
+            'bannerButton.max' => 'O texto do botão pode ter até 30 caracteres.',
+            'bannerPhoto.image' => 'Envie uma imagem para o banner.',
+            'bannerPhoto.mimes' => 'Use uma foto JPG, PNG ou WebP.',
+            'bannerPhoto.max' => 'A foto do banner pode ter no máximo 8 MB.',
             'pixDiscountPercent.between' => 'O desconto no Pix deve ficar entre 0 e 30%.',
             'pixDiscountPercent.required' => 'Informe o desconto no Pix (pode ser 0).',
             'pixDiscountPercent.integer' => 'Use um número inteiro para o desconto no Pix.',
@@ -174,6 +224,16 @@ class StoreSettings extends Component
                 $disk->delete($setting->chat_button_photo_path);
             }
 
+            $bannerPath = $this->bannerPhotoPath;
+
+            if ($this->bannerPhoto) {
+                $bannerPath = ImageUploader::storeResized($this->bannerPhoto, 'banner', 1800, config('media-library.disk_name'));
+            }
+
+            if ($setting->banner_photo_path && $setting->banner_photo_path !== $bannerPath) {
+                $disk->delete($setting->banner_photo_path);
+            }
+
             $setting->update([
                 'whatsapp' => Phone::normalize($this->whatsapp) ?: null,
                 'instagram' => $this->blank($this->instagram),
@@ -192,6 +252,13 @@ class StoreSettings extends Component
                 'help_invite_enabled' => $this->helpInviteEnabled,
                 'help_invite_minutes' => (int) $this->helpInviteMinutes,
                 'birthday_gift_percent' => (int) $this->birthdayGiftPercent,
+                'banner_enabled' => $this->bannerEnabled,
+                'banner_eyebrow' => $this->blank($this->bannerEyebrow),
+                'banner_title' => $this->blank($this->bannerTitle),
+                'banner_text' => $this->blank($this->bannerText),
+                'banner_button' => $this->blank($this->bannerButton),
+                'banner_link' => $this->bannerLink,
+                'banner_photo_path' => $bannerPath,
             ]);
 
             $setting->promoPhrases()->delete();
@@ -221,6 +288,7 @@ class StoreSettings extends Component
         });
 
         $this->buttonPhoto = null;
+        $this->bannerPhoto = null;
         $this->mount();
         $this->dispatch('toast', message: 'Configurações salvas');
     }
@@ -246,7 +314,19 @@ class StoreSettings extends Component
             $photoUrl = Storage::disk(config('media-library.disk_name'))->url($this->currentPhotoPath);
         }
 
-        return view('livewire.admin.store-settings', ['photoUrl' => $photoUrl])
+        $bannerUrl = null;
+
+        if ($this->bannerPhoto) {
+            try {
+                $bannerUrl = $this->bannerPhoto->temporaryUrl();
+            } catch (\Throwable) {
+                $bannerUrl = null;
+            }
+        } elseif ($this->bannerPhotoPath) {
+            $bannerUrl = Storage::disk(config('media-library.disk_name'))->url($this->bannerPhotoPath);
+        }
+
+        return view('livewire.admin.store-settings', ['photoUrl' => $photoUrl, 'bannerUrl' => $bannerUrl, 'categories' => Category::query()->ordered()->get()])
             ->layoutData(['current' => 'store', 'title' => 'Loja']);
     }
 }

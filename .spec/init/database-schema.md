@@ -1,6 +1,6 @@
 # STyli Prates — Database Schema
 
-<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:ec2348513670 -->
+<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:d2f58522dd32 -->
 
 ## Overview
 
@@ -207,6 +207,13 @@ Table store_settings {
   help_invite_enabled boolean [not null, default: true]
   help_invite_minutes smallint [not null, default: 2]
   birthday_gift_percent smallint [not null, default: 10]
+  banner_enabled boolean [not null, default: false]
+  banner_eyebrow varchar [null]
+  banner_title varchar [null]
+  banner_text varchar [null]
+  banner_button varchar [null]
+  banner_link varchar [not null, default: 'all'] // all | sale | gift | id da categoria
+  banner_photo_path varchar [null]
   created_at timestamp
   updated_at timestamp
 }

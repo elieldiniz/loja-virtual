@@ -1,6 +1,6 @@
 # STyli Prates — Project Phases
 
-<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:ec2348513670 database-schema.md@sha256:fbe0e37009e8 -->
+<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:d2f58522dd32 database-schema.md@sha256:3a3c74dadd8b -->
 
 ## Overview
 

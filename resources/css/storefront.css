@@ -502,3 +502,16 @@ header.site .search input::-webkit-search-cancel-button { display: none; }
   .hero--photo { background-image: url('/images/hero-mobile.webp'); background-size: auto 280px; background-position: 88% 12px; }
   .hero--photo .hero-art { min-height: 260px; }
 }
+
+/* ---------- banner largo editável (tela Loja) ---------- */
+.feature { position: relative; width: 100%; min-height: 340px; overflow: hidden; display: flex; align-items: flex-end; border: 0; padding: 0; text-align: left; font: inherit; color: #FFFFFF; cursor: pointer; background: linear-gradient(140deg, #6A494C 0%, #4A3235 100%); }
+.feature-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 700ms ease; }
+.feature.has-photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(74,50,53,0.80) 0%, rgba(74,50,53,0.45) 50%, rgba(74,50,53,0) 80%); }
+.feature:hover .feature-photo { transform: scale(1.04); }
+.feature-copy { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 40px; max-width: 560px; }
+.feature .eyebrow { color: #F3DFA2; }
+.feature h3 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 400; }
+.feature p { margin: 0 0 10px; color: rgba(255,255,255,0.88); }
+.feature .btn { background: #FFFFFF; color: var(--ink); transition: background 200ms ease, color 200ms ease, transform 200ms ease; }
+.feature:hover .btn { background: var(--gold); color: #FFFFFF; transform: translateX(6px); }
+@media (max-width: 760px) { .feature { min-height: 280px; } .feature-copy { padding: 26px 22px; } .feature.has-photo::before { background: linear-gradient(0deg, rgba(74,50,53,0.85) 0%, rgba(74,50,53,0.3) 70%, rgba(74,50,53,0) 100%); } }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Admin\StoreSettings;
+use App\Models\Category;
 use App\Models\StoreSetting;
 use App\Models\User;
 use App\Services\PricingCalculator;
@@ -86,4 +87,65 @@ it('rejects a chat button file that is not an image', function () {
     Livewire::test(StoreSettings::class)
         ->set('buttonMode', 'photo')->set('buttonPhoto', UploadedFile::fake()->create('a.pdf', 10, 'application/pdf'))->call('save')
         ->assertHasErrors('buttonPhoto');
+});
+
+it('saves the wide banner text, button and destination', function () {
+    $category = Category::factory()->create();
+
+    Livewire::test(StoreSettings::class)
+        ->set('bannerEnabled', true)->set('bannerEyebrow', 'Coleção nova')->set('bannerTitle', 'Conheça os conjuntos')
+        ->set('bannerText', 'Colar e brincos que combinam')->set('bannerButton', 'Ver conjuntos')->set('bannerLink', (string) $category->id)
+        ->call('save')->assertHasNoErrors();
+
+    $s = StoreSetting::current();
+    expect($s->banner_enabled)->toBeTrue()->and($s->banner_title)->toBe('Conheça os conjuntos')->and($s->banner_button)->toBe('Ver conjuntos')
+        ->and($s->banner_link)->toBe((string) $category->id)->and($s->hasBanner())->toBeTrue();
+});
+
+it('only treats the banner as active with the switch on and a title', function () {
+    Livewire::test(StoreSettings::class)->set('bannerEnabled', true)->set('bannerTitle', '')->call('save');
+
+    expect(StoreSetting::current()->hasBanner())->toBeFalse();
+});
+
+it('validates the banner limits and destination', function (string $field, string $value) {
+    Livewire::test(StoreSettings::class)->set($field, $value)->call('save')->assertHasErrors($field);
+})->with([
+    ['bannerTitle', str_repeat('a', 81)],
+    ['bannerText', str_repeat('a', 161)],
+    ['bannerButton', str_repeat('a', 31)],
+    ['bannerLink', 'qualquer-coisa'],
+    ['bannerLink', '99999'],
+]);
+
+it('resizes and converts the banner photo to webp and removes the old file when replaced', function () {
+    Livewire::test(StoreSettings::class)
+        ->set('bannerEnabled', true)->set('bannerTitle', 'Destaque')
+        ->set('bannerPhoto', UploadedFile::fake()->image('banner.jpg', 3000, 1000))->call('save')->assertHasNoErrors();
+
+    $first = StoreSetting::current()->banner_photo_path;
+    expect($first)->toStartWith('banner/')->toEndWith('.webp');
+    Storage::disk('public')->assertExists($first);
+    expect(getimagesizefromstring(Storage::disk('public')->get($first))[0])->toBe(1800);
+
+    Livewire::test(StoreSettings::class)->set('bannerPhoto', UploadedFile::fake()->image('outra.png', 1200, 400))->call('save');
+
+    $second = StoreSetting::current()->banner_photo_path;
+    expect($second)->not->toBe($first);
+    Storage::disk('public')->assertMissing($first);
+    Storage::disk('public')->assertExists($second);
+});
+
+it('removes the banner photo', function () {
+    Livewire::test(StoreSettings::class)->set('bannerPhoto', UploadedFile::fake()->image('banner.jpg', 1600, 600))->call('save');
+    $path = StoreSetting::current()->banner_photo_path;
+
+    Livewire::test(StoreSettings::class)->call('removeBannerPhoto')->call('save');
+
+    expect(StoreSetting::current()->banner_photo_path)->toBeNull();
+    Storage::disk('public')->assertMissing($path);
+});
+
+it('rejects a banner file that is not an image', function () {
+    Livewire::test(StoreSettings::class)->set('bannerPhoto', UploadedFile::fake()->create('a.pdf', 10, 'application/pdf'))->call('save')->assertHasErrors('bannerPhoto');
 });

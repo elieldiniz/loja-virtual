@@ -34,6 +34,7 @@ class DemoSeeder extends Seeder
         StoreSetting::current()->update([
             'whatsapp' => '69999990000', 'instagram' => '@styliprates', 'address' => 'Av. Marechal Rondon, 1234 · Centro',
             'hours_weekdays' => '9h às 18h', 'hours_saturday' => '9h às 13h', 'hours_sunday' => 'Fechado', 'plating_warranty' => '6 meses', 'cnpj' => '00.000.000/0001-00',
+            'banner_enabled' => true, 'banner_eyebrow' => 'Coleção nova', 'banner_title' => 'Conheça os conjuntos', 'banner_text' => 'Colar e brincos que combinam, prontos para presentear.', 'banner_button' => 'Ver conjuntos', 'banner_link' => 'gift',
         ]);
 
         $gold = Material::where('slug', 'ouro-18k')->first();

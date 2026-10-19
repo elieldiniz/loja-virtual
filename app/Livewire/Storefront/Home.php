@@ -3,7 +3,6 @@
 namespace App\Livewire\Storefront;
 
 use App\Models\Category;
-use App\Models\Material;
 use App\Models\Product;
 use App\Models\StoreSetting;
 use App\Services\MessageBuilder;
@@ -23,9 +22,6 @@ class Home extends Component
     #[Url(as: 'categoria', except: 'all')]
     public string $category = 'all';
 
-    #[Url(as: 'material', except: '')]
-    public string $material = '';
-
     #[Url(as: 'busca', except: '')]
     public string $q = '';
 
@@ -37,15 +33,6 @@ class Home extends Component
     public function selectCategory(string $category): void
     {
         $this->category = $category === 'sale' || ctype_digit($category) ? $category : 'all';
-        $this->material = '';
-        $this->q = '';
-        $this->showingFavorites = false;
-    }
-
-    public function selectMaterial(string $slug): void
-    {
-        $this->material = Material::where('slug', $slug)->exists() ? $slug : '';
-        $this->category = 'all';
         $this->q = '';
         $this->showingFavorites = false;
     }
@@ -53,7 +40,6 @@ class Home extends Component
     public function updatedQ(): void
     {
         $this->category = 'all';
-        $this->material = '';
         $this->showingFavorites = false;
     }
 
@@ -62,14 +48,12 @@ class Home extends Component
         $this->favoriteIds = collect($ids)->filter(fn ($id) => is_numeric($id))->map(fn ($id) => (int) $id)->unique()->take(60)->values()->all();
         $this->showingFavorites = true;
         $this->category = 'all';
-        $this->material = '';
         $this->q = '';
     }
 
     public function clearFilters(): void
     {
         $this->category = 'all';
-        $this->material = '';
         $this->q = '';
         $this->showingFavorites = false;
     }
@@ -117,10 +101,6 @@ class Home extends Component
             $list = $catalog->search($this->q);
 
             return [$list, 'Busca: "'.trim($this->q).'"', $list->count().' '.($list->count() === 1 ? 'peça' : 'peças'), true];
-        }
-
-        if ($this->material !== '') {
-            return [$catalog->inMaterial($this->material), Material::where('slug', $this->material)->value('name') ?? 'Material', 'Material', true];
         }
 
         if ($this->category === 'sale') {

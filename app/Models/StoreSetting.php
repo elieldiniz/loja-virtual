@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-#[Fillable(['whatsapp', 'instagram', 'address', 'city', 'state', 'cnpj', 'hours_weekdays', 'hours_saturday', 'hours_sunday', 'pix_discount_percent', 'max_installments', 'plating_warranty', 'welcome_message', 'chat_button_photo_path', 'help_invite_enabled', 'help_invite_minutes', 'birthday_gift_percent'])]
+#[Fillable(['whatsapp', 'instagram', 'address', 'city', 'state', 'cnpj', 'hours_weekdays', 'hours_saturday', 'hours_sunday', 'pix_discount_percent', 'max_installments', 'plating_warranty', 'welcome_message', 'chat_button_photo_path', 'help_invite_enabled', 'help_invite_minutes', 'birthday_gift_percent', 'banner_enabled', 'banner_eyebrow', 'banner_title', 'banner_text', 'banner_button', 'banner_link', 'banner_photo_path'])]
 class StoreSetting extends Model
 {
     /** @use HasFactory<StoreSettingFactory> */
@@ -46,6 +46,19 @@ class StoreSetting extends Model
             : null;
     }
 
+    public function bannerPhotoUrl(): ?string
+    {
+        return $this->banner_photo_path
+            ? Storage::disk(config('media-library.disk_name'))->url($this->banner_photo_path)
+            : null;
+    }
+
+    /** O banner só aparece ligado e com título. */
+    public function hasBanner(): bool
+    {
+        return $this->banner_enabled && filled($this->banner_title);
+    }
+
     protected function casts(): array
     {
         return [
@@ -54,6 +67,7 @@ class StoreSetting extends Model
             'help_invite_enabled' => 'boolean',
             'help_invite_minutes' => 'integer',
             'birthday_gift_percent' => 'integer',
+            'banner_enabled' => 'boolean',
         ];
     }
 

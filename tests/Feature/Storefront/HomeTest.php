@@ -49,15 +49,13 @@ it('lists categories in the panel order in the menu', function () {
     Livewire::test(Home::class)->assertSeeInOrder(['Todas', 'Brincos', 'Colares', 'Promoções']);
 });
 
-it('filters by category, promotions and material', function () {
+it('filters by category and promotions', function () {
     shopProduct(['name' => 'Brinco A']);
     shopProduct(['name' => 'Colar B', 'category_id' => $this->colares->id, 'material_id' => $this->silver->id, 'price' => 100, 'old_price' => 140]);
 
     Livewire::test(Home::class)
         ->call('selectCategory', (string) $this->colares->id)->assertSee('Colar B')->assertDontSee('Brinco A')->assertSee('Categoria')
         ->call('selectCategory', 'sale')->assertSee('Promoções')->assertSee('Colar B')->assertDontSee('Brinco A')
-        ->call('selectMaterial', 'prata-925')->assertSee('Prata 925')->assertSee('Colar B')->assertDontSee('Brinco A')
-        ->call('selectMaterial', 'ouro-18k')->assertSee('Brinco A')->assertDontSee('Colar B')
         ->call('clearFilters')->assertSee('Mais vendidos');
 });
 
@@ -154,4 +152,43 @@ it('shows the full care guide content and warranty from the settings', function 
 
 it('renders the help invitation with the three actions', function () {
     $this->get('/')->assertSee('Ficou na dúvida?')->assertSee('Falar com a atendente')->assertSee('É para presente')->assertSee('Agora não, obrigada');
+});
+
+it('does not render the strip of phrases under the hero', function () {
+    $this->get('/')->assertDontSee('Feito para presentear')->assertDontSee('Entrega rápida')->assertDontSee('class="marquee"', false);
+});
+
+it('hides the wide banner until the store turns it on and fills the title', function () {
+    $this->get('/')->assertDontSee('class="feature', false);
+
+    StoreSetting::current()->update(['banner_enabled' => true, 'banner_title' => '']);
+    $this->get('/')->assertDontSee('class="feature', false);
+
+    StoreSetting::current()->update(['banner_title' => 'Conheça os conjuntos', 'banner_text' => 'Colar e brincos que combinam', 'banner_button' => 'Ver conjuntos', 'banner_eyebrow' => 'Coleção nova']);
+    $this->get('/')->assertSee('Conheça os conjuntos')->assertSee('Colar e brincos que combinam')->assertSee('Ver conjuntos')->assertSee('Coleção nova');
+});
+
+it('shows the banner photo and falls back to the button label "Ver peças"', function () {
+    StoreSetting::current()->update(['banner_enabled' => true, 'banner_title' => 'Destaque', 'banner_photo_path' => 'banner/foto.webp']);
+
+    $this->get('/')->assertSee('feature-photo', false)->assertSee('banner/foto.webp', false)->assertSee('Ver peças');
+});
+
+it('points the banner button to a category, promotions or the gift help', function () {
+    StoreSetting::current()->update(['banner_enabled' => true, 'banner_title' => 'Destaque', 'banner_link' => (string) $this->colares->id]);
+    $this->get('/')->assertSee("selectCategory('{$this->colares->id}')", false);
+
+    StoreSetting::current()->update(['banner_link' => 'sale']);
+    $this->get('/')->assertSee("selectCategory('sale')", false);
+
+    StoreSetting::current()->update(['banner_link' => 'gift']);
+    $this->get('/')->assertSee("getElementById('gift')", false);
+});
+
+it('falls back to all pieces when the banner category was deleted', function () {
+    $temp = Category::factory()->create();
+    StoreSetting::current()->update(['banner_enabled' => true, 'banner_title' => 'Destaque', 'banner_link' => (string) $temp->id]);
+    $temp->delete();
+
+    $this->get('/')->assertOk()->assertSee("selectCategory('all')", false);
 });

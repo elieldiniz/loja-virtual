@@ -8,7 +8,6 @@
     $instagramUrl = $instagram ? 'https://instagram.com/'.ltrim($instagram, '@') : null;
     $warranty = $settings->plating_warranty;
     $conjuntos = $categories->first(fn ($c) => \App\Support\SearchText::normalize($c->name) === 'conjuntos');
-    $marquee = ['Atendimento de verdade', 'Ajuda para presentear', 'Troca fácil', 'Feito para presentear', 'Entrega rápida', $pix > 0 ? $pix.'% off no Pix' : 'Pix e cartão'];
     $scrollToShop = "document.getElementById('shop')?.scrollIntoView({behavior:'smooth',block:'start'})";
 @endphp
 <div id="top">
@@ -32,11 +31,11 @@
         <div class="m-search-row" id="mSearchRow" x-show="mobileSearch" x-cloak hidden style="grid-column:1 / -1"><div class="search" style="display:block;max-width:none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="sr" for="q2">Buscar peças</label><input id="q2" x-ref="q2" type="search" placeholder="Buscar peças" wire:model.live.debounce.250ms="q" x-on:keydown.enter="{{ $scrollToShop }}"></div></div>
     </div>
     <nav class="cats" aria-label="Categorias"><div class="wrap"><ul id="catNav">
-        <li><button type="button" wire:click="selectCategory('all')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === 'all' && ! $material && ! $q && ! $showingFavorites ? 'true' : 'false' }}">Todas</button></li>
+        <li><button type="button" wire:click="selectCategory('all')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === 'all' && ! $q && ! $showingFavorites ? 'true' : 'false' }}">Todas</button></li>
         @foreach ($categories as $c)
-            <li><button type="button" wire:click="selectCategory('{{ $c->id }}')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === (string) $c->id && ! $material && ! $q && ! $showingFavorites ? 'true' : 'false' }}">{{ $c->name }}</button></li>
+            <li><button type="button" wire:click="selectCategory('{{ $c->id }}')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === (string) $c->id && ! $q && ! $showingFavorites ? 'true' : 'false' }}">{{ $c->name }}</button></li>
         @endforeach
-        <li><button type="button" class="sale" wire:click="selectCategory('sale')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === 'sale' && ! $material && ! $q ? 'true' : 'false' }}">Promoções</button></li>
+        <li><button type="button" class="sale" wire:click="selectCategory('sale')" x-on:click="{{ $scrollToShop }}" aria-pressed="{{ $category === 'sale' && ! $q ? 'true' : 'false' }}">Promoções</button></li>
     </ul></div></nav>
 </header>
 
@@ -56,11 +55,6 @@
             <div class="hero-art" aria-hidden="true"><div class="disc"></div><svg viewBox="0 0 200 200">@include('partials.art.hero')</svg></div>
         </div>
     </section>
-
-    <div class="marquee" aria-hidden="true"><div class="track">
-        @foreach (range(1, 2) as $_)@foreach ($marquee as $m)<span>{{ $m }}</span>@endforeach @endforeach
-    </div></div>
-
     @if ($categories->isNotEmpty())
     <section class="block wrap" aria-labelledby="catH">
         <div class="sec-head" data-reveal><h2 id="catH">Compre por <i>categoria</i></h2></div>
@@ -89,12 +83,27 @@
         </div>
     </section>
 
-    <section class="block wrap" aria-label="Coleções por material">
-        <div class="duo">
-            <button class="banner gold" data-reveal type="button" wire:click="selectMaterial('ouro-18k')" x-on:click="{{ $scrollToShop }}"><svg class="art" viewBox="0 0 200 200" aria-hidden="true">@include('partials.art.banner-gold')</svg><span class="eyebrow" style="color:#E9CB80;position:relative">Coleção dourada</span><h3>Clássicos dourados</h3><p>Argolas, correntes e pontos de luz que vão com tudo.</p><span class="btn">Ver peças</span></button>
-            <button class="banner silver" data-reveal style="--i:1" type="button" wire:click="selectMaterial('prata-925')" x-on:click="{{ $scrollToShop }}"><svg class="art" viewBox="0 0 200 200" aria-hidden="true">@include('partials.art.banner-silver')</svg><span class="eyebrow" style="color:#DDE1E5;position:relative">Coleção prata</span><h3>Prata delicada</h3><p>Brilho frio, peças leves para o dia a dia.</p><span class="btn">Ver peças</span></button>
-        </div>
+    @if ($settings->hasBanner())
+    @php
+        $link = $settings->banner_link ?: 'all';
+        $linkCategory = ctype_digit((string) $link) ? $categories->firstWhere('id', (int) $link) : null;
+        $link = ctype_digit((string) $link) && ! $linkCategory ? 'all' : $link;
+        $bannerPhoto = $settings->bannerPhotoUrl();
+    @endphp
+    <section class="block wrap" aria-label="{{ $settings->banner_title }}">
+        <button class="feature {{ $bannerPhoto ? 'has-photo' : '' }}" type="button" data-reveal
+            @if ($link === 'gift') x-on:click="document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth', block: 'start' })"
+            @else wire:click="selectCategory('{{ $link }}')" x-on:click="{{ $scrollToShop }}" @endif>
+            @if ($bannerPhoto)<img class="feature-photo" src="{{ $bannerPhoto }}" alt="" loading="lazy">@endif
+            <span class="feature-copy">
+                @if ($settings->banner_eyebrow)<span class="eyebrow">{{ $settings->banner_eyebrow }}</span>@endif
+                <h3>{{ $settings->banner_title }}</h3>
+                @if ($settings->banner_text)<p>{{ $settings->banner_text }}</p>@endif
+                <span class="btn">{{ $settings->banner_button ?: 'Ver peças' }}</span>
+            </span>
+        </button>
     </section>
+    @endif
 
     @if ($newCards->isNotEmpty())
     <section class="block wrap" aria-labelledby="newH">
@@ -124,7 +133,7 @@
                 <fieldset class="gq"><legend>Quanto quer gastar?</legend><div class="chips">
                     @foreach (\App\Http\Controllers\Storefront\GiftController::BUDGETS as $b)<label class="chip"><input type="radio" name="valor" value="{{ $b }}" @checked($loop->index === 1)><span>{{ $b }}</span></label>@endforeach
                 </div></fieldset>
-                <label class="gq" for="gNote"><span>Algum detalhe? <small>(opcional)</small></span><input class="txt" id="gNote" name="detalhe" maxlength="140" placeholder="Ex.: ela prefere prata, usa brinco pequeno"></label>
+                <label class="gq" for="gNote"><span>Algum detalhe? <small>(opcional)</small></span><input class="txt" id="gNote" name="detalhe" maxlength="140" placeholder="Ex.: ela gosta de dourado, usa brinco pequeno"></label>
                 <button class="btn btn-wa" type="submit"><x-store.wa-icon />Pedir sugestões no WhatsApp</button>
             </form>
         </div>

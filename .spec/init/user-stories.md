@@ -57,7 +57,7 @@ A STyli Prates é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem pagame
 - [ ] A busca por nome e categoria filtra enquanto digita
 - [ ] Busca sem resultado convida a cliente a falar com a loja
 - [ ] Filtro Promoções lista apenas peças com preço antigo
-- [ ] Os banners filtram a coleção dourada (Ouro 18k) ou prata (Prata 925)
+- [ ] O banner largo da home (quando ligado no painel) leva ao destino escolhido: todas as peças, promoções, ajuda para presente ou uma categoria
 - [ ] Filtro por categoria lista só as peças da categoria
 
 **Expected Result:** A cliente restringe o catálogo e, sem resultado, é levada ao atendimento.
@@ -604,6 +604,7 @@ A STyli Prates é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem pagame
 - [ ] Atalhos de conversa, cada um vira pergunta pronta; vazios são descartados
 - [ ] Convite de ajuda liga/desliga, com 1, 2, 3 ou 5 minutos
 - [ ] Presente de aniversário entre 0 e 50%
+- [ ] Banner largo da vitrine: liga/desliga, chamada, título (até 80 caracteres), texto (até 160), botão (até 30), foto (convertida para WebP com até 1800 px de largura) e destino (todas as peças, promoções, ajuda para presente ou categoria); sem título ou desligado, a seção não aparece
 
 **Expected Result:** O atendimento da vitrine reflete as configurações salvas.
 

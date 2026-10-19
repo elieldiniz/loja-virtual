@@ -49,12 +49,6 @@ class StorefrontCatalog
         return $this->query()->where('category_id', $categoryId)->latest('id')->get();
     }
 
-    /** @return Collection<int, Product> */
-    public function inMaterial(string $slug): Collection
-    {
-        return $this->query()->whereHas('material', fn ($m) => $m->where('slug', $slug))->latest('id')->get();
-    }
-
     /** @return Collection<int, Product> busca por nome e categoria, sem diferenciar acentos */
     public function search(string $term): Collection
     {

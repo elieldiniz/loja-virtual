@@ -57,14 +57,12 @@ it('filters promotions by a valid old price', function () {
     expect($this->catalog->onSale()->pluck('id')->all())->toBe([$sale->id]);
 });
 
-it('filters by category and material', function () {
+it('filters by category', function () {
     $other = Category::factory()->create();
-    $gold = visibleProduct();
-    $silver = visibleProduct(['material_id' => $this->silver->id, 'category_id' => $other->id]);
+    visibleProduct();
+    $inOther = visibleProduct(['category_id' => $other->id]);
 
-    expect($this->catalog->inCategory($other->id)->pluck('id')->all())->toBe([$silver->id])
-        ->and($this->catalog->inMaterial('ouro-18k')->pluck('id')->all())->toBe([$gold->id])
-        ->and($this->catalog->inMaterial('prata-925')->pluck('id')->all())->toBe([$silver->id]);
+    expect($this->catalog->inCategory($other->id)->pluck('id')->all())->toBe([$inOther->id]);
 });
 
 it('searches by name and category ignoring accents and hides non visible products', function () {

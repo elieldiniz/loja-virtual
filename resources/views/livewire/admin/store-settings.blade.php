@@ -50,6 +50,36 @@
         </div>
 
         <section class="card panel">
+            <h2>Banner da vitrine</h2>
+            <p class="hint">Um banner largo com foto, abaixo dos mais vendidos. Desligado, a seção não aparece no site.</p>
+            <label class="switch"><input type="checkbox" wire:model.live="bannerEnabled"><span class="track"></span><span style="color:var(--ink)">Mostrar o banner no site</span></label>
+            <div class="care-grid">
+                <div class="fields">
+                    <label class="f full" for="bEyebrow">Chamada pequena <small>Opcional, acima do título</small><input class="input" id="bEyebrow" wire:model="bannerEyebrow" maxlength="60" placeholder="Ex.: Coleção nova"></label>
+                    <label class="f full" for="bTitle">Título<input class="input" id="bTitle" wire:model="bannerTitle" maxlength="80" placeholder="Ex.: Conheça os conjuntos">@error('bannerTitle')<span class="err">{{ $message }}</span>@enderror</label>
+                    <label class="f full" for="bText">Texto <small>Opcional</small><input class="input" id="bText" wire:model="bannerText" maxlength="160" placeholder="Ex.: Colar e brincos que combinam, prontos para presentear.">@error('bannerText')<span class="err">{{ $message }}</span>@enderror</label>
+                    <label class="f" for="bButton">Texto do botão<input class="input" id="bButton" wire:model="bannerButton" maxlength="30" placeholder="Ver peças">@error('bannerButton')<span class="err">{{ $message }}</span>@enderror</label>
+                    <label class="f" for="bLink">O botão leva para
+                        <select class="select" id="bLink" wire:model="bannerLink">
+                            <option value="all">Todas as peças</option>
+                            <option value="sale">Promoções</option>
+                            <option value="gift">Ajuda para presente</option>
+                            @foreach ($categories as $category)<option value="{{ $category->id }}">Categoria: {{ $category->name }}</option>@endforeach
+                        </select>
+                        @error('bannerLink')<span class="err">{{ $message }}</span>@enderror
+                    </label>
+                </div>
+                <div class="fab-box">
+                    <span class="flabel">Foto do banner <small>Quanto mais larga, melhor (ex.: 1600 × 600)</small></span>
+                    @if ($bannerUrl)<img src="{{ $bannerUrl }}" alt="" style="width:100%;aspect-ratio:8/3;object-fit:cover;border:1px solid var(--line)">@endif
+                    <label class="add-photo slim" for="bPhotoIn"><x-icon name="camera" />{{ $bannerUrl ? 'Trocar foto' : 'Enviar foto do banner' }}<input id="bPhotoIn" type="file" accept="image/*" wire:model="bannerPhoto"></label>
+                    @if ($bannerUrl)<button class="link-btn" type="button" wire:click="removeBannerPhoto" style="align-self:flex-start">Remover foto</button>@endif
+                    @error('bannerPhoto')<span class="err">{{ $message }}</span>@enderror
+                </div>
+            </div>
+        </section>
+
+        <section class="card panel">
             <h2>Atendimento no site</h2>
             <p class="hint">Deixa a vitrine com cara de conversa, sem nome de atendente: fala sempre como "a gente".</p>
             <div class="care-grid">
