@@ -15,7 +15,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="robots" content="noindex,nofollow">
-    <title>{{ $title ?? 'Painel' }} · Orvalha Admin</title>
+    <link rel="icon" href="{{ asset('favicon.png') }}">
+    <title>{{ $title ?? 'Painel' }} · STyli Prates Admin</title>
     @include('partials.fonts')
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])
     @livewireStyles
@@ -25,7 +26,7 @@
 
 <div class="shell">
     <aside class="rail">
-        <div class="brand-mark"><b>ORVALHA</b><span>Semijoias</span></div>
+        <div class="brand-mark"><x-brand variant="light" /></div>
         @foreach ($nav as [$key, $label, $icon, $url, $count])
             <a class="nav-btn" href="{{ $url }}" @if ($current === $key) aria-current="page" @endif>
                 <x-icon :name="$icon" />{{ $label }}
@@ -42,7 +43,7 @@
 
     <main class="main anim">
         <div class="topbar-m">
-            <div class="brand-mark"><b>ORVALHA</b><span>Semijoias</span></div>
+            <div class="brand-mark"><x-brand /></div>
             <form method="POST" action="{{ route('admin.logout') }}">
                 @csrf
                 <button class="icon-btn" type="submit" aria-label="Sair"><x-icon name="out" /></button>

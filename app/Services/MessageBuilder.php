@@ -27,7 +27,7 @@ class MessageBuilder
         );
 
         return implode("\n", [
-            'Oi! Separei essas peças no site da Orvalha:',
+            'Oi! Separei essas peças no site da STyli Prates:',
             '',
             ...$lines,
             '',
@@ -80,7 +80,7 @@ class MessageBuilder
 
         $lines = [
             sprintf(
-                'Olá, %s! Segue o resumo da sua compra na Orvalha Semijoias (%s, %s):',
+                'Olá, %s! Segue o resumo da sua compra na STyli Prates (%s, %s):',
                 $this->firstName($sale->customer?->name),
                 SaleNumberGenerator::format($sale->number),
                 $sale->sold_at->format('d/m/Y'),
@@ -139,7 +139,7 @@ class MessageBuilder
     public function birthday(Customer $customer, int $giftPercent): string
     {
         return sprintf(
-            'Oi, %s! Feliz aniversário! 🎉 A Orvalha preparou um presente pra você: %d%% de desconto em qualquer peça até o fim do mês. É só responder esta mensagem 💛',
+            'Oi, %s! Feliz aniversário! 🎉 A STyli Prates preparou um presente pra você: %d%% de desconto em qualquer peça até o fim do mês. É só responder esta mensagem 💛',
             $this->firstName($customer->name),
             $giftPercent,
         );

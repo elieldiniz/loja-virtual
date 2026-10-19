@@ -19,11 +19,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-    <title>{{ $title ?? 'Orvalha Semijoias' }}</title>
+    <title>{{ $title ?? 'STyli Prates' }}</title>
     <meta name="description" content="Semijoias delicadas para usar todo dia e para presentear, com atendimento de verdade pelo WhatsApp.">
-    <meta property="og:title" content="Orvalha Semijoias">
+    <meta property="og:title" content="STyli Prates">
     <meta property="og:description" content="Semijoias delicadas para usar todo dia e para presentear. Monte sua sacola e fale com a gente no WhatsApp.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <link rel="icon" href="{{ asset('favicon.png') }}">
     @include('partials.fonts')
     @vite(['resources/css/storefront.css', 'resources/js/storefront.js'])
     @livewireStyles

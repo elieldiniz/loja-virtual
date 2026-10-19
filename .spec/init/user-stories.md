@@ -1,10 +1,10 @@
-# Orvalha Semijoias — User Stories
+# STyli Prates — User Stories
 
-<!-- inputs: project-description.md@sha256:9aca46ff8072 -->
+<!-- inputs: project-description.md@sha256:37dbaf66aeb6 -->
 
 ## Overview
 
-A Orvalha Semijoias é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem pagamento, que envia a sacola da cliente para o WhatsApp da loja, e um painel administrativo para cadastrar peças, registrar vendas fechadas, gerenciar clientes e crediário e acompanhar métricas. O atendimento é humanizado ("a gente") e a venda é sempre fechada na conversa.
+A STyli Prates é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem pagamento, que envia a sacola da cliente para o WhatsApp da loja, e um painel administrativo para cadastrar peças, registrar vendas fechadas, gerenciar clientes e crediário e acompanhar métricas. O atendimento é humanizado ("a gente") e a venda é sempre fechada na conversa.
 
 **User Types:**
 - **Cliente** - visitante da vitrine pública, sem login e sem dados guardados no servidor.
@@ -162,7 +162,7 @@ A Orvalha Semijoias é uma loja de Ji-Paraná (RO) com uma vitrine on-line sem p
 
 **Acceptance Criteria:**
 - [ ] Botão fixo com a logo da Orvalha (ou foto da loja, se configurada) e selo do WhatsApp
-- [ ] Ao tocar, abre "Atendimento Orvalha" com a frase de boas-vindas e os atalhos
+- [ ] Ao tocar, abre "Atendimento STyli Prates" com a frase de boas-vindas e os atalhos
 - [ ] Cada atalho abre o WhatsApp com a pergunta já escrita (tamanho de anel, entrega/envio, outra dúvida)
 - [ ] O atalho "Ajuda para escolher um presente" não abre o WhatsApp e leva à seção de ajuda para presente
 - [ ] Nenhum texto usa nome de atendente, status "online" ou promessa de tempo de resposta

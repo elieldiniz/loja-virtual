@@ -1,7 +1,7 @@
 import { local, session } from './storage';
 
-const BAG_KEY = 'orvalha.bag';
-const FAV_KEY = 'orvalha.favs';
+const BAG_KEY = 'styliprates.bag';
+const FAV_KEY = 'styliprates.favs';
 
 function cleanBag(raw) {
     const items = {};
@@ -64,7 +64,7 @@ document.addEventListener('alpine:init', () => {
 
         hideBubble() {
             this.bubbleOn = false;
-            session.flag('orvalha.bubble');
+            session.flag('styliprates.bubble');
         },
 
         openGuide(section = null) {

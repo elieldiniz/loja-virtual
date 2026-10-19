@@ -1,6 +1,6 @@
 <div class="login">
     <form class="login-card" wire:submit="login">
-        <div class="brand-mark"><b>ORVALHA</b><span>Semijoias</span></div>
+        <div class="brand-mark"><x-brand /></div>
         <p>Entre para gerenciar as peças e a loja.</p>
 
         <label class="f" for="lEmail">E-mail

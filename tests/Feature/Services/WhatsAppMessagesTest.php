@@ -37,7 +37,7 @@ it('builds the bag message exactly like the spec example', function () {
     ], Money::from('279.70'), Money::from('265.72'));
 
     expect($message)->toBe(<<<'TXT'
-Oi! Separei essas peças no site da Orvalha:
+Oi! Separei essas peças no site da STyli Prates:
 
 • 1x Colar Ponto de Luz (Ouro 18k) — R$ 99,90
 • 2x Argola Lisa Média (Ouro 18k) — R$ 179,80
@@ -75,7 +75,7 @@ it('builds a receipt with items, discount, payment and installments', function (
     $message = (new MessageBuilder)->receipt($sale->fresh());
 
     expect($message)->toBe(<<<'TXT'
-Olá, Mariana! Segue o resumo da sua compra na Orvalha Semijoias (#0616, 19/10/2026):
+Olá, Mariana! Segue o resumo da sua compra na STyli Prates (#0616, 19/10/2026):
 
 • 1× Colar — R$ 100,00
 Desconto: − R$ 10,00

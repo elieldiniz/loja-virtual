@@ -7,7 +7,7 @@
                 <h2>Contato</h2>
                 <div class="fields">
                     <label class="f" for="sWa">WhatsApp<input class="input" id="sWa" wire:model="whatsapp" inputmode="tel" placeholder="(69) 99999-0000">@error('whatsapp')<span class="err">{{ $message }}</span>@enderror</label>
-                    <label class="f" for="sIg">Instagram<input class="input" id="sIg" wire:model="instagram" placeholder="@orvalha.semijoias"></label>
+                    <label class="f" for="sIg">Instagram<input class="input" id="sIg" wire:model="instagram" placeholder="@styliprates"></label>
                     <label class="f full" for="sStreet">Endereço<input class="input" id="sStreet" wire:model="address"></label>
                     <label class="f" for="sCity">Cidade<input class="input" id="sCity" wire:model="city"></label>
                     <label class="f" for="sState">Estado<input class="input" id="sState" wire:model="state"></label>
@@ -60,9 +60,9 @@
                 <div class="fab-box">
                     <span class="flabel">Botão de atendimento</span>
                     <div class="fab-row" id="fabPv">
-                        <span class="fab-pv">@if ($buttonMode === 'photo' && $photoUrl)<img src="{{ $photoUrl }}" alt="">@else O @endif<span class="wa-mini"></span></span>
+                        <span class="fab-pv">@if ($buttonMode === 'photo' && $photoUrl)<img src="{{ $photoUrl }}" alt="">@else<x-monogram variant="light" />@endif<span class="wa-mini"></span></span>
                         <div class="chips-choose">
-                            <label class="chip-opt"><input type="radio" wire:model.live="buttonMode" value="logo">Logo da Orvalha</label>
+                            <label class="chip-opt"><input type="radio" wire:model.live="buttonMode" value="logo">Logo da STyli Prates</label>
                             <label class="chip-opt"><input type="radio" wire:model.live="buttonMode" value="photo">Foto da loja</label>
                         </div>
                     </div>

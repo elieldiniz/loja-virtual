@@ -1,4 +1,4 @@
-// Gráfico de linha do Painel e tooltips (portado do mockup Orvalha_Admin.html).
+// Gráfico de linha do Painel e tooltips (portado do mockup do painel (.spec/init/design)).
 const brl = (n) => 'R$ ' + Number(n || 0).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 const METRICS = {
@@ -80,7 +80,7 @@ document.addEventListener('alpine:init', () => {
 
             const pts = series.map((d, i) => `${x(i).toFixed(1)},${y(d[key]).toFixed(1)}`);
             const area = `M${x(0)},${y(0)} L${pts.join(' L')} L${x(series.length - 1)},${y(0)}Z`;
-            el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" role="img"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5B1F2E" stop-opacity="0.16"/><stop offset="1" stop-color="#5B1F2E" stop-opacity="0"/></linearGradient></defs>${g}<path d="${area}" fill="url(#ag)"/><polyline id="ln" points="${pts.join(' ')}" fill="none" stroke="#5B1F2E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line id="cx" y1="${T}" y2="${T + ih}" stroke="#221C1D" stroke-opacity="0.35" stroke-dasharray="3 3" style="display:none"/><circle id="cd" r="5" fill="#5B1F2E" stroke="#FFFFFF" stroke-width="2" style="display:none"/><rect x="${L}" y="0" width="${iw}" height="${h}" fill="transparent" id="hit"/></svg>`;
+            el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" role="img"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6A494C" stop-opacity="0.16"/><stop offset="1" stop-color="#6A494C" stop-opacity="0"/></linearGradient></defs>${g}<path d="${area}" fill="url(#ag)"/><polyline id="ln" points="${pts.join(' ')}" fill="none" stroke="#6A494C" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line id="cx" y1="${T}" y2="${T + ih}" stroke="#221C1D" stroke-opacity="0.35" stroke-dasharray="3 3" style="display:none"/><circle id="cd" r="5" fill="#6A494C" stroke="#FFFFFF" stroke-width="2" style="display:none"/><rect x="${L}" y="0" width="${iw}" height="${h}" fill="transparent" id="hit"/></svg>`;
 
             const ln = el.querySelector('#ln');
             const len = ln.getTotalLength();

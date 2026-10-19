@@ -100,7 +100,7 @@ class Home extends Component
             'shopEyebrow' => $eyebrow,
             'filtered' => $filtered,
             'instagramTiles' => $cards(Product::query()->visible()->with(['media'])->latest('id')->limit(6)->get()),
-        ])->title('Orvalha Semijoias');
+        ])->title('STyli Prates');
     }
 
     /** @return array{0: Collection<int, Product>, 1: string, 2: string, 3: bool} */

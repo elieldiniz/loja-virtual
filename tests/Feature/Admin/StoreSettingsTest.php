@@ -16,11 +16,11 @@ beforeEach(function () {
 
 it('saves contact data normalizing the whatsapp number', function () {
     Livewire::test(StoreSettings::class)
-        ->set('whatsapp', '(69) 99999-0000')->set('instagram', '@orvalha')->set('city', 'Ji-Paraná')
+        ->set('whatsapp', '(69) 99999-0000')->set('instagram', '@styliprates')->set('city', 'Ji-Paraná')
         ->set('hoursWeekdays', '9h às 18h')->call('save')->assertHasNoErrors();
 
     $s = StoreSetting::current();
-    expect($s->whatsapp)->toBe('69999990000')->and($s->instagram)->toBe('@orvalha')->and($s->hours_weekdays)->toBe('9h às 18h');
+    expect($s->whatsapp)->toBe('69999990000')->and($s->instagram)->toBe('@styliprates')->and($s->hours_weekdays)->toBe('9h às 18h');
 });
 
 it('rejects an invalid whatsapp', function () {

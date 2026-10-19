@@ -29,10 +29,10 @@ class DemoSeeder extends Seeder
 
         $this->call([LookupSeeder::class, StoreSettingSeeder::class]);
 
-        User::updateOrCreate(['email' => 'contato@orvalha.test'], ['name' => 'Orvalha', 'password' => Hash::make('senha123')]);
+        User::updateOrCreate(['email' => 'contato@orvalha.test'], ['name' => 'STyli Prates', 'password' => Hash::make('senha123')]);
 
         StoreSetting::current()->update([
-            'whatsapp' => '69999990000', 'instagram' => '@orvalha.semijoias', 'address' => 'Av. Marechal Rondon, 1234 · Centro',
+            'whatsapp' => '69999990000', 'instagram' => '@styliprates', 'address' => 'Av. Marechal Rondon, 1234 · Centro',
             'hours_weekdays' => '9h às 18h', 'hours_saturday' => '9h às 13h', 'hours_sunday' => 'Fechado', 'plating_warranty' => '6 meses', 'cnpj' => '00.000.000/0001-00',
         ]);
 

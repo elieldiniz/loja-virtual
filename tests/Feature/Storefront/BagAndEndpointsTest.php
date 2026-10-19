@@ -35,7 +35,7 @@ it('builds the WhatsApp message exactly like the spec', function () {
     parse_str(parse_url($url, PHP_URL_QUERY), $query);
 
     expect($url)->toStartWith('https://wa.me/5569999990000?text=')
-        ->and($query['text'])->toBe("Oi! Separei essas peças no site da Orvalha:\n\n• 1x Colar Ponto de Luz (Ouro 18k) — R$ 99,90\n• 2x Argola Lisa Média (Ouro 18k) — R$ 179,80\n\nTotal: R$ 279,70 (ou R$ 265,72 no Pix)\n\nPode confirmar se tem tudo disponível?");
+        ->and($query['text'])->toBe("Oi! Separei essas peças no site da STyli Prates:\n\n• 1x Colar Ponto de Luz (Ouro 18k) — R$ 99,90\n• 2x Argola Lisa Média (Ouro 18k) — R$ 179,80\n\nTotal: R$ 279,70 (ou R$ 265,72 no Pix)\n\nPode confirmar se tem tudo disponível?");
 });
 
 it('drops hidden, missing and zero quantity pieces and reports the removed ids', function () {

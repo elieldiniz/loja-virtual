@@ -23,7 +23,7 @@
             <label class="sr" for="q">Buscar peças</label>
             <input id="q" type="search" placeholder="Buscar peças" wire:model.live.debounce.250ms="q" x-on:keydown.enter="{{ $scrollToShop }}">
         </div>
-        <a class="logo" href="{{ route('home') }}" aria-label="Orvalha Semijoias, página inicial" wire:click.prevent="clearFilters"><b>ORVALHA</b><span>Semijoias</span></a>
+        <a class="logo" href="{{ route('home') }}" aria-label="STyli Prates, página inicial" wire:click.prevent="clearFilters"><x-brand /></a>
         <div class="head-icons">
             <button class="icon-btn m-search" type="button" x-on:click="mobileSearch = !mobileSearch; if (mobileSearch) $nextTick(() => $refs.q2.focus())" aria-label="Buscar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
             <button class="icon-btn" type="button" aria-label="Favoritos" x-on:click="$store.favs.count ? ($wire.showFavorites($store.favs.ids).then(() => {{ $scrollToShop }})) : $store.ui.toast('Toque no coração das peças para salvar')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="badge-count" x-show="$store.favs.count" x-text="$store.favs.count" x-cloak hidden>0</span></button>
@@ -41,7 +41,7 @@
 </header>
 
 <main>
-    <section class="hero" aria-label="Nova coleção">
+    <section class="hero {{ file_exists(public_path('images/hero.webp')) ? 'hero--photo' : '' }}" aria-label="Nova coleção">
         <div class="wrap">
             <div class="hero-copy">
                 <span class="eyebrow">Nova coleção · Brilho do Norte</span>
@@ -154,7 +154,7 @@
             </div>
             <div data-reveal style="--i:1">
                 <div class="chat" aria-hidden="true">
-                    <div class="chat-top"><span class="mono">O</span><div><b>Orvalha Semijoias</b><small>WhatsApp</small></div></div>
+                    <div class="chat-top"><span class="mono"><x-monogram variant="light" /></span><div><b>STyli Prates</b><small>WhatsApp</small></div></div>
                     <div class="msg me">Oi! Esse colar ponto de luz fica muito curto?</div>
                     <div class="msg us">Oi! Ele fica na altura da clavícula, bem delicado. Quer que eu separe um pra você? 😊</div>
                     <div class="msg me">Quero sim! Dá pra entregar hoje?</div>
@@ -197,7 +197,7 @@
 
 <footer>
     <div class="wrap cols">
-        <div><a class="logo" href="{{ route('home') }}" style="align-items:flex-start"><b style="font-size:26px">ORVALHA</b><span>Semijoias</span></a><p style="color:var(--muted);margin:14px 0 0;max-width:34ch">Semijoias para o dia a dia e ocasiões especiais{{ $settings->city ? ', em '.$settings->city.($settings->state ? ', '.$settings->state : '') : '' }}.</p></div>
+        <div><a class="logo" href="{{ route('home') }}" style="align-items:flex-start"><x-brand class="brand-logo footer-logo" /></a><p style="color:var(--muted);margin:14px 0 0;max-width:34ch">Semijoias para o dia a dia e ocasiões especiais{{ $settings->city ? ', em '.$settings->city.($settings->state ? ', '.$settings->state : '') : '' }}.</p></div>
         <div><h4>Categorias</h4><ul id="footCats">@foreach ($categories as $c)<li><button type="button" class="human" style="background:none;border:0;padding:0;font:inherit;color:inherit;font-weight:400;cursor:pointer" wire:click="selectCategory('{{ $c->id }}')" x-on:click="{{ $scrollToShop }}">{{ $c->name }}</button></li>@endforeach</ul></div>
         <div><h4>Ajuda</h4><ul>
             <li><a href="#how">Como comprar</a></li><li><a href="#gift">Ajuda para presente</a></li>
@@ -213,6 +213,6 @@
             @if ($addressLine)<li>{{ $addressLine }}</li>@endif
         </ul></div>
     </div>
-    <div class="wrap bottom"><span>© {{ now()->year }} Orvalha Semijoias{{ $settings->cnpj ? ' · CNPJ '.$settings->cnpj : '' }}</span><span class="pay"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span></span></div>
+    <div class="wrap bottom"><span>© {{ now()->year }} STyli Prates{{ $settings->cnpj ? ' · CNPJ '.$settings->cnpj : '' }}</span><span class="pay"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span></span></div>
 </footer>
 </div>

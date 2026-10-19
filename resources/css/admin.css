@@ -9,8 +9,8 @@
   --soft: #F7EFEC;
   --gold: #A9803F;
   --gold-deep: #8A6630;
-  --wine: #5B1F2E;
-  --wine-soft: #F4E6E9;
+  --wine: #6A494C;
+  --wine-soft: #F7E8E6;
   --ok: #1A7F45;
   --f-display: "Bodoni Moda", "Didot", Georgia, serif;
   --f-body: "Jost", "Helvetica Neue", Arial, sans-serif;
@@ -23,10 +23,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 10px 18px; border: 1px solid transparent; font-weight: 500; font-size: 14px; cursor: pointer; text-decoration: none; transition: background 160ms ease, transform 160ms ease, border-color 160ms ease; }
 .btn:active { transform: scale(0.98); }
 .btn-primary { background: var(--wine); color: #FFFFFF; }
-.btn-primary:hover { background: #47162A; }
+.btn-primary:hover { background: #563B3E; }
 .btn-ghost { background: var(--surface); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--ink); }
-.btn-danger { background: var(--surface); border-color: #E3C3CA; color: var(--wine); }
+.btn-danger { background: var(--surface); border-color: #E4CCCA; color: var(--wine); }
 .btn-danger:hover { background: var(--wine-soft); }
 .icon-btn { width: 40px; height: 40px; border: 1px solid var(--line); background: var(--surface); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); transition: border-color 160ms ease; }
 .icon-btn:hover { border-color: var(--ink); }
@@ -37,7 +37,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .anim > *:nth-child(2) { animation-delay: 60ms; } .anim > *:nth-child(3) { animation-delay: 120ms; } .anim > *:nth-child(4) { animation-delay: 180ms; }
 
 /* login */
-.login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; background: radial-gradient(circle at 50% 0%, #7A2C40 0%, #3A1420 70%); }
+.login { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px; background: radial-gradient(circle at 50% 0%, #8A6368 0%, #4A3235 70%); }
 .login-card { width: 100%; max-width: 380px; background: var(--surface); padding: 36px 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.35); animation: up 600ms cubic-bezier(.2,.7,.2,1) both; }
 .brand-mark { text-align: center; line-height: 1; }
 .brand-mark b { font: 500 34px/1 var(--f-display); letter-spacing: 0.18em; display: block; }
@@ -209,7 +209,7 @@ label.f small { font-weight: 400; color: var(--muted); }
 .hbar .val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; font-size: 14px; }
 .hbar .track { grid-column: 1 / -1; height: 8px; background: #F3ECEA; }
 .hbar .fill { height: 100%; background: var(--wine); border-radius: 0 4px 4px 0; transform-origin: left; animation: grow 700ms cubic-bezier(.2,.7,.2,1) both; }
-.hbar:hover .fill { background: #7A2C40; }
+.hbar:hover .fill { background: #8A6368; }
 .hbar .mini { width: 34px; height: 40px; flex: none; background: var(--soft); display: flex; align-items: center; justify-content: center; }
 .hbar .mini svg { width: 80%; height: auto; }
 @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -219,7 +219,7 @@ label.f small { font-weight: 400; color: var(--muted); }
 .fstep .n { font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
 .fstep .n small { color: var(--muted); font-weight: 400; margin-left: 6px; }
 .fstep .bar { grid-column: 1 / -1; height: 30px; background: var(--wine); border-radius: 0 4px 4px 0; transform-origin: left; animation: grow 700ms cubic-bezier(.2,.7,.2,1) both; }
-.fstep:nth-child(2) .bar { background: #7A3A4A; } .fstep:nth-child(3) .bar { background: #9A5A68; } .fstep:nth-child(4) .bar { background: var(--gold); }
+.fstep:nth-child(2) .bar { background: #7C5A5E; } .fstep:nth-child(3) .bar { background: #9C7478; } .fstep:nth-child(4) .bar { background: var(--gold); }
 .insight { font-size: 13px; background: var(--soft); padding: 10px 12px; margin: 0; }
 .terms { display: flex; flex-direction: column; }
 .term { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); font-size: 14px; }
@@ -322,7 +322,7 @@ label.f small { font-weight: 400; color: var(--muted); }
 .care-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 20px; align-items: start; }
 .fab-box { display: flex; flex-direction: column; gap: 10px; }
 .fab-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.fab-pv { position: relative; width: 58px; height: 58px; border-radius: 50%; background: var(--wine); color: #E9CB80; display: inline-flex; align-items: center; justify-content: center; font: 500 28px/1 var(--f-display); box-shadow: 0 8px 18px rgba(91,31,46,0.3); flex: none; overflow: visible; }
+.fab-pv { position: relative; width: 58px; height: 58px; border-radius: 50%; background: var(--wine); color: #E9CB80; display: inline-flex; align-items: center; justify-content: center; font: 500 28px/1 var(--f-display); box-shadow: 0 8px 18px rgba(106,73,76,0.3); flex: none; overflow: visible; }
 .fab-pv img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .fab-pv .wa-mini { position: absolute; right: -2px; bottom: -2px; width: 20px; height: 20px; border-radius: 50%; background: var(--ok); border: 2px solid #FFFFFF; }
 .add-photo.slim { aspect-ratio: auto; flex-direction: row; min-height: 52px; justify-content: flex-start; padding: 10px 14px; text-align: left; }
@@ -422,7 +422,7 @@ button.sale:first-child { border-top: 0; } button.sale:hover { background: #FCF8
   .cart { position: static; }
   .pgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
   .sale { grid-template-columns: minmax(0, 1fr) auto; } .sale .when { grid-column: 1 / -1; }
-  .cart-fab { display: flex; justify-content: space-between; align-items: center; gap: 10px; position: fixed; left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); z-index: 35; background: var(--wine); color: #FFFFFF; border: 0; min-height: 52px; padding: 0 16px; font-weight: 600; box-shadow: 0 10px 24px rgba(91,31,46,0.35); cursor: pointer; animation: up 300ms both; }
+  .cart-fab { display: flex; justify-content: space-between; align-items: center; gap: 10px; position: fixed; left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); z-index: 35; background: var(--wine); color: #FFFFFF; border: 0; min-height: 52px; padding: 0 16px; font-weight: 600; box-shadow: 0 10px 24px rgba(106,73,76,0.35); cursor: pointer; animation: up 300ms both; }
   .cart-fab span { font-weight: 400; text-decoration: underline; }
   .tab { font-size: 11px; }
 }
@@ -459,8 +459,8 @@ a.crow, a.srow, a.sale, a.pitem { text-decoration: none; color: inherit; }
 button.nav-btn { font-family: inherit; font-size: inherit; }
 .link-btn[disabled] { opacity: 0.4; cursor: not-allowed; }
 .flash { display: flex; gap: 8px; align-items: center; padding: 10px 14px; background: #EAF5EE; border: 1px solid #CFE6D8; color: var(--ok); font-weight: 500; }
-.flash.warn { background: var(--wine-soft); border-color: #E3C3CA; color: var(--wine); }
-.err-box { padding: 10px 14px; background: var(--wine-soft); border: 1px solid #E3C3CA; color: var(--wine); font-weight: 500; }
+.flash.warn { background: var(--wine-soft); border-color: #E4CCCA; color: var(--wine); }
+.err-box { padding: 10px 14px; background: var(--wine-soft); border: 1px solid #E4CCCA; color: var(--wine); font-weight: 500; }
 /* Cada página do painel é um componente Livewire com um único elemento raiz: ele "some" para os filhos herdarem o layout flex de .main. */
 .main > [wire\:id] { display: contents; }
 a.sale { width: 100%; border-top: 1px solid var(--line); text-align: left; grid-template-columns: 100px minmax(0, 1fr) auto 16px; transition: background 160ms ease; }
@@ -468,3 +468,11 @@ a.sale:first-child { border-top: 0; }
 a.sale:hover { background: #FCF8F7; }
 a.sale > svg { color: var(--muted); }
 @media (max-width: 860px) { a.sale { grid-template-columns: minmax(0, 1fr) auto; } a.sale > svg { display: none; } }
+
+/* ---------- marca STyli Prates ---------- */
+.brand-mark .brand-logo { display: block; height: 52px; width: auto; }
+.rail .brand-mark .brand-logo { height: 46px; }
+.topbar-m .brand-mark .brand-logo { height: 34px; }
+.login-card .brand-mark .brand-logo { height: 64px; margin-inline: auto; }
+.fab-pv .brand-monogram { width: 52%; height: auto; display: block; }
+.fab-pv { font-size: 0; }

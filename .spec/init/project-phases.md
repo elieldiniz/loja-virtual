@@ -1,6 +1,6 @@
-# Orvalha Semijoias — Project Phases
+# STyli Prates — Project Phases
 
-<!-- inputs: project-description.md@sha256:9aca46ff8072 user-stories.md@sha256:30cc64bc0805 database-schema.md@sha256:814c79b6a460 -->
+<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:ec2348513670 database-schema.md@sha256:fbe0e37009e8 -->
 
 ## Overview
 
@@ -8,7 +8,7 @@ A construção é **foundation-first**: primeiro projeto Laravel e tooling (Phas
 
 São **19 fases**; cada uma (pai + subfases) cabe em uma sessão de agente. **Corte do MVP: tudo entra no MVP** (decisão do desenvolvedor), então a primeira versão publicada é concluída ao fim da **Phase 19**. As fases são entregues a agentes pelo número (`Phase 5.3`). Nada existe ainda no repositório além de `README.md` e `.spec/`, então todas as tarefas começam `[ ]`.
 
-Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.html` (vitrine), `Orvalha_Admin.html` (painel, telas `viewLogin`, `viewDash`, `viewItems`, `viewForm`, `viewCats`, `viewSell`, `viewSales`, `viewSale`, `viewClients`, `viewClient`, `viewStore`) e `Orvalha_Regras_de_negocio_e_fluxos.md` (regras RN-xx). A implementação deve ser **fiel** ao mockup (fontes Bodoni Moda e Jost; dourado `#A9803F`/`#8A6630`, vinho `#5B1F2E`, blush `#EFDDD7`, tinta `#221C1D`).
+Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.html` (vitrine), `Orvalha_Admin.html` (painel, telas `viewLogin`, `viewDash`, `viewItems`, `viewForm`, `viewCats`, `viewSell`, `viewSales`, `viewSale`, `viewClients`, `viewClient`, `viewStore`) e `Orvalha_Regras_de_negocio_e_fluxos.md` (regras RN-xx). A implementação deve ser **fiel** ao mockup (fontes Bodoni Moda e Jost; dourado `#A9803F`/`#8A6630`, malva `#6A494C`, blush `#EFDDD7`, tinta `#221C1D`).
 
 **Conventions:**
 - `[ ]` pending · `[x]` done in the codebase.
@@ -263,7 +263,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 - [x] **Task:** Construtores de mensagem: sacola, atalho, presente, recibo e parabéns.
   - **Acceptance criteria:**
-    - Sacola: "Oi! Separei essas peças no site da Orvalha:" + itens "Nx Nome (Material) — R$ valor" + total e total no Pix + "Pode confirmar se tem tudo disponível?"
+    - Sacola: "Oi! Separei essas peças no site da STyli Prates:" + itens "Nx Nome (Material) — R$ valor" + total e total no Pix + "Pode confirmar se tem tudo disponível?"
     - Presente inclui para quem, ocasião, faixa de gasto e detalhe opcional
     - Recibo: número, data, itens, desconto, total, forma de pagamento e parcelas
     - Parabéns: usa o percentual de presente de aniversário e a validade até o fim do mês
@@ -1025,7 +1025,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 18.1: Botão e atalhos
 
-- [x] **Task:** Botão fixo de atendimento e painel "Atendimento Orvalha" com atalhos.
+- [x] **Task:** Botão fixo de atendimento e painel "Atendimento STyli Prates" com atalhos.
   - **Acceptance criteria:**
     - Botão com logo da Orvalha (ou foto da loja) e selo do WhatsApp
     - Painel mostra a frase de boas-vindas e os atalhos da loja; cada atalho abre o WhatsApp com a pergunta pronta

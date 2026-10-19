@@ -26,7 +26,7 @@ function shopProduct(array $attrs = []): Product
 }
 
 it('renders the home page for visitors', function () {
-    $this->get('/')->assertOk()->assertSee('Orvalha')->assertSee('Peças para')->assertSee('Como funciona comprar');
+    $this->get('/')->assertOk()->assertSee('STyli Prates')->assertSee('Peças para')->assertSee('Como funciona comprar');
 });
 
 it('shows best sellers by default with price, installments and pix and without the material on the card', function () {
@@ -125,7 +125,7 @@ it('renders the attendance shortcuts and the welcome message from the settings',
     $response = $this->get('/');
 
     $response->assertOk()->assertSee('Oi! Bem-vinda 💛')->assertSee('Ajuda para escolher um presente')->assertSee('Entrega e envio para outras cidades')->assertSee('Outra dúvida')
-        ->assertSee('Atendimento Orvalha')->assertSee('A gente responde rapidinho pelo WhatsApp');
+        ->assertSee('Atendimento STyli Prates')->assertSee('A gente responde rapidinho pelo WhatsApp');
 });
 
 it('does not use attendant names, online status or response time promises', function () {

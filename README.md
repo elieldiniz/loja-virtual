@@ -1,4 +1,4 @@
-# Orvalha Semijoias
+# STyli Prates
 
 Loja virtual de semijoias (Ji-Paraná, RO): vitrine pública que envia a sacola para o WhatsApp da loja e painel administrativo para peças, vendas, clientes e crediário.
 

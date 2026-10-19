@@ -10,7 +10,7 @@ document.addEventListener('alpine:init', () => {
             const bag = Alpine.store('bag');
 
             // Balão: uma vez por visita. No computador, 5 s após abrir; no celular, só depois de rolar a página.
-            if (!session.has('orvalha.bubble')) {
+            if (!session.has('styliprates.bubble')) {
                 const show = () => {
                     if (!ui.busy) ui.bubbleOn = true;
                 };
@@ -29,15 +29,15 @@ document.addEventListener('alpine:init', () => {
             }
 
             // Convite: depois de N minutos no site com a sacola vazia, uma vez por visita, nunca sobre outro painel.
-            if (config.helpInvite?.enabled && !session.has('orvalha.help')) {
+            if (config.helpInvite?.enabled && !session.has('styliprates.help')) {
                 const timer = setInterval(() => {
-                    if (session.has('orvalha.help') || bag.count > 0) {
+                    if (session.has('styliprates.help') || bag.count > 0) {
                         clearInterval(timer);
                         return;
                     }
                     if (ui.busy) return;
 
-                    session.flag('orvalha.help');
+                    session.flag('styliprates.help');
                     ui.hideBubble();
                     ui.helpOpen = true;
                     clearInterval(timer);

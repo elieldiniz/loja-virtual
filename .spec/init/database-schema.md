@@ -1,6 +1,6 @@
-# Orvalha Semijoias — Database Schema
+# STyli Prates — Database Schema
 
-<!-- inputs: project-description.md@sha256:9aca46ff8072 user-stories.md@sha256:30cc64bc0805 -->
+<!-- inputs: project-description.md@sha256:37dbaf66aeb6 user-stories.md@sha256:ec2348513670 -->
 
 ## Overview
 

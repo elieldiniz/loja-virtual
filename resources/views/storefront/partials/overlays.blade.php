@@ -9,7 +9,7 @@
 
 <div x-data="care(@js($config))" x-on:keydown.escape.window="close()" x-on:click.outside="if ($store.ui.careOpen) $store.ui.careOpen = false">
     <button class="care-fab" type="button" id="careFab" aria-label="Falar com o atendimento" :aria-expanded="$store.ui.careOpen ? 'true' : 'false'" aria-controls="carePanel" aria-expanded="false" x-on:click="$store.ui.careOpen ? ($store.ui.careOpen = false) : $store.ui.openCare()">
-        @if ($photoUrl)<img src="{{ $photoUrl }}" alt="">@else O @endif
+        @if ($photoUrl)<img src="{{ $photoUrl }}" alt="">@else<x-monogram variant="light" />@endif
         <span class="wa-mini">{!! $waIcon !!}</span>
     </button>
 
@@ -20,8 +20,8 @@
 
     <div class="care-panel" :class="{ on: $store.ui.careOpen }" id="carePanel" role="dialog" aria-modal="false" aria-labelledby="careH" :inert="!$store.ui.careOpen">
         <div class="care-head">
-            <span class="mono">O</span>
-            <div><b id="careH">Atendimento Orvalha</b><small>A gente responde rapidinho pelo WhatsApp</small></div>
+            <span class="mono"><x-monogram /></span>
+            <div><b id="careH">Atendimento STyli Prates</b><small>A gente responde rapidinho pelo WhatsApp</small></div>
             <button class="icon-btn" type="button" aria-label="Fechar atendimento" x-on:click="$store.ui.careOpen = false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
         </div>
         <div class="care-body">
@@ -59,7 +59,7 @@
                 <div class="acts">
                     <a class="btn btn-wa" href="{{ $links->whatsapp($messages->helpInvite()) }}" target="_blank" rel="noopener" x-on:click="$store.ui.helpOpen = false"><x-store.wa-icon />Falar com a atendente</a>
                     <button class="btn btn-line" type="button" x-on:click="$store.ui.helpOpen = false; document.getElementById('gift')?.scrollIntoView({ behavior: 'smooth', block: 'start' })">É para presente</button>
-                    <button class="later" type="button" x-on:click="$store.ui.helpOpen = false; $store.ui.toast('Tudo bem! Se precisar, é só tocar no botão da Orvalha')">Agora não, obrigada</button>
+                    <button class="later" type="button" x-on:click="$store.ui.helpOpen = false; $store.ui.toast('Tudo bem! Se precisar, é só tocar no botão da STyli Prates')">Agora não, obrigada</button>
                 </div>
             </div>
         </div>

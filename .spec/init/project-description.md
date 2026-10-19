@@ -1,12 +1,14 @@
-# Orvalha Semijoias — Project Description
+# STyli Prates — Project Description
 
 ## Overview
 
-A Orvalha Semijoias é uma loja de semijoias de Ji-Paraná (RO) com duas partes: uma **vitrine on-line sem pagamento no site**, em que a cliente monta uma sacola e a **envia para o WhatsApp da loja**, e um **painel administrativo** onde a equipe cadastra peças e categorias, registra as vendas fechadas (mini PDV), gerencia clientes e crediário, e acompanha métricas. **A venda é sempre fechada na conversa; o site nunca cobra nada.**
+A marca é **STyli Prates** (monograma SP + nome), com paleta derivada do logo: malva `#6A494C` e fundo rosado `#F8E5E3`. "Orvalha" era só o nome provisório dos mockups. Os arquivos do logo ficam em `public/images/`.
+
+A STyli Prates é uma loja de semijoias de Ji-Paraná (RO) com duas partes: uma **vitrine on-line sem pagamento no site**, em que a cliente monta uma sacola e a **envia para o WhatsApp da loja**, e um **painel administrativo** onde a equipe cadastra peças e categorias, registra as vendas fechadas (mini PDV), gerencia clientes e crediário, e acompanha métricas. **A venda é sempre fechada na conversa; o site nunca cobra nada.**
 
 O diferencial é o **atendimento humanizado**: a vitrine fala como "a gente", sem nome de atendente, sem status "online" e sem prometer tempo de resposta. Há botão flutuante de atendimento com atalhos, balão de boas-vindas, convite de ajuda para cliente em dúvida, ajuda para presente e guia de cuidados.
 
-O público é a **cliente** (vitrine pública, sem login, sem dados pessoais guardados no servidor) e a **administradora** (equipe da loja, login com e-mail e senha, um único nível de acesso). O design **deve seguir exatamente** os mockups HTML entregues (`Orvalha_Semijoias.html` e `Orvalha_Admin.html`): fontes Bodoni Moda (display) e Jost (corpo), paleta dourado (`#A9803F`/`#8A6630`), vinho (`#5B1F2E`), blush (`#EFDDD7`), tinta (`#221C1D`) e verde WhatsApp/ok (`#1A7F45`). Na versão final a vitrine lê peças, categorias e configurações direto do banco do painel (nos mockups os dois não estão ligados).
+O público é a **cliente** (vitrine pública, sem login, sem dados pessoais guardados no servidor) e a **administradora** (equipe da loja, login com e-mail e senha, um único nível de acesso). O design **deve seguir exatamente** os mockups HTML entregues (`Orvalha_Semijoias.html` e `Orvalha_Admin.html`): fontes Bodoni Moda (display) e Jost (corpo), paleta dourado (`#A9803F`/`#8A6630`), malva do logo (`#6A494C`), blush (`#EFDDD7`), tinta (`#221C1D`) e verde WhatsApp/ok (`#1A7F45`). Na versão final a vitrine lê peças, categorias e configurações direto do banco do painel (nos mockups os dois não estão ligados).
 
 **Fora do escopo do MVP:** pagamento on-line, cálculo automático de frete, nota fiscal, controle de estoque (sem baixa na venda), edição de venda registrada (corrige-se cancelando e relançando), juros/multa/entrada no crediário, múltiplos níveis de acesso e métricas de visitas do site.
 
@@ -60,7 +62,7 @@ Repositório pré-código (apenas README); stack derivada da intenção do desen
 4. "Enviar para o atendimento" abre o WhatsApp da loja com a mensagem:
 
 ```
-Oi! Separei essas peças no site da Orvalha:
+Oi! Separei essas peças no site da STyli Prates:
 
 • 1x Colar Ponto de Luz (Ouro 18k) — R$ 99,90
 • 2x Argola Lisa Média (Ouro 18k) — R$ 179,80
@@ -74,7 +76,7 @@ Pode confirmar se tem tudo disponível?
 
 ### 2. Atendimento humanizado
 
-1. Botão flutuante abre o painel "Atendimento Orvalha" com boas-vindas e atalhos (presente, tamanho de anel, entrega/envio, outra dúvida); cada atalho abre o WhatsApp com a pergunta pronta, exceto "presente", que leva à seção de ajuda para presente.
+1. Botão flutuante abre o painel "Atendimento STyli Prates" com boas-vindas e atalhos (presente, tamanho de anel, entrega/envio, outra dúvida); cada atalho abre o WhatsApp com a pergunta pronta, exceto "presente", que leva à seção de ajuda para presente.
 2. Balão de boas-vindas: uma vez por visita, 5 s após abrir no computador e só após rolar no celular; não aparece com sacola, peça ou atendimento abertos.
 3. Convite de ajuda: 2 min no site com sacola vazia → "Ficou na dúvida?" com Falar com a atendente, É para presente e Agora não, obrigada.
 4. Ajuda para presente: formulário vira mensagem no WhatsApp; a loja responde com sugestões.
