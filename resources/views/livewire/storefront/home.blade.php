@@ -117,11 +117,29 @@
 
     <section class="block wrap how" id="how" aria-labelledby="howH">
         <div class="sec-head" data-reveal><div><span class="eyebrow">Simples e sem pressa</span><h2 id="howH">Como funciona comprar <i>com a gente</i></h2></div></div>
-        <div class="steps">
-            <div class="step" data-reveal><span class="n">1</span><div><h3>Escolha com calma</h3><p>Monte sua sacola aqui no site. Nada é cobrado agora.</p></div></div>
-            <div class="step" data-reveal style="--i:1"><span class="n">2</span><div><h3>Converse com a gente</h3><p>Sua sacola chega no nosso WhatsApp. A gente confirma as peças e tira todas as suas dúvidas.</p></div></div>
-            <div class="step" data-reveal style="--i:2"><span class="n">3</span><div><h3>Receba ou retire</h3><p>Entregamos em {{ $settings->city ?: 'nossa cidade' }} ou você retira na loja. Para outras cidades, a gente combina o envio e o frete com você. Pague no Pix, cartão ou dinheiro.</p></div></div>
-        </div>
+        <ol class="steps">
+            <li class="step" data-reveal>
+                <span class="step-num" aria-hidden="true">1</span>
+                <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 11H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+                <small class="step-label">Passo 1</small>
+                <h3>Escolha com calma</h3>
+                <p>Monte sua sacola aqui no site. Nada é cobrado agora.</p>
+            </li>
+            <li class="step" data-reveal style="--i:1">
+                <span class="step-num" aria-hidden="true">2</span>
+                <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-8l-4 3.5V16H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"/><path d="M8.5 10.5h7M8.5 13h4"/></svg></span>
+                <small class="step-label">Passo 2</small>
+                <h3>Converse com a gente</h3>
+                <p>Sua sacola chega no nosso WhatsApp. A gente confirma as peças e tira todas as suas dúvidas.</p>
+            </li>
+            <li class="step" data-reveal style="--i:2">
+                <span class="step-num" aria-hidden="true">3</span>
+                <span class="step-ico" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4v8l-8 4-8-4V8z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></span>
+                <small class="step-label">Passo 3</small>
+                <h3>Receba ou retire</h3>
+                <p>Entregamos em {{ $settings->city ?: 'nossa cidade' }} ou você retira na loja. Para outras cidades, a gente combina o envio e o frete com você. Pague no Pix, cartão ou dinheiro.</p>
+            </li>
+        </ol>
         <p class="how-note" data-reveal>Prefere ir direto? <b>Fale com a gente</b> e a gente separa para você.</p>
     </section>
 
