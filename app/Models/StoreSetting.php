@@ -16,7 +16,7 @@ class StoreSetting extends Model
     /** @use HasFactory<StoreSettingFactory> */
     use HasFactory;
 
-    public const CACHE_KEY = 'store_setting.current';
+    public const CACHE_KEY = 'store_setting.current.v2';
 
     protected static function booted(): void
     {
