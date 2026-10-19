@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\LogoutController;
+use App\Http\Controllers\Storefront\BagController;
+use App\Http\Controllers\Storefront\GiftController;
+use App\Http\Controllers\Storefront\ProductController;
 use App\Livewire\Admin\Categories;
 use App\Livewire\Admin\Customers\Form as CustomerForm;
 use App\Livewire\Admin\Customers\Index as CustomerIndex;
@@ -12,9 +15,13 @@ use App\Livewire\Admin\Sales\Create as SaleCreate;
 use App\Livewire\Admin\Sales\Index as SaleIndex;
 use App\Livewire\Admin\Sales\Show as SaleShow;
 use App\Livewire\Admin\StoreSettings;
+use App\Livewire\Storefront\Home;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'storefront.placeholder')->name('home');
+Route::get('/', Home::class)->name('home');
+Route::get('sacola/resumo', BagController::class)->name('storefront.bag');
+Route::get('pecas/{id}', [ProductController::class, 'show'])->whereNumber('id')->name('storefront.product');
+Route::get('presente', GiftController::class)->name('storefront.gift');
 
 Route::prefix('painel')->group(function () {
     Route::get('entrar', Login::class)->middleware('guest')->name('login');
