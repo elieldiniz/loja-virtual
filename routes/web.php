@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\LogoutController;
 use App\Livewire\Admin\Categories;
 use App\Livewire\Admin\ComingSoon;
+use App\Livewire\Admin\Customers\Form as CustomerForm;
+use App\Livewire\Admin\Customers\Index as CustomerIndex;
 use App\Livewire\Admin\Login;
 use App\Livewire\Admin\Products\Form as ProductForm;
 use App\Livewire\Admin\Products\Index as ProductIndex;
@@ -19,7 +21,11 @@ Route::prefix('painel')->group(function () {
 
         Route::get('/', ComingSoon::class)->defaults('heading', 'Painel')->defaults('current', 'dash')->name('admin.dashboard');
         Route::get('vendas', ComingSoon::class)->defaults('heading', 'Vendas')->defaults('current', 'sales')->name('admin.sales');
-        Route::get('clientes', ComingSoon::class)->defaults('heading', 'Clientes')->defaults('current', 'clients')->name('admin.customers');
+        Route::get('vendas/nova', ComingSoon::class)->defaults('heading', 'Nova venda')->defaults('current', 'sales')->name('admin.sales.create');
+        Route::get('vendas/{sale}', ComingSoon::class)->defaults('heading', 'Venda')->defaults('current', 'sales')->name('admin.sales.show');
+        Route::get('clientes', CustomerIndex::class)->name('admin.customers');
+        Route::get('clientes/nova', CustomerForm::class)->name('admin.customers.create');
+        Route::get('clientes/{customer}', CustomerForm::class)->name('admin.customers.edit');
         Route::get('produtos', ProductIndex::class)->name('admin.products');
         Route::get('produtos/nova', ProductForm::class)->name('admin.products.create');
         Route::get('produtos/{product}/editar', ProductForm::class)->name('admin.products.edit');
