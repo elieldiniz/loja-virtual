@@ -20,7 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::statement('CREATE SEQUENCE sales_number_seq START 1');
+        DB::statement('CREATE SEQUENCE IF NOT EXISTS sales_number_seq START 1');
 
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
