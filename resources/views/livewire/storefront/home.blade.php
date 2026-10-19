@@ -151,30 +151,12 @@
         </div>
     </section>
 
-    <section class="real" aria-labelledby="realH">
-        <div class="wrap">
-            <div data-reveal>
-                <span class="eyebrow">Atendimento de verdade</span>
-                <h2 id="realH">Aqui quem te responde é <i>gente</i>, não robô.</h2>
-                <p>Somos uma loja pequena e cada peça é conferida, embalada e entregue pela gente. Ficou em dúvida sobre tamanho, cor ou se combina? É só chamar.</p>
-                <ul>
-                    @foreach (['Ajuda para escolher presente, sem compromisso', 'Não serviu? A gente troca', 'Retire na loja, receba em casa ou combine o envio para sua cidade'] as $item)
-                        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>{{ $item }}</li>
-                    @endforeach
-                </ul>
-                <div class="acts"><button class="btn btn-wa" type="button" x-on:click="$store.ui.openCare()"><x-store.wa-icon />Falar com a gente</button>@if ($addressLine)<span class="addr">{{ $addressLine }}</span>@endif</div>
-            </div>
-            <div data-reveal style="--i:1">
-                <div class="chat" aria-hidden="true">
-                    <div class="chat-top"><span class="mono"><x-monogram variant="light" /></span><div><b>STyli Prates</b><small>WhatsApp</small></div></div>
-                    <div class="msg me">Oi! Esse colar ponto de luz fica muito curto?</div>
-                    <div class="msg us">Oi! Ele fica na altura da clavícula, bem delicado. Quer que eu separe um pra você? 😊</div>
-                    <div class="msg me">Quero sim! Dá pra entregar hoje?</div>
-                    <div class="msg us">Dá sim, a gente entrega ainda hoje 💛</div>
-                </div>
-                <p class="chat-cap">Exemplo de como é o atendimento</p>
-            </div>
-        </div>
+    <section class="care-banner" aria-labelledby="realH">
+        <h2 id="realH" class="sr-only">Atendimento de verdade: aqui quem te responde é gente, não robô.</h2>
+        <button type="button" class="feature feature--image" data-reveal x-on:click="$store.ui.openCare()" aria-label="Falar com a gente no WhatsApp">
+            <img class="feature-photo" src="{{ asset('images/atendimento.webp') }}" alt="Atendimento de verdade: aqui quem te responde é gente, não robô. Fale com a gente!" loading="lazy" width="2000" height="750">
+        </button>
+        @if ($addressLine)<p class="care-addr">{{ $addressLine }}</p>@endif
     </section>
 
     @if ($instagram)

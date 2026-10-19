@@ -298,17 +298,6 @@ footer .bottom { border-top: 1px solid var(--line); padding-block: 18px; display
 @media (max-width: 860px) { .gift .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 44px; } .gift-form { padding: 18px; } }
 
 /* atendimento de verdade */
-.real { margin-top: 72px; background: var(--wine); color: #F4E7E3; overflow: hidden; }
-.real .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; padding-block: 64px; }
-.real .eyebrow { color: #E9CB80; }
-.real h2 { font-size: clamp(30px, 4vw, 46px); color: #FFFFFF; margin-top: 10px; }
-.real h2 i { color: #E9CB80; }
-.real p { color: #E1CCD1; max-width: 46ch; margin: 14px 0 0; }
-.real ul { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-direction: column; gap: 10px; }
-.real li { display: flex; gap: 10px; align-items: flex-start; }
-.real li svg { color: #E9CB80; flex: none; margin-top: 2px; }
-.real .acts { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 26px; }
-.real .addr { font-size: 13px; color: #D9BDC3; }
 .chat { background: #FFFFFF; color: var(--ink); padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.25); transform: rotate(1.5deg); }
 .chat-top { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .chat-top .mono { width: 36px; height: 36px; border-radius: 50%; background: var(--wine); color: #E9CB80; display: flex; align-items: center; justify-content: center; font: 500 18px/1 var(--f-display); }
@@ -317,7 +306,6 @@ footer .bottom { border-top: 1px solid var(--line); padding-block: 18px; display
 .msg.me { align-self: flex-end; background: #DCF3E4; }
 .msg.us { align-self: flex-start; background: var(--soft); }
 .chat-cap { font-size: 11px; color: var(--muted); text-align: center; margin-top: 2px; }
-@media (max-width: 860px) { .real .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 48px; } .chat { transform: none; } }
 
 /* dica + ações na peça */
 .m-links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
@@ -521,3 +509,10 @@ header.site .search input::-webkit-search-cancel-button { display: none; }
 .feature--image .feature-photo { position: static; display: block; width: 100%; height: auto; }
 .feature--image::before { display: none; }
 @media (max-width: 760px) { .feature--image .feature-photo { aspect-ratio: 2 / 1; object-fit: cover; object-position: 22% center; } }
+
+/* atendimento: imagem única com o texto embutido */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.care-banner { margin-top: 72px; }
+.care-banner .feature { display: block; }
+.care-addr { text-align: center; color: var(--muted); font-size: 13px; margin: 12px 16px 0; }
+@media (max-width: 760px) { .care-banner { margin-top: 48px; } .care-banner .feature-photo { aspect-ratio: 4 / 3; object-position: 12% center; } }

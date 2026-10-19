@@ -168,7 +168,7 @@ it('shows the default cover image-only until a title is set, then overlays the c
 it('hides the wide banner when the store turns it off', function () {
     StoreSetting::current()->update(['banner_enabled' => false]);
 
-    $this->get('/')->assertDontSee('class="feature', false);
+    $this->get('/')->assertDontSee('images/banner-capa.webp', false);
 });
 
 it('shows the banner photo and falls back to the button label "Ver peças"', function () {
