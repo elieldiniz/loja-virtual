@@ -474,12 +474,12 @@ header.site .search input::-webkit-search-cancel-button { display: none; }
 .empty-grid a, .empty-grid button.link-more { margin-top: 10px; }
 
 /* ---------- marca STyli Prates ---------- */
-.logo .brand-logo { height: 46px; width: auto; display: block; }
+.logo .brand-logo { height: 58px; width: auto; display: block; }
 .logo .footer-logo { height: 40px; }
 .chat-top .mono img, .care-head .mono img { width: 62%; height: auto; display: block; }
 .care-fab .brand-monogram { width: 46%; height: auto; display: block; }
 .care-fab { font-size: 0; }
-@media (max-width: 860px) { .logo .brand-logo { height: 38px; } }
+@media (max-width: 860px) { .logo .brand-logo { height: 46px; } }
 
 /* Hero com foto de fundo (public/images/hero.webp). O texto fica à esquerda e as joias à direita. */
 .hero--photo { background: #F6E4E7 url('/images/hero.webp') right center / cover no-repeat; }
