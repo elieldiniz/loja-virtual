@@ -47,3 +47,17 @@ it('shows discount badge or "Novo" for releases', function () {
         ->and($pricing->badge(Money::from('99.90'), null, true))->toBe('Novo')
         ->and($pricing->badge(Money::from('99.90'), Money::from('99.90'), false))->toBeNull();
 });
+
+it('parses user typed money', function (?string $input, ?string $expected) {
+    expect(Money::parse($input)?->toDecimal())->toBe($expected);
+})->with([
+    ['99,90', '99.90'],
+    ['1.234,56', '1234.56'],
+    ['R$ 99,90', '99.90'],
+    ['99.90', '99.90'],
+    ['1.234', '1234.00'],
+    ['150', '150.00'],
+    ['', null],
+    [null, null],
+    ['abc', null],
+]);

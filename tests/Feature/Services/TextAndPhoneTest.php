@@ -2,6 +2,7 @@
 
 use App\Support\Phone;
 use App\Support\SearchText;
+use Illuminate\Support\Facades\DB;
 
 it('normalizes search text', function () {
     expect(SearchText::normalize('  Anéis  Dourados '))->toBe('aneis dourados')
@@ -16,4 +17,14 @@ it('normalizes and validates phones', function () {
         ->and(Phone::isValid(null))->toBeFalse()
         ->and(Phone::forWhatsApp('(69) 99999-0000'))->toBe('5569999990000')
         ->and(Phone::forWhatsApp('5569999990000'))->toBe('5569999990000');
+});
+
+it('normalizes text in SQL the same way as in PHP', function () {
+    $names = ['Anéis Dourados', 'ÂNCORA', 'Coração', 'Pingente Ñandu'];
+
+    foreach ($names as $name) {
+        $sql = DB::selectOne('select '.SearchText::sqlNormalized('?').' as v', [$name])->v;
+
+        expect($sql)->toBe(SearchText::normalize($name));
+    }
 });

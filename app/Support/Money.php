@@ -34,6 +34,29 @@ final class Money implements Stringable
         return new self((int) round(((float) $decimal) * 100));
     }
 
+    /**
+     * Lê o valor digitado pelo usuário: "99,90", "1.234,56", "R$ 99,90" ou "99.90".
+     * Retorna null para texto vazio ou inválido.
+     */
+    public static function parse(?string $input): ?self
+    {
+        $text = trim((string) $input);
+        $text = preg_replace('/[^\d,.\-]/', '', $text) ?? '';
+
+        if ($text === '' || $text === '-') {
+            return null;
+        }
+
+        if (str_contains($text, ',')) {
+            $text = str_replace('.', '', $text);
+            $text = str_replace(',', '.', $text);
+        } elseif (substr_count($text, '.') > 1 || preg_match('/\.\d{3}$/', $text)) {
+            $text = str_replace('.', '', $text);
+        }
+
+        return is_numeric($text) ? self::from($text) : null;
+    }
+
     public function amount(): int
     {
         return $this->cents;
