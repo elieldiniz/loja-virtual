@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 #[Fillable(['whatsapp', 'instagram', 'address', 'city', 'state', 'cnpj', 'hours_weekdays', 'hours_saturday', 'hours_sunday', 'pix_discount_percent', 'max_installments', 'plating_warranty', 'welcome_message', 'chat_button_photo_path', 'help_invite_enabled', 'help_invite_minutes', 'birthday_gift_percent'])]
 class StoreSetting extends Model
@@ -31,6 +32,13 @@ class StoreSetting extends Model
 
             return $setting->fresh() ?? $setting;
         });
+    }
+
+    public function chatButtonPhotoUrl(): ?string
+    {
+        return $this->chat_button_photo_path
+            ? Storage::disk(config('media-library.disk_name'))->url($this->chat_button_photo_path)
+            : null;
     }
 
     protected function casts(): array

@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Customer;
 use App\Models\Sale;
 use App\Support\Money;
-use Carbon\CarbonInterface;
 
 class MessageBuilder
 {
@@ -46,23 +45,33 @@ class MessageBuilder
     /** @param  array{recipient: string, occasion?: ?string, budget: string, detail?: ?string}  $answers */
     public function gift(array $answers): string
     {
-        $lines = [
-            'Oi! Preciso de ajuda para escolher um presente.',
-            '',
-            'É para: '.$answers['recipient'],
-        ];
+        $recipient = $answers['recipient'] === 'Para mim' ? 'mim mesma' : $answers['recipient'];
+
+        $lines = ['Oi! Quero ajuda para escolher um presente 🎁', '', 'Para: '.$recipient];
 
         if (! empty($answers['occasion'])) {
             $lines[] = 'Ocasião: '.$answers['occasion'];
         }
 
-        $lines[] = 'Quero gastar: '.$answers['budget'];
+        $lines[] = 'Quanto quero gastar: '.$answers['budget'];
 
         if (! empty($answers['detail'])) {
             $lines[] = 'Detalhe: '.$answers['detail'];
         }
 
-        return implode("\n", $lines);
+        return implode("\n", [...$lines, '', 'O que vocês sugerem?']);
+    }
+
+    /** Mensagem de convite de ajuda (botão "Falar com a atendente"). */
+    public function helpInvite(): string
+    {
+        return 'Oi! Estou olhando o site e queria uma ajudinha pra escolher uma peça 😊';
+    }
+
+    /** Dúvida sobre os cuidados com a peça (guia de cuidados). */
+    public function careQuestion(): string
+    {
+        return 'Oi! Tenho uma dúvida sobre os cuidados com a minha peça:';
     }
 
     public function receipt(Sale $sale): string
@@ -70,25 +79,28 @@ class MessageBuilder
         $sale->loadMissing(['items', 'paymentMethod', 'installments', 'customer']);
 
         $lines = [
-            sprintf('Oi, %s! Segue o recibo da sua compra na Orvalha:', $this->firstName($sale->customer?->name)),
-            '',
-            sprintf('Venda %s — %s', SaleNumberGenerator::format($sale->number), $sale->sold_at->format('d/m/Y')),
+            sprintf(
+                'Olá, %s! Segue o resumo da sua compra na Orvalha Semijoias (%s, %s):',
+                $this->firstName($sale->customer?->name),
+                SaleNumberGenerator::format($sale->number),
+                $sale->sold_at->format('d/m/Y'),
+            ),
             '',
         ];
 
         foreach ($sale->items as $item) {
-            $lines[] = sprintf('• %dx %s — %s', $item->quantity, $item->product_name, Money::from($item->line_total)->format());
+            $lines[] = sprintf('• %d× %s — %s', $item->quantity, $item->product_name, Money::from($item->line_total)->format());
         }
 
         $discount = Money::from($sale->pix_discount)->add(Money::from($sale->other_discount));
-        $lines[] = '';
 
         if (! $discount->isZero()) {
-            $lines[] = 'Desconto: '.$discount->format();
+            $lines[] = 'Desconto: − '.$discount->format();
         }
 
-        $lines[] = 'Total: '.Money::from($sale->total)->format();
-        $lines[] = 'Pagamento: '.$sale->paymentMethod->name.($sale->installments_count > 1 ? " em {$sale->installments_count}x" : '');
+        $lines[] = '';
+        $lines[] = '*Total: '.Money::from($sale->total)->format().'*';
+        $lines[] = 'Pagamento: '.$this->paymentLabel($sale);
 
         if ($sale->installments->isNotEmpty()) {
             $lines[] = '';
@@ -96,28 +108,40 @@ class MessageBuilder
 
             foreach ($sale->installments as $installment) {
                 $lines[] = sprintf(
-                    '%d/%d — %s — %s',
+                    '%dª %s — %s%s',
                     $installment->number,
-                    $sale->installments->count(),
                     $installment->due_date->format('d/m/Y'),
                     Money::from($installment->amount)->format(),
+                    $installment->paid_at ? ' (paga)' : '',
                 );
             }
         }
 
-        $lines[] = '';
-        $lines[] = 'Obrigada pela preferência!';
-
-        return implode("\n", $lines);
+        return implode("\n", [...$lines, '', 'Obrigada pela preferência!']);
     }
 
-    public function birthday(Customer $customer, int $giftPercent, CarbonInterface $validUntil): string
+    /** "Pix", "Crédito 3x", "Crédito à vista", "Crediário 2x". */
+    public function paymentLabel(Sale $sale): string
+    {
+        $name = $sale->paymentMethod->name;
+
+        if ($sale->paymentMethod->slug === 'credito') {
+            return $sale->installments_count > 1 ? "{$name} {$sale->installments_count}x" : "{$name} à vista";
+        }
+
+        if ($sale->paymentMethod->generates_receivables) {
+            return "{$name} {$sale->installments_count}x";
+        }
+
+        return $name;
+    }
+
+    public function birthday(Customer $customer, int $giftPercent): string
     {
         return sprintf(
-            'Parabéns, %s! A Orvalha te deseja um dia lindo. De presente, você ganha %d%% de desconto em qualquer peça até %s.',
+            'Oi, %s! Feliz aniversário! 🎉 A Orvalha preparou um presente pra você: %d%% de desconto em qualquer peça até o fim do mês. É só responder esta mensagem 💛',
             $this->firstName($customer->name),
             $giftPercent,
-            $validUntil->format('d/m'),
         );
     }
 

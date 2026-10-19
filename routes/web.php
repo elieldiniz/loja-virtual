@@ -6,6 +6,7 @@ use App\Livewire\Admin\ComingSoon;
 use App\Livewire\Admin\Login;
 use App\Livewire\Admin\Products\Form as ProductForm;
 use App\Livewire\Admin\Products\Index as ProductIndex;
+use App\Livewire\Admin\StoreSettings;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'storefront.placeholder')->name('home');
@@ -23,6 +24,6 @@ Route::prefix('painel')->group(function () {
         Route::get('produtos/nova', ProductForm::class)->name('admin.products.create');
         Route::get('produtos/{product}/editar', ProductForm::class)->name('admin.products.edit');
         Route::get('categorias', Categories::class)->name('admin.categories');
-        Route::get('loja', ComingSoon::class)->defaults('heading', 'Loja')->defaults('current', 'store')->name('admin.store');
+        Route::get('loja', StoreSettings::class)->name('admin.store');
     });
 });
