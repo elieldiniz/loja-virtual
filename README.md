@@ -2,7 +2,7 @@
 
 Loja virtual de semijoias (Ji-Paraná, RO): vitrine pública que envia a sacola para o WhatsApp da loja e painel administrativo para peças, vendas, clientes e crediário.
 
-Stack: Laravel 13, PHP 8.3+, Livewire 4, PostgreSQL, Spatie Media Library (armazenamento S3 compatível), Pest e Pint.
+Stack: Laravel 13, PHP 8.3+, Livewire 4, PostgreSQL, Spatie Media Library (disco `public`), Pest e Pint.
 
 A especificação do projeto está em `.spec/init/` (descrição, histórias, schema e fases).
 
@@ -28,7 +28,7 @@ php artisan storage:link
 
 ## Publicação (Laravel Cloud)
 
-- Banco PostgreSQL e fotos no Object Storage do Laravel Cloud: anexe o bucket ao ambiente (ele preenche as variáveis `AWS_*`) e defina só `MEDIA_DISK=s3`.
+- Banco PostgreSQL e fotos no Object Storage do Laravel Cloud: anexe o bucket ao ambiente como disco `public` (padrão). Nenhuma variável de armazenamento precisa ser criada à mão.
 - No deploy rode `php artisan migrate --force` e `php artisan db:seed --class=LookupSeeder --force` (formas de pagamento, materiais e canais), mais `php artisan db:seed --class=StoreSettingSeeder --force` na primeira vez.
 - Crie a administradora com `php artisan admin:create` (usa `ADMIN_NAME`, `ADMIN_EMAIL` e `ADMIN_PASSWORD`).
 - As conversões de imagem das peças rodam na hora do upload (sem fila obrigatória).
