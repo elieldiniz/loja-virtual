@@ -19,6 +19,20 @@ npm install && npm run build
 php artisan serve
 ```
 
+## Dados de demonstração (somente desenvolvimento)
+
+```bash
+php artisan db:seed --class=DemoSeeder   # peças, clientes, vendas e a usuária contato@orvalha.test / senha123
+php artisan storage:link
+```
+
+## Publicação (Laravel Cloud)
+
+- Banco PostgreSQL e disco de fotos no Cloudflare R2: defina `DB_*`, `MEDIA_DISK=r2` e `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_BUCKET`, `R2_ENDPOINT`, `R2_URL`.
+- No deploy rode `php artisan migrate --force` e `php artisan db:seed --class=LookupSeeder --force` (formas de pagamento, materiais e canais), mais `php artisan db:seed --class=StoreSettingSeeder --force` na primeira vez.
+- Crie a administradora com `php artisan admin:create` (usa `ADMIN_NAME`, `ADMIN_EMAIL` e `ADMIN_PASSWORD`).
+- As conversões de imagem das peças rodam na hora do upload (sem fila obrigatória).
+
 ## Qualidade
 
 ```bash

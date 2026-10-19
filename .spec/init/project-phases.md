@@ -25,21 +25,21 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 1.1: Esqueleto da aplicação
 
-- [ ] **Task:** Criar o projeto Laravel (última versão estável compatível com o PHP instalado, mín. 8.3) na raiz do repositório, preservando `.spec/` e `README.md`.
+- [x] **Task:** Criar o projeto Laravel (última versão estável compatível com o PHP instalado, mín. 8.3) na raiz do repositório, preservando `.spec/` e `README.md`.
   - **Acceptance criteria:**
     - `composer.json` e `artisan` existem na raiz e `php artisan --version` funciona
     - `.spec/` e o `README.md` existente continuam intactos
     - `php artisan serve` responde 200 em `/`
   - **Traces:** Tech Stack (backend)
 
-- [ ] **Task:** Instalar Livewire (última major, com Alpine.js incluso) e configurar Vite.
+- [x] **Task:** Instalar Livewire (última major, com Alpine.js incluso) e configurar Vite.
   - **Acceptance criteria:**
     - Um componente Livewire de teste renderiza e responde a uma ação
     - `npm run build` conclui sem erros
     - Alpine.js está disponível nas views Blade
   - **Traces:** Tech Stack (vitrine e painel)
 
-- [ ] **Task:** Configurar locale `pt_BR`, timezone `America/Porto_Velho`, moeda BRL e `.env.example` com variáveis de Postgres, R2 e administradora.
+- [x] **Task:** Configurar locale `pt_BR`, timezone `America/Porto_Velho`, moeda BRL e `.env.example` com variáveis de Postgres, R2 e administradora.
   - **Acceptance criteria:**
     - `config('app.locale')` é `pt_BR` e o timezone é `America/Porto_Velho`
     - `.env.example` lista `DB_*` (pgsql), `AWS_*`/R2 e `ADMIN_EMAIL`/`ADMIN_PASSWORD` sem segredos reais
@@ -49,14 +49,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 1.2: Banco, mídia e qualidade
 
-- [ ] **Task:** Configurar PostgreSQL para desenvolvimento e testes (docker-compose ou Sail) e conexão `pgsql` padrão.
+- [x] **Task:** Configurar PostgreSQL para desenvolvimento e testes (docker-compose ou Sail) e conexão `pgsql` padrão.
   - **Acceptance criteria:**
     - `php artisan migrate` roda contra PostgreSQL
     - `phpunit.xml`/Pest usam PostgreSQL com banco de testes separado
     - README documenta como subir o banco local
   - **Traces:** Tech Stack (banco de dados)
 
-- [ ] **Task:** Instalar Spatie Media Library e configurar o disco `r2` (driver s3, endpoint Cloudflare R2) como disco de mídia.
+- [x] **Task:** Instalar Spatie Media Library e configurar o disco `r2` (driver s3, endpoint Cloudflare R2) como disco de mídia.
   - **Acceptance criteria:**
     - `config/media-library.php` aponta para o disco `r2` por variável de ambiente
     - Em testes o disco é `Storage::fake`
@@ -70,7 +70,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
     - Nível do Larastan definido em `phpstan.neon`
   - **Traces:** Tech Stack (testes e qualidade)
 
-- [ ] **Task:** Criar workflow de CI (GitHub Actions) com PostgreSQL, rodando lint, análise e testes.
+- [x] **Task:** Criar workflow de CI (GitHub Actions) com PostgreSQL, rodando lint, análise e testes.
   - **Acceptance criteria:**
     - O workflow executa `composer lint`, `composer analyse` e `composer test` com serviço PostgreSQL
     - Falha em qualquer etapa reprova o job
@@ -84,7 +84,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 2.1: Lookups e catálogo
 
-- [ ] **Task:** Migrations dos lookups `materials`, `payment_methods` e `sale_channels` conforme o DBML.
+- [x] **Task:** Migrations dos lookups `materials`, `payment_methods` e `sale_channels` conforme o DBML.
   - **Acceptance criteria:**
     - Colunas, tipos, defaults e `slug` único conforme o schema
     - `payment_methods` tem `allows_installments`, `max_installments`, `applies_pix_discount` e `generates_receivables`
@@ -92,7 +92,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `LookupSchemaTest` → tabelas e colunas existem; `slug` duplicado é recusado.
   - **Traces:** tables materials, payment_methods, sale_channels
 
-- [ ] **Task:** Migrations de `users`, `categories` e `products` com índices e FKs.
+- [x] **Task:** Migrations de `users`, `categories` e `products` com índices e FKs.
   - **Acceptance criteria:**
     - `users` tem `email` único e `password`
     - `categories.name_normalized` é único
@@ -101,7 +101,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `CatalogSchemaTest` → excluir categoria com peça falha por FK; `name_normalized` duplicado falha.
   - **Traces:** tables users, categories, products; US-5.4
 
-- [ ] **Task:** Publicar e ajustar a migration `media` do Spatie Media Library.
+- [x] **Task:** Publicar e ajustar a migration `media` do Spatie Media Library.
   - **Acceptance criteria:**
     - Tabela `media` com índice `(model_type, model_id)` e `uuid` único
     - Migration roda em PostgreSQL
@@ -109,7 +109,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 2.2: Clientes, vendas e configurações
 
-- [ ] **Task:** Migrations de `customers`, `sales`, `sale_items` e `installments`.
+- [x] **Task:** Migrations de `customers`, `sales`, `sale_items` e `installments`.
   - **Acceptance criteria:**
     - `customers.whatsapp` único e anulável; `birth_day`/`birth_month` anuláveis; índice em `birth_month`
     - `sales.number` único; `customer_id` anulável com `restrictOnDelete`; índices em `sold_at`, `cancelled_at` e `customer_id`
@@ -118,13 +118,13 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SalesSchemaTest` → excluir peça zera `sale_items.product_id` sem apagar o item; excluir cliente com venda falha; parcela duplicada `(sale_id, number)` falha.
   - **Traces:** tables customers, sales, sale_items, installments; US-5.3, US-6.3
 
-- [ ] **Task:** Migrations de `store_settings`, `promo_phrases` e `chat_shortcuts`.
+- [x] **Task:** Migrations de `store_settings`, `promo_phrases` e `chat_shortcuts`.
   - **Acceptance criteria:**
     - Defaults: `pix_discount_percent` 5, `max_installments` 3, `help_invite_enabled` true, `help_invite_minutes` 2, `birthday_gift_percent` 10
     - `promo_phrases` e `chat_shortcuts` referenciam `store_settings` e têm `position`
   - **Traces:** tables store_settings, promo_phrases, chat_shortcuts; US-10.1, US-10.2
 
-- [ ] **Task:** Constraints `CHECK` do PostgreSQL para os limites do schema.
+- [x] **Task:** Constraints `CHECK` do PostgreSQL para os limites do schema.
   - **Acceptance criteria:**
     - `products.price > 0`; `pix_discount_percent` 0–30; `max_installments` 1–12; `birthday_gift_percent` 0–50
     - `help_invite_minutes` em (1, 2, 3, 5); `sales.installments_count` 1–6; `sale_items.quantity >= 1`
@@ -133,14 +133,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 2.3: Sequência e seeders
 
-- [ ] **Task:** Criar a sequence do PostgreSQL para `sales.number` e um gerador de número.
+- [x] **Task:** Criar a sequence do PostgreSQL para `sales.number` e um gerador de número.
   - **Acceptance criteria:**
     - Números são sequenciais, únicos e exibidos como `#0616` (zeros à esquerda, 4 dígitos mínimo)
     - Chamadas concorrentes nunca geram o mesmo número
   - **Feature tests:** `SaleNumberTest` → números consecutivos crescem de 1 em 1; formatação `#0001`.
   - **Traces:** table sales; US-7.1
 
-- [ ] **Task:** Seeders dos lookups e da linha única de `store_settings`.
+- [x] **Task:** Seeders dos lookups e da linha única de `store_settings`.
   - **Acceptance criteria:**
     - materials: Ouro 18k e Prata 925; sale_channels: WhatsApp, Loja física, Instagram
     - payment_methods: Pix (à vista, aplica desconto Pix), Dinheiro, Débito (à vista), Crédito (1 a 6) e Crediário (1 a 6, `generates_receivables`)
@@ -156,7 +156,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 3.1: Catálogo
 
-- [ ] **Task:** Models `Material`, `PaymentMethod`, `SaleChannel`, `Category` e `Product` com relações, casts e `$fillable`.
+- [x] **Task:** Models `Material`, `PaymentMethod`, `SaleChannel`, `Category` e `Product` com relações, casts e `$fillable`.
   - **Acceptance criteria:**
     - `Category` hasMany `Product`; `Product` belongsTo `Category` e `Material`
     - `price`/`old_price` com cast decimal de 2 casas; flags booleanas castadas
@@ -164,7 +164,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `CategoryModelTest` → `name_normalized` de "Anéis" vira "aneis"; `ProductRelationsTest` → relações retornam os modelos esperados.
   - **Traces:** tables categories, products, materials, payment_methods, sale_channels
 
-- [ ] **Task:** `Product` registra a coleção de mídia `photos` (Spatie) com acessores de capa e foto de hover e o scope `visible()`.
+- [x] **Task:** `Product` registra a coleção de mídia `photos` (Spatie) com acessores de capa e foto de hover e o scope `visible()`.
   - **Acceptance criteria:**
     - Capa é a foto de menor `order_column`; hover é a segunda (ou nula)
     - `Product::visible()` retorna só peças com `is_active` e pelo menos 1 foto
@@ -174,7 +174,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 3.2: Clientes e vendas
 
-- [ ] **Task:** Models `Customer`, `Sale`, `SaleItem` e `Installment` com relações completas.
+- [x] **Task:** Models `Customer`, `Sale`, `SaleItem` e `Installment` com relações completas.
   - **Acceptance criteria:**
     - `Customer` hasMany `Sale`; `Sale` belongsTo `Customer`, `PaymentMethod`, `SaleChannel`, hasMany `SaleItem` e `Installment`
     - `SaleItem` belongsTo `Sale`, `Product` (nulo) e `Category` (nulo)
@@ -182,7 +182,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SaleRelationsTest` → todas as relações navegam nos dois sentidos com factories.
   - **Traces:** tables customers, sales, sale_items, installments
 
-- [ ] **Task:** Scopes e acessores de venda e parcela: `Sale::notCancelled()`, `Sale::cancelled()`, `Installment::open()` e situação derivada.
+- [x] **Task:** Scopes e acessores de venda e parcela: `Sale::notCancelled()`, `Sale::cancelled()`, `Installment::open()` e situação derivada.
   - **Acceptance criteria:**
     - `notCancelled()` filtra `cancelled_at IS NULL`
     - Situação da parcela: `paid` se `paid_at`; `overdue` se `due_date` < hoje; `due_soon` se vence em até 7 dias; senão `open`
@@ -191,7 +191,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 3.3: Configurações, usuário e factories
 
-- [ ] **Task:** Models `StoreSetting` (singleton `current()` com cache), `PromoPhrase`, `ChatShortcut` e `User`.
+- [x] **Task:** Models `StoreSetting` (singleton `current()` com cache), `PromoPhrase`, `ChatShortcut` e `User`.
   - **Acceptance criteria:**
     - `StoreSetting::current()` devolve sempre a linha única, criando-a com defaults se faltar
     - `StoreSetting` hasMany `PromoPhrase` e `ChatShortcut`, ordenados por `position`
@@ -199,13 +199,13 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `StoreSettingTest` → `current()` é idempotente; salvar invalida o cache.
   - **Traces:** tables store_settings, promo_phrases, chat_shortcuts, users; US-10.1
 
-- [ ] **Task:** Factories e estados para todos os models.
+- [x] **Task:** Factories e estados para todos os models.
   - **Acceptance criteria:**
     - Estados: `Product::active()`, `withPhotos()`, `Sale::cancelled()`, `Installment::overdue()`/`paid()`, `Customer::withBirthday()`
     - Todas as factories geram registros válidos para as constraints
   - **Traces:** database-schema (todas as tabelas)
 
-- [ ] **Task:** Habilitar `Model::preventLazyLoading()` fora de produção e rodar Larastan nos models.
+- [x] **Task:** Habilitar `Model::preventLazyLoading()` fora de produção e rodar Larastan nos models.
   - **Acceptance criteria:**
     - Lazy loading acidental lança exceção em dev/testes
     - `composer analyse` passa
@@ -219,7 +219,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 4.1: Preço e parcelas
 
-- [ ] **Task:** Classe `Money` (centavos inteiros) com formatação pt-BR (`R$ 99,90`).
+- [x] **Task:** Classe `Money` (centavos inteiros) com formatação pt-BR (`R$ 99,90`).
   - **Acceptance criteria:**
     - Soma, subtração, multiplicação por inteiro e divisão sem float
     - Formatação `R$ 1.234,56`
@@ -227,7 +227,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `MoneyTest` → formatação, soma e arredondamento por centavos.
   - **Traces:** database-schema (colunas decimal)
 
-- [ ] **Task:** `PricingCalculator`: preço no Pix, parcela sem juros, preço antigo válido e selo de desconto.
+- [x] **Task:** `PricingCalculator`: preço no Pix, parcela sem juros, preço antigo válido e selo de desconto.
   - **Acceptance criteria:**
     - Pix = preço × (1 − desconto Pix); parcela = preço ÷ parcelas sem juros
     - Preço antigo só é considerado se maior que o preço de venda
@@ -236,7 +236,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `PricingCalculatorTest` → R$ 99,90 em 3x = R$ 33,30; R$ 99,90 com Pix 5% = R$ 94,91; R$ 139,90 → R$ 119,90 = −14%; preço antigo igual ou menor é ignorado; peça Lançamento sem desconto = "Novo"; desconto Pix 0% mantém o preço.
   - **Traces:** US-1.2; RN-15 a RN-19
 
-- [ ] **Task:** `InstallmentSplitter`: divide o total do crediário em parcelas mensais.
+- [x] **Task:** `InstallmentSplitter`: divide o total do crediário em parcelas mensais.
   - **Acceptance criteria:**
     - Valor = total ÷ n arredondado para baixo no centavo; a última absorve a diferença
     - Vencimentos mensais a partir do 1º vencimento (padrão 1 mês após a venda); fim de mês respeita o último dia
@@ -246,14 +246,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 4.2: Busca, telefone e mensagens
 
-- [ ] **Task:** Normalização de texto e telefone: `SearchText::normalize()` e `Phone::normalize()`.
+- [x] **Task:** Normalização de texto e telefone: `SearchText::normalize()` e `Phone::normalize()`.
   - **Acceptance criteria:**
     - Texto sem acento, minúsculo e sem espaços extras
     - Telefone guarda só dígitos; mínimo 10 dígitos para ser válido; gera número `wa.me` com 55 quando faltar
   - **Feature tests:** `PhoneTest` → "(69) 99999-0000" vira dígitos; 9 dígitos é inválido; `SearchTextTest` → "Anéis" casa com "aneis".
   - **Traces:** US-6.1, US-7.2, US-1.3
 
-- [ ] **Task:** `WhatsAppLink`: monta `https://wa.me/<numero>?text=<mensagem>` com a mensagem codificada.
+- [x] **Task:** `WhatsAppLink`: monta `https://wa.me/<numero>?text=<mensagem>` com a mensagem codificada.
   - **Acceptance criteria:**
     - Usa o WhatsApp de `store_settings` (ou o da cliente para recibo e parabéns)
     - Acentos, quebras de linha e símbolos são codificados corretamente
@@ -261,7 +261,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `WhatsAppLinkTest` → texto codificado e decodificável; número com máscara é normalizado.
   - **Traces:** US-2.2, US-3.1; RN-36
 
-- [ ] **Task:** Construtores de mensagem: sacola, atalho, presente, recibo e parabéns.
+- [x] **Task:** Construtores de mensagem: sacola, atalho, presente, recibo e parabéns.
   - **Acceptance criteria:**
     - Sacola: "Oi! Separei essas peças no site da Orvalha:" + itens "Nx Nome (Material) — R$ valor" + total e total no Pix + "Pode confirmar se tem tudo disponível?"
     - Presente inclui para quem, ocasião, faixa de gasto e detalhe opcional
@@ -278,7 +278,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 5.1: Tokens e base
 
-- [ ] **Task:** Portar os design tokens e a tipografia dos mockups para CSS (variáveis, reset e escala).
+- [x] **Task:** Portar os design tokens e a tipografia dos mockups para CSS (variáveis, reset e escala).
   - **Acceptance criteria:**
     - Variáveis de cor idênticas às dos mockups (vitrine: `--bg`, `--blush`, `--gold`, `--gold-deep`, `--ink`, `--line`, `--muted`, `--soft`, `--wa`, `--wine`; painel: `--bg #F8F4F2`, `--surface`, `--wine-soft`, `--ok`)
     - Fontes Bodoni Moda (display) e Jost (corpo) carregadas
@@ -288,7 +288,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 5.2: Layouts e componentes da vitrine
 
-- [ ] **Task:** Layout Blade da vitrine: faixa de promoção, cabeçalho com menu/busca/favoritos/sacola e rodapé.
+- [x] **Task:** Layout Blade da vitrine: faixa de promoção, cabeçalho com menu/busca/favoritos/sacola e rodapé.
   - **Acceptance criteria:**
     - Estrutura visual idêntica ao mockup em desktop e celular (sem rolagem horizontal)
     - Slots para faixa (`#promo`), busca (`#mSearchRow`), círculos de categoria e rodapé
@@ -296,7 +296,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#promo`, `#mSearchRow`, `#circles`, rodapé)
   - **Traces:** US-1.1, US-1.6
 
-- [ ] **Task:** Componentes Blade da vitrine: card de peça, botões, gaveta lateral (`#drawer`), modal (`#modal`), scrim e toast.
+- [x] **Task:** Componentes Blade da vitrine: card de peça, botões, gaveta lateral (`#drawer`), modal (`#modal`), scrim e toast.
   - **Acceptance criteria:**
     - Card com foto, nome, preço, parcelamento, preço no Pix e selo; foto de hover
     - Gaveta e modal abrem/fecham com Alpine, foco preso e Esc fecha
@@ -306,14 +306,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 5.3: Layout e componentes do painel
 
-- [ ] **Task:** Layout Blade do painel com navegação (Painel, Peças, Categorias, Vendas, Nova venda, Clientes, Loja, Sair) e barra superior.
+- [x] **Task:** Layout Blade do painel com navegação (Painel, Peças, Categorias, Vendas, Nova venda, Clientes, Loja, Sair) e barra superior.
   - **Acceptance criteria:**
     - Navegação e item ativo idênticos ao mockup, responsivo no celular
     - Rótulos e ícones conforme as telas `viewDash`, `viewItems`, `viewCats`, `viewSales`, `viewSell`, `viewClients`, `viewStore`
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`#app`, navegação)
   - **Traces:** US-4.1
 
-- [ ] **Task:** Componentes Blade/Livewire do painel: botões, campos, selects, interruptor, chips/badges de situação, tabela, estado vazio, diálogo de confirmação, toast e tile de indicador.
+- [x] **Task:** Componentes Blade/Livewire do painel: botões, campos, selects, interruptor, chips/badges de situação, tabela, estado vazio, diálogo de confirmação, toast e tile de indicador.
   - **Acceptance criteria:**
     - Campos inválidos ficam marcados com mensagem
     - Diálogo de confirmação reutilizável (exclusão, cancelamento)
@@ -335,7 +335,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 6.1: Autenticação
 
-- [ ] **Task:** Tela de login (Livewire) com e-mail e senha.
+- [x] **Task:** Tela de login (Livewire) com e-mail e senha.
   - **Acceptance criteria:**
     - Credenciais válidas levam ao Painel
     - Credenciais inválidas mostram erro genérico sem revelar qual campo falhou
@@ -344,7 +344,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewLogin`)
   - **Traces:** US-4.1; RN-03
 
-- [ ] **Task:** Logout e grupo de rotas `/painel` protegido por `auth`.
+- [x] **Task:** Logout e grupo de rotas `/painel` protegido por `auth`.
   - **Acceptance criteria:**
     - Qualquer rota `/painel/*` sem sessão redireciona para a entrada
     - "Sair" invalida a sessão, regenera o token e volta ao login
@@ -352,7 +352,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `PanelAccessTest` → visitante é redirecionado em todas as rotas `/painel`; após logout a sessão não acessa mais o painel.
   - **Traces:** US-4.1; RN-03, RN-04
 
-- [ ] **Task:** Criar a administradora por comando e seeder (`admin:create`, usando `ADMIN_EMAIL`/`ADMIN_PASSWORD`).
+- [x] **Task:** Criar a administradora por comando e seeder (`admin:create`, usando `ADMIN_EMAIL`/`ADMIN_PASSWORD`).
   - **Acceptance criteria:**
     - Comando cria ou atualiza o usuário com senha em hash
     - Sem variáveis definidas, o comando pede os dados interativamente
@@ -360,7 +360,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `AdminCreateCommandTest` → cria usuário com hash; reexecutar não duplica.
   - **Traces:** US-4.1; table users
 
-- [ ] **Task:** Tela inicial do painel (casca) com a rota raiz `/painel` e navegação funcionando.
+- [x] **Task:** Tela inicial do painel (casca) com a rota raiz `/painel` e navegação funcionando.
   - **Acceptance criteria:**
     - Após o login abre `/painel` com o layout do admin
     - Itens de navegação apontam para rotas existentes (placeholders até as fases seguintes)
@@ -375,7 +375,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 7.1: Categorias
 
-- [ ] **Task:** Tela de categorias: criar, renomear e reordenar.
+- [x] **Task:** Tela de categorias: criar, renomear e reordenar.
   - **Acceptance criteria:**
     - Nome vazio é recusado; nome repetido (sem diferenciar maiúsculas e acentos) é recusado
     - A ordem arrastada/ajustada grava `position` e vale para menu, círculos e rodapé da vitrine
@@ -384,7 +384,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewCats`)
   - **Traces:** US-5.4; RN-65, RN-66; table categories
 
-- [ ] **Task:** Exclusão de categoria somente quando vazia.
+- [x] **Task:** Exclusão de categoria somente quando vazia.
   - **Acceptance criteria:**
     - Categoria com peças não é excluída e o painel informa quantas peças há e pede para movê-las
     - Categoria vazia é excluída após confirmação
@@ -394,7 +394,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 7.2: Formulário da peça
 
-- [ ] **Task:** Formulário de peça com validação: nome, categoria, material, preço, preço antigo, descrição e flags.
+- [x] **Task:** Formulário de peça com validação: nome, categoria, material, preço, preço antigo, descrição e flags.
   - **Acceptance criteria:**
     - Obrigatórios: nome, categoria, material e preço de venda > 0
     - Salvar sem nome ou preço marca os campos e não grava nada
@@ -404,7 +404,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewForm`)
   - **Traces:** US-5.1; RN-60; table products
 
-- [ ] **Task:** Prévia do card ao lado do formulário, com Pix e parcelas calculados.
+- [x] **Task:** Prévia do card ao lado do formulário, com Pix e parcelas calculados.
   - **Acceptance criteria:**
     - A prévia atualiza enquanto se digita e usa o `PricingCalculator` com as configurações atuais
     - Mostra selo de desconto/Novo conforme as regras
@@ -413,7 +413,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 7.3: Fotos e visibilidade
 
-- [ ] **Task:** Upload, reordenação e remoção de fotos da peça (Spatie Media Library no R2).
+- [x] **Task:** Upload, reordenação e remoção de fotos da peça (Spatie Media Library no R2).
   - **Acceptance criteria:**
     - Aceita imagens (jpg, png, webp) com tamanho máximo definido e rejeita outros tipos
     - A 1ª foto é a capa e a 2ª é a de hover; reordenar altera `order_column`
@@ -422,7 +422,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewForm`, fotos)
   - **Traces:** US-5.2; table media
 
-- [ ] **Task:** Interruptor "No site" exigindo pelo menos 1 foto, no formulário e na lista.
+- [x] **Task:** Interruptor "No site" exigindo pelo menos 1 foto, no formulário e na lista.
   - **Acceptance criteria:**
     - Ligar "No site" sem foto é recusado com mensagem
     - Remover a última foto de uma peça ativa a desativa ou impede a remoção, com aviso
@@ -431,7 +431,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 7.4: Lista e exclusão
 
-- [ ] **Task:** Lista de peças com busca por nome, filtro por categoria e contadores de "no site" e "ocultas".
+- [x] **Task:** Lista de peças com busca por nome, filtro por categoria e contadores de "no site" e "ocultas".
   - **Acceptance criteria:**
     - Busca ignora acentos e maiúsculas
     - Contadores refletem o filtro aplicado
@@ -440,7 +440,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewItems`)
   - **Traces:** US-5.3; RN-64
 
-- [ ] **Task:** Exclusão de peça com confirmação, preservando o histórico de vendas.
+- [x] **Task:** Exclusão de peça com confirmação, preservando o histórico de vendas.
   - **Acceptance criteria:**
     - Pede confirmação e informa que não pode ser desfeito
     - Itens de vendas antigas mantêm nome, categoria, material e preço da época
@@ -456,14 +456,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 8.1: Contato, horários e pagamento
 
-- [ ] **Task:** Tela Loja (casca) com abas/grupos Contato, Horários, Pagamento, Promoções e Atendimento.
+- [x] **Task:** Tela Loja (casca) com abas/grupos Contato, Horários, Pagamento, Promoções e Atendimento.
   - **Acceptance criteria:**
     - Estrutura idêntica à tela de configurações do mockup
     - Salvar exibe confirmação e mantém os valores
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewStore`)
   - **Traces:** US-10.1, US-10.2
 
-- [ ] **Task:** Salvar contato (WhatsApp, Instagram, endereço, cidade, estado, CNPJ) e horários (seg a sex, sábado, domingo).
+- [x] **Task:** Salvar contato (WhatsApp, Instagram, endereço, cidade, estado, CNPJ) e horários (seg a sex, sábado, domingo).
   - **Acceptance criteria:**
     - WhatsApp é normalizado para dígitos e validado (mín. 10)
     - Horários são texto livre (ex.: 9h às 18h)
@@ -472,7 +472,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewStore`)
   - **Traces:** US-10.1; RN-36
 
-- [ ] **Task:** Salvar pagamento: desconto Pix, parcelas sem juros e garantia do banho.
+- [x] **Task:** Salvar pagamento: desconto Pix, parcelas sem juros e garantia do banho.
   - **Acceptance criteria:**
     - Desconto Pix entre 0 e 30; parcelas entre 1 e 12; valores fora do limite são recusados
     - Garantia é texto livre e opcional
@@ -483,7 +483,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 8.2: Promoções e atendimento
 
-- [ ] **Task:** Lista editável de frases da faixa do topo.
+- [x] **Task:** Lista editável de frases da faixa do topo.
   - **Acceptance criteria:**
     - Adicionar, editar, remover e reordenar frases
     - Frases vazias são descartadas ao salvar
@@ -491,7 +491,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewStore`)
   - **Traces:** US-10.2; table promo_phrases
 
-- [ ] **Task:** Frase de boas-vindas e botão de atendimento (logo da Orvalha ou foto da loja enviada).
+- [x] **Task:** Frase de boas-vindas e botão de atendimento (logo da Orvalha ou foto da loja enviada).
   - **Acceptance criteria:**
     - Upload de foto grava `chat_button_photo_path` no R2; remover volta para a logo
     - Tipo e tamanho do arquivo validados
@@ -499,7 +499,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewStore`)
   - **Traces:** US-10.2; table store_settings
 
-- [ ] **Task:** Atalhos de conversa editáveis (rótulo, mensagem do WhatsApp, opção "abre ajuda para presente").
+- [x] **Task:** Atalhos de conversa editáveis (rótulo, mensagem do WhatsApp, opção "abre ajuda para presente").
   - **Acceptance criteria:**
     - Atalhos vazios são descartados; ordem preservada
     - O atalho de presente não exige mensagem
@@ -507,7 +507,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewStore`)
   - **Traces:** US-10.2; table chat_shortcuts
 
-- [ ] **Task:** Convite de ajuda (liga/desliga e 1, 2, 3 ou 5 minutos) e presente de aniversário (0–50%).
+- [x] **Task:** Convite de ajuda (liga/desliga e 1, 2, 3 ou 5 minutos) e presente de aniversário (0–50%).
   - **Acceptance criteria:**
     - Minutos aceitam apenas 1, 2, 3 ou 5
     - Percentual de presente fora de 0–50 é recusado
@@ -523,7 +523,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 9.1: Cadastro
 
-- [ ] **Task:** Formulário de cliente com validação e componente reutilizável de cadastro rápido.
+- [x] **Task:** Formulário de cliente com validação e componente reutilizável de cadastro rápido.
   - **Acceptance criteria:**
     - Nome obrigatório; WhatsApp opcional com DDD (mín. 10 dígitos) e único; cidade padrão é a da loja; aniversário dia/mês válido; observações livres
     - O componente de cadastro rápido salva sem sair da tela de origem e emite o evento com a cliente criada
@@ -533,7 +533,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 9.2: Lista, ficha e exclusão
 
-- [ ] **Task:** Lista de clientes com busca por nome (sem acento) ou telefone.
+- [x] **Task:** Lista de clientes com busca por nome (sem acento) ou telefone.
   - **Acceptance criteria:**
     - Busca ignora acentos e maiúsculas e aceita dígitos do telefone
     - Layout fiel à lista de clientes
@@ -541,7 +541,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewClients`)
   - **Traces:** US-6.3
 
-- [ ] **Task:** Serviço `CustomerSummary`: total comprado, nº de compras, ticket médio e saldo em aberto.
+- [x] **Task:** Serviço `CustomerSummary`: total comprado, nº de compras, ticket médio e saldo em aberto.
   - **Acceptance criteria:**
     - Considera só vendas não canceladas
     - Ticket médio = total ÷ compras (0 se não houver compras)
@@ -549,7 +549,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `CustomerSummaryTest` → venda cancelada não entra em total, compras nem saldo; ticket médio de 2 vendas (100 e 50) = 75; sem compras = 0.
   - **Traces:** US-6.2; RN-73, RN-74
 
-- [ ] **Task:** Ficha da cliente: resumo, parcelas, 8 compras mais recentes com "ver todas", botões WhatsApp e nova venda.
+- [x] **Task:** Ficha da cliente: resumo, parcelas, 8 compras mais recentes com "ver todas", botões WhatsApp e nova venda.
   - **Acceptance criteria:**
     - Mostra os 4 indicadores e a lista de parcelas com situação
     - Histórico mostra 8 e "ver todas" expande
@@ -557,7 +557,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewClient`, `openClient`)
   - **Traces:** US-6.2; RN-73
 
-- [ ] **Task:** Exclusão de cliente com confirmação, bloqueada quando há compras.
+- [x] **Task:** Exclusão de cliente com confirmação, bloqueada quando há compras.
   - **Acceptance criteria:**
     - Cliente com qualquer venda registrada (inclusive cancelada) não pode ser excluída, com mensagem explicativa
     - Cliente sem compras é excluída após confirmação
@@ -573,7 +573,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 10.1: Regras de registro
 
-- [ ] **Task:** Serviço `SaleRegistrar`: cria a venda com itens congelados em transação.
+- [x] **Task:** Serviço `SaleRegistrar`: cria a venda com itens congelados em transação.
   - **Acceptance criteria:**
     - Exige pelo menos 1 item e quantidades ≥ 1
     - Grava `product_name`, `category_name`, `material_name`, `unit_price` e `line_total` do momento
@@ -582,7 +582,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SaleRegistrarTest` → venda sem itens falha; itens congelam preço e nomes; alterar preço depois não muda `unit_price`; números sequenciais.
   - **Traces:** US-7.1; RN-90, RN-91
 
-- [ ] **Task:** Regras de pagamento e descontos no `SaleRegistrar`.
+- [x] **Task:** Regras de pagamento e descontos no `SaleRegistrar`.
   - **Acceptance criteria:**
     - Pix aplica automaticamente o desconto Pix; Dinheiro, Débito e Crédito não aplicam
     - "Outro desconto" soma ao Pix e o desconto total nunca passa do subtotal
@@ -591,7 +591,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SalePaymentRulesTest` → Pix de R$ 200 com 5% = desconto 10,00; outro desconto de R$ 500 em subtotal de R$ 200 é limitado/recusado; Crédito 7x é recusado; Débito 2x é recusado; total correto nos 5 meios.
   - **Traces:** US-7.3; RN-96, RN-97, RN-98
 
-- [ ] **Task:** Regras de data, canal e cliente da venda.
+- [x] **Task:** Regras de data, canal e cliente da venda.
   - **Acceptance criteria:**
     - Data padrão hoje; data anterior é aceita; data futura é recusada; a hora gravada é a do registro
     - Canal obrigatório (WhatsApp, Loja física ou Instagram)
@@ -599,7 +599,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SaleDateAndCustomerTest` → data de amanhã falha; ontem passa com hora atual; crediário sem cliente falha; Pix sem cliente passa.
   - **Traces:** US-7.1, US-8.1; RN-92, RN-93, RN-94
 
-- [ ] **Task:** Geração das parcelas do crediário no registro.
+- [x] **Task:** Geração das parcelas do crediário no registro.
   - **Acceptance criteria:**
     - Cria `installments` com o `InstallmentSplitter`; 1º vencimento padrão = 1 mês após a venda, ou o escolhido
     - Crédito não gera parcelas locais; só grava `installments_count`
@@ -607,7 +607,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `CrediarioGenerationTest` → R$ 100,00 em 3x gera 33,33/33,33/33,34 mensais; crédito em 3x não cria `installments`; 1º vencimento customizado respeitado.
   - **Traces:** US-8.1; RN-75, RN-76, RN-79
 
-- [ ] **Task:** Busca de cliente para a venda (`CustomerSearch`).
+- [x] **Task:** Busca de cliente para a venda (`CustomerSearch`).
   - **Acceptance criteria:**
     - Acha pelo começo de qualquer palavra do nome, sem acento; também por 3 ou mais dígitos do telefone
     - Retorna no máximo 6 resultados
@@ -616,7 +616,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 10.2: Tela do PDV
 
-- [ ] **Task:** Grade de peças e carrinho da venda.
+- [x] **Task:** Grade de peças e carrinho da venda.
   - **Acceptance criteria:**
     - Tocar na peça adiciona 1; − e + ajustam; 0 remove
     - Mostra subtotal e total atualizados ao vivo
@@ -624,14 +624,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewSell`, `#cList`, `#cart`, `#cartSum`)
   - **Traces:** US-7.1; RN-90
 
-- [ ] **Task:** Seletor de cliente na venda com busca e cadastro rápido.
+- [x] **Task:** Seletor de cliente na venda com busca e cadastro rápido.
   - **Acceptance criteria:**
     - Resultados da busca em até 6 itens; selecionar mostra a cliente escolhida e permite trocá-la
     - Cadastro rápido salva e já seleciona a cliente
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewSell`)
   - **Traces:** US-7.2; RN-70, RN-71
 
-- [ ] **Task:** Painel de pagamento: forma, parcelas, 1º vencimento, canal, data e outro desconto.
+- [x] **Task:** Painel de pagamento: forma, parcelas, 1º vencimento, canal, data e outro desconto.
   - **Acceptance criteria:**
     - Opções de parcelas conforme a forma escolhida; ao trocar para crediário o padrão vira 2x
     - Resumo mostra subtotal, desconto Pix, outro desconto e total
@@ -639,7 +639,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewSell`)
   - **Traces:** US-7.3; RN-98
 
-- [ ] **Task:** Envio do formulário: registrar, abrir o detalhe e limpar a tela; aviso do crediário sem cliente.
+- [x] **Task:** Envio do formulário: registrar, abrir o detalhe e limpar a tela; aviso do crediário sem cliente.
   - **Acceptance criteria:**
     - Registrar redireciona ao detalhe da venda e a nova venda abre vazia
     - Crediário sem cliente mostra o aviso e leva o foco ao campo de cliente
@@ -656,14 +656,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 11.1: Lista e resumo
 
-- [ ] **Task:** Consulta de vendas com filtros: período (Hoje, 7 dias, 30 dias, Tudo), forma de pagamento, "Só canceladas" e busca por cliente, peça ou número.
+- [x] **Task:** Consulta de vendas com filtros: período (Hoje, 7 dias, 30 dias, Tudo), forma de pagamento, "Só canceladas" e busca por cliente, peça ou número.
   - **Acceptance criteria:**
     - A lista abre em Hoje; busca ignora acentos e aceita `#0616`
     - Filtros combinam entre si
   - **Feature tests:** `SalesQueryTest` → filtro Hoje exclui ontem; "Só canceladas" mostra só canceladas; busca por nome da peça, cliente e número.
   - **Traces:** US-7.4; RN-99
 
-- [ ] **Task:** Agrupamento por dia, totais do dia e resumo do filtro.
+- [x] **Task:** Agrupamento por dia, totais do dia e resumo do filtro.
   - **Acceptance criteria:**
     - Cada dia mostra quantidade e total sem contar canceladas
     - Resumo: número de vendas (e canceladas), faturamento, ticket médio e quanto falta receber dessas vendas
@@ -671,14 +671,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SalesSummaryTest` → venda cancelada não soma no dia nem no faturamento; ticket médio = faturamento ÷ vendas; 51 vendas mostram 50 e liberam "Mostrar mais".
   - **Traces:** US-7.4; RN-100, RN-101
 
-- [ ] **Task:** Tela de lista de vendas.
+- [x] **Task:** Tela de lista de vendas.
   - **Acceptance criteria:**
     - Filtros, grupos por dia, venda cancelada riscada e resumo conforme o mockup
     - Clique abre o detalhe
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewSales`)
   - **Traces:** US-7.4
 
-- [ ] **Task:** Tela de detalhe da venda.
+- [x] **Task:** Tela de detalhe da venda.
   - **Acceptance criteria:**
     - Mostra peças, descontos, total, cliente, pagamento (forma, condição, recebido no crediário), parcelas e onde vendeu
     - Venda cancelada exibe data, hora e motivo
@@ -687,7 +687,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 11.2: Cancelamento e recibo
 
-- [ ] **Task:** Serviço de cancelamento e reativação.
+- [x] **Task:** Serviço de cancelamento e reativação.
   - **Acceptance criteria:**
     - Cancelar exige motivo; grava `cancelled_at` e `cancel_reason`; venda não pode ser editada
     - Se houve parcelas recebidas, devolve o valor já recebido para o aviso
@@ -695,14 +695,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `SaleCancellationTest` → sem motivo falha; cancelar tira a venda de `notCancelled()`, de `CustomerSummary` e do a receber; aviso traz o valor recebido (ex.: R$ 33,33); reativar restaura os números; tentar editar uma venda é recusado.
   - **Traces:** US-7.5; RN-103, RN-104, RN-105, RN-106
 
-- [ ] **Task:** Interface de cancelar e reativar venda.
+- [x] **Task:** Interface de cancelar e reativar venda.
   - **Acceptance criteria:**
     - Diálogo com campo de motivo obrigatório e aviso do valor já recebido
     - Venda cancelada mostra o botão "Reativar venda"
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewSale`)
   - **Traces:** US-7.5
 
-- [ ] **Task:** Botão "Enviar recibo" pelo WhatsApp da cliente.
+- [x] **Task:** Botão "Enviar recibo" pelo WhatsApp da cliente.
   - **Acceptance criteria:**
     - Só aparece com cliente que tem WhatsApp e venda não cancelada
     - Abre o WhatsApp dela com a mensagem do `MessageBuilder` (número, data, itens, desconto, total, forma e parcelas)
@@ -718,7 +718,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 12.1: Regras
 
-- [ ] **Task:** Serviço `InstallmentService`: receber e desfazer parcela.
+- [x] **Task:** Serviço `InstallmentService`: receber e desfazer parcela.
   - **Acceptance criteria:**
     - Receber grava `paid_at` com a data de hoje; desfazer volta para em aberto
     - Parcela de venda cancelada não pode ser recebida
@@ -726,14 +726,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `InstallmentReceiveTest` → receber marca hoje e reduz o saldo; desfazer reabre; receber parcela de venda cancelada falha.
   - **Traces:** US-8.2; RN-78
 
-- [ ] **Task:** Situação das parcelas e consulta de a receber.
+- [x] **Task:** Situação das parcelas e consulta de a receber.
   - **Acceptance criteria:**
     - Em aberto, Vence em N dias (até 7), Vencida (antes de hoje) e Paga (com a data)
     - A consulta de a receber soma parcelas não pagas de vendas não canceladas e separa o total vencido
   - **Feature tests:** `ReceivablesTest` → soma só parcelas abertas de vendas ativas; vencido destacado; parcela de venda cancelada ignorada.
   - **Traces:** US-8.3, US-9.4; RN-77
 
-- [ ] **Task:** Ordenação e filtro de clientes por atraso.
+- [x] **Task:** Ordenação e filtro de clientes por atraso.
   - **Acceptance criteria:**
     - A lista mostra primeiro quem tem parcelas vencidas
     - O filtro "Com parcelas em aberto" restringe a lista
@@ -742,14 +742,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 12.2: Interface
 
-- [ ] **Task:** Componente de parcelas com situação e botões Receber/Desfazer na ficha, no detalhe da venda e no Painel.
+- [x] **Task:** Componente de parcelas com situação e botões Receber/Desfazer na ficha, no detalhe da venda e no Painel.
   - **Acceptance criteria:**
     - Badge de cada situação conforme o design; Receber atualiza o saldo sem recarregar a página
     - O mesmo componente é reutilizado nas três telas
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`openParcels`, `viewClient`, `viewSale`)
   - **Traces:** US-8.2, US-8.3
 
-- [ ] **Task:** Destaque de clientes com parcelas vencidas e filtro na lista de clientes.
+- [x] **Task:** Destaque de clientes com parcelas vencidas e filtro na lista de clientes.
   - **Acceptance criteria:**
     - Clientes em atraso aparecem no topo com marca de vencida
     - O filtro "Com parcelas em aberto" é visível e funcional
@@ -764,14 +764,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 13.1: Regras de métricas
 
-- [ ] **Task:** `PeriodResolver` para 7, 30 e 90 dias (contando hoje) e o período anterior de mesmo tamanho.
+- [x] **Task:** `PeriodResolver` para 7, 30 e 90 dias (contando hoje) e o período anterior de mesmo tamanho.
   - **Acceptance criteria:**
     - 7 dias = hoje e os 6 dias anteriores; o período anterior termina no dia antes do início
     - Datas no fuso America/Porto_Velho
   - **Feature tests:** `PeriodResolverTest` → 30 dias a partir de 30/set cobre 1/set–30/set e o anterior 2/ago–31/ago; limites inclusivos.
   - **Traces:** US-9.1; RN-110
 
-- [ ] **Task:** `DashboardMetrics`: faturamento, vendas, ticket médio, peças vendidas e variação percentual.
+- [x] **Task:** `DashboardMetrics`: faturamento, vendas, ticket médio, peças vendidas e variação percentual.
   - **Acceptance criteria:**
     - Faturamento = soma dos totais com descontos; ticket médio = faturamento ÷ vendas; peças = soma das quantidades
     - Só vendas registradas e não canceladas entram
@@ -779,7 +779,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `DashboardMetricsTest` → cancelada fica fora; ticket médio de 2 vendas (R$ 100 e R$ 50) = 75; variação de 100 → 150 = +50%; período anterior zero retorna "sem base" sem erro.
   - **Traces:** US-9.1; RN-110
 
-- [ ] **Task:** `SalesSeries`: série por dia (7 e 30 dias) ou por semana (90 dias) para faturamento, vendas e peças.
+- [x] **Task:** `SalesSeries`: série por dia (7 e 30 dias) ou por semana (90 dias) para faturamento, vendas e peças.
   - **Acceptance criteria:**
     - Dias sem venda aparecem com zero
     - 90 dias agrupa por semana; os totais da série somam ao total do período
@@ -788,14 +788,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 13.2: Interface
 
-- [ ] **Task:** Tela Painel: seletor de período, tiles de indicadores com ▲ verde / ▼ vinho.
+- [x] **Task:** Tela Painel: seletor de período, tiles de indicadores com ▲ verde / ▼ vinho.
   - **Acceptance criteria:**
     - Seletor 7/30/90 atualiza os tiles sem recarregar
     - Indicadores e setas conforme o mockup
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewDash`)
   - **Traces:** US-9.1
 
-- [ ] **Task:** Gráfico de evolução com alternância faturamento/vendas/peças e visão em tabela.
+- [x] **Task:** Gráfico de evolução com alternância faturamento/vendas/peças e visão em tabela.
   - **Acceptance criteria:**
     - Alternar a métrica redesenha o gráfico; a visão em tabela mostra os mesmos valores
     - Tooltip acessível por teclado e legível em celular
@@ -810,7 +810,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 14.1: Rankings e composição
 
-- [ ] **Task:** Peças mais vendidas (top 6) e faturamento por categoria com rateio proporcional do desconto.
+- [x] **Task:** Peças mais vendidas (top 6) e faturamento por categoria com rateio proporcional do desconto.
   - **Acceptance criteria:**
     - Top 6 por quantidade no período
     - O desconto total da venda é distribuído proporcionalmente aos itens (por `line_total`) no faturamento da peça e da categoria
@@ -818,7 +818,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `TopProductsTest` → venda de 2 itens (R$ 100 e R$ 50) com desconto de R$ 15 rateia 10 e 5; 7 peças retornam 6; empate desempata por faturamento; `RevenueByCategoryTest` → soma bate com o faturamento; canceladas fora.
   - **Traces:** US-9.3; RN-111 (tabela de indicadores)
 
-- [ ] **Task:** Composição: como pagaram (à vista × parcelado e por forma), onde vendeu e melhores clientes (top 5).
+- [x] **Task:** Composição: como pagaram (à vista × parcelado e por forma), onde vendeu e melhores clientes (top 5).
   - **Acceptance criteria:**
     - % à vista × parcelado sobre o faturamento (parcelado = 2 parcelas ou mais)
     - Vendas por canal em quantidade; top 5 clientes por valor comprado no período, sem canceladas
@@ -827,7 +827,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 14.2: Widgets e interface
 
-- [ ] **Task:** Card "A receber no crediário" com a lista das 5 próximas parcelas e o botão Receber.
+- [x] **Task:** Card "A receber no crediário" com a lista das 5 próximas parcelas e o botão Receber.
   - **Acceptance criteria:**
     - Soma as parcelas em aberto de todas as vendas, independente do período, e mostra quanto está vencido
     - Lista as 5 próximas por vencimento e Receber atualiza o card na hora
@@ -835,7 +835,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewDash`, `openParcels`)
   - **Traces:** US-9.4; RN-112
 
-- [ ] **Task:** Lista das 6 últimas vendas não canceladas, clicáveis para o detalhe.
+- [x] **Task:** Lista das 6 últimas vendas não canceladas, clicáveis para o detalhe.
   - **Acceptance criteria:**
     - Ordenadas da mais recente; canceladas ausentes
     - Clique abre o detalhe da venda
@@ -843,7 +843,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewDash`)
   - **Traces:** US-9.3; RN-113
 
-- [ ] **Task:** Aniversariantes do mês com botão "Parabéns".
+- [x] **Task:** Aniversariantes do mês com botão "Parabéns".
   - **Acceptance criteria:**
     - Primeiro as que ainda vão fazer (por dia), depois as que já passaram
     - Rótulo "Hoje", "Em N dias" ou "Já passou"; clientes sem aniversário ficam fora
@@ -852,7 +852,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Admin.html` (`viewDash`)
   - **Traces:** US-9.5; RN-114, RN-115
 
-- [ ] **Task:** Montar a tela Painel completa: rankings, composição, widgets e estados vazios.
+- [x] **Task:** Montar a tela Painel completa: rankings, composição, widgets e estados vazios.
   - **Acceptance criteria:**
     - Todos os blocos do mockup aparecem; sem dados mostram estado vazio amigável
     - Responsivo em celular sem rolagem horizontal
@@ -867,7 +867,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 15.1: Dados e cards
 
-- [ ] **Task:** `StorefrontCatalog`: peças visíveis, seções Mais vendidos e Lançamentos (máx. 4) e categorias ordenadas.
+- [x] **Task:** `StorefrontCatalog`: peças visíveis, seções Mais vendidos e Lançamentos (máx. 4) e categorias ordenadas.
   - **Acceptance criteria:**
     - Só peças com "No site" e pelo menos 1 foto
     - Lançamentos limitados a 4; categorias na ordem do painel
@@ -875,7 +875,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `StorefrontCatalogTest` → 6 lançamentos retornam 4; peça sem foto ou oculta ausente; ordem das categorias segue `position`.
   - **Traces:** US-1.1; RN-10, RN-11, RN-12
 
-- [ ] **Task:** `ProductCardData` com preços, parcelamento, Pix e selo, sem o material.
+- [x] **Task:** `ProductCardData` com preços, parcelamento, Pix e selo, sem o material.
   - **Acceptance criteria:**
     - Usa o `PricingCalculator` e as configurações da loja
     - Preço antigo riscado só quando maior; selo de % ou "Novo"
@@ -885,7 +885,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 15.2: Página inicial
 
-- [ ] **Task:** Página inicial com faixa de promoções, círculos de categoria, banners das coleções e grades Mais vendidos e Lançamentos.
+- [x] **Task:** Página inicial com faixa de promoções, círculos de categoria, banners das coleções e grades Mais vendidos e Lançamentos.
   - **Acceptance criteria:**
     - Estrutura e textos fiéis ao mockup, com dados reais do banco
     - Cada peça exibe a foto de capa e a segunda foto ao passar o mouse
@@ -893,7 +893,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#circles`, `#shop`, `#grid`, `#gridNew`)
   - **Traces:** US-1.1; RN-13, RN-14
 
-- [ ] **Task:** Faixa do topo alternando as frases a cada 4 segundos.
+- [x] **Task:** Faixa do topo alternando as frases a cada 4 segundos.
   - **Acceptance criteria:**
     - Alterna a cada 4 s via Alpine; frases vazias não aparecem
     - Com uma única frase, não alterna
@@ -901,14 +901,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#promo`)
   - **Traces:** US-1.6; RN-24
 
-- [ ] **Task:** Seção "Atendimento de verdade" e rodapé com categorias, contato, horários e Instagram.
+- [x] **Task:** Seção "Atendimento de verdade" e rodapé com categorias, contato, horários e Instagram.
   - **Acceptance criteria:**
     - Endereço, cidade, estado, Instagram e horários vêm de `store_settings`
     - Categorias do rodapé na ordem do painel
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#how`, `#insta`, rodapé)
   - **Traces:** US-1.1, US-10.1
 
-- [ ] **Task:** Imagens otimizadas, metadados de SEO e desempenho da home.
+- [x] **Task:** Imagens otimizadas, metadados de SEO e desempenho da home.
   - **Acceptance criteria:**
     - Fotos servidas em webp com tamanhos responsivos e `loading="lazy"`
     - `<title>`, descrição e Open Graph definidos
@@ -922,7 +922,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 16.1: Busca e filtros
 
-- [ ] **Task:** Busca ao vivo (Livewire) por nome e categoria, ignorando acentos.
+- [x] **Task:** Busca ao vivo (Livewire) por nome e categoria, ignorando acentos.
   - **Acceptance criteria:**
     - Filtra enquanto digita (debounce curto)
     - Sem resultado mostra o convite para falar com a loja (link do WhatsApp)
@@ -930,7 +930,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#mSearchRow`)
   - **Traces:** US-1.3; RN-20
 
-- [ ] **Task:** Filtros por categoria, Promoções e coleção ouro/prata (banners).
+- [x] **Task:** Filtros por categoria, Promoções e coleção ouro/prata (banners).
   - **Acceptance criteria:**
     - Promoções lista só peças com preço antigo maior que o de venda
     - Coleção dourada = Ouro 18k; prata = Prata 925
@@ -941,7 +941,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 16.2: Página da peça
 
-- [ ] **Task:** Modal/página da peça com fotos, categoria, preços, detalhes e descrição.
+- [x] **Task:** Modal/página da peça com fotos, categoria, preços, detalhes e descrição.
   - **Acceptance criteria:**
     - Galeria com miniaturas; preços iguais aos do card
     - Detalhes (banho, antialérgico, garantia, caixinha) e prazo da garantia vindo das configurações
@@ -949,7 +949,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#modal`, `#mMain`, `#mThumbs`, `#mInfo`)
   - **Traces:** US-1.4; RN-23
 
-- [ ] **Task:** Botões "Quero essa" e "Tirar dúvida sobre esta peça".
+- [x] **Task:** Botões "Quero essa" e "Tirar dúvida sobre esta peça".
   - **Acceptance criteria:**
     - "Tirar dúvida" abre o WhatsApp com a pergunta pronta citando a peça
     - Dúvidas de tamanho (ex.: anéis) são resolvidas pelo botão "Tirar dúvida" no WhatsApp; não há guia de tamanhos no site
@@ -959,7 +959,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 16.3: Favoritos
 
-- [ ] **Task:** Favoritos no navegador (Alpine + localStorage) com coração nos cards e lista no ícone do topo.
+- [x] **Task:** Favoritos no navegador (Alpine + localStorage) com coração nos cards e lista no ícone do topo.
   - **Acceptance criteria:**
     - O coração marca/desmarca; a lista abre pelo ícone do topo
     - Nada é enviado ao servidor; ids de peças removidas ou ocultas são ignorados na lista
@@ -976,7 +976,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 17.1: Sacola
 
-- [ ] **Task:** Estado da sacola (Alpine + localStorage) com id e quantidade, hidratado pelo servidor.
+- [x] **Task:** Estado da sacola (Alpine + localStorage) com id e quantidade, hidratado pelo servidor.
   - **Acceptance criteria:**
     - "Quero essa" adiciona 1; se já existe, soma +1; − e + ajustam; quantidade 0 remove
     - Preços e totais vêm sempre do servidor; peças removidas ou ocultas saem da sacola com aviso
@@ -984,7 +984,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Feature tests:** `BagTotalsTest` → endpoint calcula subtotal, total no Pix e parcelamento a partir dos ids e quantidades; peça oculta é descartada; quantidade 0 não entra; mudança de preço reflete no total.
   - **Traces:** US-2.1; RN-30, RN-31, RN-34
 
-- [ ] **Task:** Gaveta da sacola com itens, subtotal, total no Pix e parcelamento sem juros.
+- [x] **Task:** Gaveta da sacola com itens, subtotal, total no Pix e parcelamento sem juros.
   - **Acceptance criteria:**
     - Lista de itens com ajuste de quantidade e remoção
     - Rodapé mostra subtotal, total no Pix e parcelas sem juros
@@ -994,7 +994,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 17.2: Envio e informações
 
-- [ ] **Task:** Botão "Enviar para o atendimento" com aviso e abertura do WhatsApp.
+- [x] **Task:** Botão "Enviar para o atendimento" com aviso e abertura do WhatsApp.
   - **Acceptance criteria:**
     - Mostra "A gente confirma se tem as peças e combina entrega e pagamento. Nada é cobrado agora."
     - Abre `wa.me` com a mensagem da sacola (itens com material, total e total no Pix)
@@ -1003,7 +1003,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#bagFoot`)
   - **Traces:** US-2.2; RN-33, RN-35, RN-36
 
-- [ ] **Task:** Informações de entrega e pagamento na sacola e no rodapé.
+- [x] **Task:** Informações de entrega e pagamento na sacola e no rodapé.
   - **Acceptance criteria:**
     - Ji-Paraná: entrega pela loja ou retirada; outras cidades: envio e frete combinados na conversa
     - Formas aceitas na conversa: Pix, cartão e dinheiro (crediário a critério da loja)
@@ -1025,7 +1025,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 18.1: Botão e atalhos
 
-- [ ] **Task:** Botão fixo de atendimento e painel "Atendimento Orvalha" com atalhos.
+- [x] **Task:** Botão fixo de atendimento e painel "Atendimento Orvalha" com atalhos.
   - **Acceptance criteria:**
     - Botão com logo da Orvalha (ou foto da loja) e selo do WhatsApp
     - Painel mostra a frase de boas-vindas e os atalhos da loja; cada atalho abre o WhatsApp com a pergunta pronta
@@ -1037,14 +1037,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 18.2: Balão e convite de ajuda
 
-- [ ] **Task:** Balão de boas-vindas.
+- [x] **Task:** Balão de boas-vindas.
   - **Acceptance criteria:**
     - Aparece uma vez por visita: no computador 5 s após abrir; no celular só depois da rolagem
     - Não aparece com sacola, página da peça ou atendimento abertos; fechar no X não o mostra de novo na visita
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#careBubble`, `showBubble`)
   - **Traces:** US-3.2; RN-44, RN-45
 
-- [ ] **Task:** Convite de ajuda para cliente em dúvida.
+- [x] **Task:** Convite de ajuda para cliente em dúvida.
   - **Acceptance criteria:**
     - Abre após o tempo configurado (padrão 2 min) com a sacola vazia, no máximo uma vez por visita
     - Nunca aparece sobre sacola, peça, atendimento ou guia; não aparece se desligado no painel
@@ -1055,7 +1055,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 18.3: Presente e guia
 
-- [ ] **Task:** Formulário "Ajuda para presente".
+- [x] **Task:** Formulário "Ajuda para presente".
   - **Acceptance criteria:**
     - Campos: para quem (Mãe, Namorada, Amiga, Filha, Para mim), ocasião, quanto quer gastar (até R$ 100, R$ 100 a R$ 200, acima de R$ 200) e detalhe opcional
     - Ao enviar, abre o WhatsApp com a mensagem montada
@@ -1063,7 +1063,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
   - **Design ref:** `.spec/init/design/Orvalha_Semijoias.html` (`#gift`)
   - **Traces:** US-3.4; RN-49, RN-50
 
-- [ ] **Task:** Guia de cuidados e seção com 4 dicas.
+- [x] **Task:** Guia de cuidados e seção com 4 dicas.
   - **Acceptance criteria:**
     - Seção acima do rodapé com 4 dicas e o link "Ver o guia completo"
     - O guia tem: no dia a dia, o que evitar, como limpar, como guardar, brilho que muda e garantia (prazo vindo das configurações)
@@ -1087,7 +1087,7 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
     - Rodam no CI
   - **Traces:** US-4.1, US-5.1, US-7.1, US-7.5, US-1.5, US-2.2
 
-- [ ] **Task:** Revisão de segurança: autorização de todas as rotas do painel, proteção CSRF, rate limiting e mass assignment.
+- [x] **Task:** Revisão de segurança: autorização de todas as rotas do painel, proteção CSRF, rate limiting e mass assignment.
   - **Acceptance criteria:**
     - Teste percorre todas as rotas `/painel/*` e confirma redirecionamento sem sessão
     - Uploads validam tipo e tamanho; nenhum model usa `$guarded = []`
@@ -1103,13 +1103,13 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
 
 ### Phase 19.2: Desempenho, dados e deploy
 
-- [ ] **Task:** Revisão de desempenho: eager loading, índices usados e cache de configurações da loja.
+- [x] **Task:** Revisão de desempenho: eager loading, índices usados e cache de configurações da loja.
   - **Acceptance criteria:**
     - Home e Painel sem N+1 (`preventLazyLoading` não dispara nos testes)
     - Consultas de métricas usam os índices de `sales`, `installments` e `products`
   - **Traces:** database-schema (índices); US-9.1, US-1.1
 
-- [ ] **Task:** Dados de demonstração para desenvolvimento (seeder opcional) baseados nos mockups.
+- [x] **Task:** Dados de demonstração para desenvolvimento (seeder opcional) baseados nos mockups.
   - **Acceptance criteria:**
     - Seeder de demo cria categorias, peças, clientes e vendas coerentes e só roda em ambiente local
     - Não roda em produção
@@ -1122,12 +1122,14 @@ Referências de design (copiadas para `.spec/init/design/`): `Orvalha_Semijoias.
     - Fila e scheduler configurados quando necessários
   - **Traces:** Tech Stack (hospedagem)
 
-- [ ] **Task:** Atualizar o `README.md` com instruções de instalação, testes e deploy.
+- [x] **Task:** Atualizar o `README.md` com instruções de instalação, testes e deploy.
   - **Acceptance criteria:**
     - Passos de setup local, comandos de qualidade e visão geral do projeto
   - **Traces:** Tech Stack (dev env)
 
 ## Open Questions
+
+- **Pendências da implementação:** Larastan não pôde ser instalado neste ambiente (o download do `phpstan/phpstan` do GitHub foi bloqueado), então só Pest e Pint rodam; testes ponta a ponta com Playwright, a galeria `/_design` e a configuração do Laravel Cloud seguem pendentes.
 
 - Pendências da loja que afetam textos: prazo da garantia do banho, política de troca, regra de entrega em Ji-Paraná, WhatsApp/endereço/CNPJ e fotos reais.
 - Fora do MVP até decisão da loja: controle de estoque, juros/multa/entrada no crediário, múltiplos perfis no painel, juros do cartão acima de 3x e política de privacidade (LGPD).

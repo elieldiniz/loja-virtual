@@ -24,14 +24,19 @@ class StoreSetting extends Model
         static::deleted(fn () => Cache::forget(self::CACHE_KEY));
     }
 
-    /** Linha única de configurações; cria com os defaults do banco se ainda não existir. */
+    /**
+     * Linha única de configurações; cria com os defaults do banco se ainda não existir.
+     * Guarda no cache apenas os atributos (o Laravel não desserializa models do cache).
+     */
     public static function current(): self
     {
-        return Cache::rememberForever(self::CACHE_KEY, function () {
+        $attributes = Cache::rememberForever(self::CACHE_KEY, function () {
             $setting = static::query()->orderBy('id')->first() ?? static::create([]);
 
-            return $setting->fresh() ?? $setting;
+            return ($setting->fresh() ?? $setting)->getAttributes();
         });
+
+        return (new static)->newFromBuilder($attributes);
     }
 
     public function chatButtonPhotoUrl(): ?string

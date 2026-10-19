@@ -45,11 +45,13 @@ class Product extends Model implements HasMedia
         $this->addMediaConversion('card')
             ->fit(Fit::Crop, 640, 640)
             ->format('webp')
+            ->nonQueued()
             ->performOnCollections(self::PHOTOS);
 
         $this->addMediaConversion('thumb')
             ->fit(Fit::Crop, 160, 160)
             ->format('webp')
+            ->nonQueued()
             ->performOnCollections(self::PHOTOS);
     }
 
