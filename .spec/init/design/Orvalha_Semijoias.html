@@ -1,0 +1,1017 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Orvalha Semijoias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: boutique storefront — slim promo bar, centered wordmark, editorial hero, product grid with a bag that checks out on WhatsApp. Single light theme by design. */
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --soft: #F7EFEC;
+  --blush: #EFDDD7;
+  --ink: #221C1D;
+  --muted: #6E6466;
+  --line: #ECE4E1;
+  --gold: #A9803F;
+  --gold-deep: #8A6630;
+  --wine: #5B1F2E;
+  --wa: #1A7F45;
+  --f-display: "Bodoni Moda", "Didot", Georgia, serif;
+  --f-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--f-body); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 500; margin: 0; line-height: 1.1; text-wrap: balance; }
+.eyebrow { font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-deep); font-weight: 500; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 24px; border: 1px solid transparent; border-radius: 0; font: 500 13px/1 var(--f-body); letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 180ms ease, color 180ms ease, border-color 180ms ease; }
+.btn-dark { background: var(--ink); color: #FFFFFF; }
+.btn-dark:hover { background: var(--wine); }
+.btn-line { background: transparent; border-color: var(--ink); color: var(--ink); }
+.btn-line:hover { background: var(--ink); color: #FFFFFF; }
+.btn-wa { background: var(--wa); color: #FFFFFF; }
+.btn-wa:hover { filter: brightness(1.08); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* promo bar */
+.promo { background: var(--wine); color: #F6E7E2; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; padding: 9px 16px; }
+@media (max-width: 520px) { .promo { font-size: 10.5px; letter-spacing: 0.06em; } }
+
+/* header */
+header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(255,255,255,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.head-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; padding-block: 14px; }
+.search { position: relative; max-width: 280px; }
+.search input { width: 100%; min-height: 40px; border: 0; border-bottom: 1px solid var(--line); background: transparent; padding: 8px 8px 8px 30px; font: inherit; color: var(--ink); }
+.search input:focus { outline: none; border-color: var(--ink); }
+.search svg { position: absolute; left: 4px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.logo { text-align: center; text-decoration: none; display: flex; flex-direction: column; align-items: center; line-height: 1; }
+.logo b { font: 500 34px/1 var(--f-display); letter-spacing: 0.18em; }
+.logo span { font-size: 10px; letter-spacing: 0.42em; text-transform: uppercase; color: var(--gold-deep); margin-top: 6px; }
+.head-icons { display: flex; justify-content: flex-end; gap: 6px; }
+.icon-btn { position: relative; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; color: var(--ink); cursor: pointer; border-radius: 50%; }
+.icon-btn:hover { background: var(--soft); }
+.badge-count { position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--gold); color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.badge-count[hidden] { display: none !important; }
+nav.cats { border-top: 1px solid var(--line); }
+nav.cats ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; gap: 34px; }
+nav.cats button { background: none; border: 0; padding: 14px 0; font: 500 12px/1 var(--f-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink); cursor: pointer; position: relative; }
+nav.cats button::after { content: ""; position: absolute; left: 0; right: 0; bottom: 8px; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 200ms ease; }
+nav.cats button:hover::after, nav.cats button[aria-pressed="true"]::after { transform: scaleX(1); }
+nav.cats button.sale { color: var(--wine); }
+@media (max-width: 860px) {
+  .head-row { grid-template-columns: auto 1fr auto; }
+  .search { display: none; }
+  .logo { order: 0; align-items: flex-start; }
+  .logo b { font-size: 26px; }
+  .m-search { display: inline-flex; }
+  nav.cats ul { justify-content: flex-start; overflow-x: auto; gap: 26px; padding-inline: 20px; scrollbar-width: none; }
+  nav.cats ul::-webkit-scrollbar { display: none; }
+  nav.cats .wrap { padding-inline: 0; }
+  nav.cats button { white-space: nowrap; }
+}
+@media (min-width: 861px) { .m-search { display: none; } }
+.m-search-row { padding-block: 0 12px; }
+.m-search-row .search { display: block; max-width: none; }
+
+/* hero */
+.hero { background: linear-gradient(115deg, #F7EFEC 0%, #EFDDD7 55%, #E6CFC7 100%); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 24px; min-height: 480px; }
+.hero-copy { display: flex; flex-direction: column; gap: 18px; padding-block: 56px; max-width: 520px; }
+.hero h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 400; letter-spacing: -0.01em; }
+.hero h1 i { color: var(--wine); }
+.hero p { margin: 0; font-size: 17px; color: var(--muted); max-width: 42ch; }
+.hero .acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; }
+.hero-art { position: relative; height: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center; }
+.hero-art .disc { position: absolute; width: min(460px, 90%); aspect-ratio: 1 / 1; max-width: 100%; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #FFFFFF 0%, #F6E8E3 60%, #EAD5CD 100%); box-shadow: 0 40px 80px rgba(91,31,46,0.12); }
+.hero-art svg { position: relative; width: min(420px, 85%); height: auto; }
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .hero-art { order: -1; min-height: 260px; padding-top: 24px; }
+  .hero-copy { padding-block: 8px 40px; text-align: center; align-items: center; margin-inline: auto; }
+}
+
+/* sections */
+section.block { padding-block: 64px 0; }
+.sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 28px; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 40px); }
+.sec-head a, .link-more { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 3px; background: none; border-top: 0; border-left: 0; border-right: 0; cursor: pointer; font-family: var(--f-body); color: var(--ink); }
+
+/* category circles */
+.circles { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.circle { display: flex; flex-direction: column; align-items: center; gap: 12px; background: none; border: 0; cursor: pointer; color: var(--ink); font: 500 12px/1 var(--f-body); letter-spacing: 0.18em; text-transform: uppercase; }
+.circle .ring { width: 100%; max-width: 150px; aspect-ratio: 1 / 1; border-radius: 50%; background: var(--soft); display: flex; align-items: center; justify-content: center; overflow: hidden; transition: transform 300ms ease, box-shadow 300ms ease; border: 1px solid var(--line); }
+.circle .ring svg { width: 70%; height: auto; }
+.circle:hover .ring { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(91,31,46,0.12); }
+@media (max-width: 760px) { .circles { grid-template-columns: repeat(6, 104px); overflow-x: auto; margin-inline: -20px; padding: 4px 20px 8px; scrollbar-width: none; } .circles::-webkit-scrollbar { display: none; } }
+
+/* product grid */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 20px; }
+@media (max-width: 980px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 12px; } }
+.card { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.pic { position: relative; aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; background: var(--soft); border: 0; padding: 0; cursor: pointer; width: 100%; display: block; }
+.pic .face { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: opacity 400ms ease, transform 600ms ease; }
+.pic .face svg { width: 74%; height: auto; }
+.pic .face.b { opacity: 0; background: var(--blush); }
+.pic .face.b svg { width: 96%; transform: rotate(-8deg); }
+.card:hover .pic .face.a { opacity: 0; }
+.card:hover .pic .face.b { opacity: 1; }
+.tag { position: absolute; left: 10px; top: 10px; z-index: 1; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 9px; background: var(--wine); color: #FFFFFF; }
+.tag.new { background: #FFFFFF; color: var(--ink); }
+.fav { position: absolute; right: 8px; top: 8px; z-index: 1; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); }
+.fav[aria-pressed="true"] { color: var(--wine); }
+.fav[aria-pressed="true"] svg path { fill: currentColor; }
+.quick { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 1; transform: translateY(calc(100% + 12px)); transition: transform 300ms ease; }
+.card:hover .quick, .card:focus-within .quick { transform: translateY(0); }
+.quick .btn { width: 100%; min-height: 42px; font-size: 12px; }
+@media (hover: none) { .quick { display: none; } }
+.card .mat { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold-deep); }
+.card h3 { font: 400 16px/1.3 var(--f-body); }
+.prices { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.prices s { color: var(--muted); font-size: 13px; }
+.prices strong { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.inst { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pix { font-size: 13px; color: var(--wa); font-weight: 500; }
+.add-m { display: none; }
+@media (hover: none) { .add-m { display: inline-flex; min-height: 40px; font-size: 11px; padding: 10px 12px; } }
+
+/* editorial banners */
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.banner { position: relative; min-height: 340px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; color: #FFFFFF; text-decoration: none; cursor: pointer; border: 0; text-align: left; font: inherit; }
+.banner.gold { background: linear-gradient(140deg, #5B1F2E 0%, #3A1420 100%); }
+.banner.silver { background: linear-gradient(140deg, #3D4248 0%, #22262B 100%); }
+.banner .art { position: absolute; right: -40px; top: -20px; width: 70%; opacity: 0.95; transition: transform 700ms ease; }
+.banner:hover .art { transform: scale(1.05) rotate(-3deg); }
+.banner h3 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 400; position: relative; }
+.banner p { position: relative; margin: 8px 0 18px; color: rgba(255,255,255,0.8); }
+.banner .btn { position: relative; align-self: flex-start; background: #FFFFFF; color: var(--ink); }
+@media (max-width: 760px) { .duo { grid-template-columns: minmax(0, 1fr); } .banner { min-height: 280px; } }
+
+/* benefits */
+.benefits { background: var(--soft); margin-top: 72px; }
+.benefits .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; padding-block: 36px; }
+.benefit { display: flex; align-items: center; gap: 14px; }
+.benefit svg { color: var(--gold-deep); flex: none; }
+.benefit b { display: block; font-weight: 500; }
+.benefit span { font-size: 13px; color: var(--muted); }
+@media (max-width: 860px) { .benefits .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .benefits .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* instagram */
+.insta { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.insta div { aspect-ratio: 1 / 1; max-width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.insta svg { width: 70%; height: auto; }
+@media (max-width: 760px) { .insta { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* newsletter + footer */
+.news { margin-top: 72px; background: var(--ink); color: #F4ECE9; }
+.news .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding-block: 40px; }
+.news h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 400; }
+.news p { margin: 6px 0 0; color: #BFB3B0; }
+.news form { display: flex; gap: 0; flex: 1 1 280px; min-width: 0; max-width: 480px; }
+.news input { flex: 1; min-height: 48px; padding: 10px 14px; border: 1px solid #5A5052; background: transparent; color: #FFFFFF; font: inherit; min-width: 0; }
+.news input::placeholder { color: #9C908D; }
+.news .btn { background: var(--gold); color: #FFFFFF; }
+footer { background: #FBF7F5; border-top: 1px solid var(--line); font-size: 14px; }
+footer .cols { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)); gap: 32px; padding-block: 48px 32px; }
+footer h4 { margin: 0 0 12px; font: 600 12px/1 var(--f-body); letter-spacing: 0.2em; text-transform: uppercase; }
+footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--muted); }
+footer .bottom { border-top: 1px solid var(--line); padding-block: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: var(--muted); font-size: 12px; }
+.pay { display: flex; gap: 6px; flex-wrap: wrap; }
+.pay span { border: 1px solid var(--line); background: #FFFFFF; padding: 3px 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink); }
+@media (max-width: 860px) { footer .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { footer .cols { grid-template-columns: minmax(0, 1fr); } }
+
+/* floating whatsapp */
+.wa-float { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 40; width: 56px; height: 56px; border-radius: 50%; background: var(--wa); color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,0.2); text-decoration: none; }
+
+/* overlays */
+.scrim { position: fixed; inset: 0; background: rgba(34,28,29,0.45); z-index: 50; opacity: 0; pointer-events: none; transition: opacity 250ms ease; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: #FFFFFF; z-index: 60; transform: translateX(100%); transition: transform 300ms ease; display: flex; flex-direction: column; padding-top: env(safe-area-inset-top, 0px); }
+.drawer.on { transform: translateX(0); }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--line); }
+.drawer-head h2 { font-size: 24px; }
+.bag-list { flex: 1; overflow-y: auto; padding: 8px 20px; }
+.bag-item { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 14px; padding-block: 14px; border-bottom: 1px solid var(--line); align-items: center; }
+.bag-item .th { aspect-ratio: 4 / 5; background: var(--soft); display: flex; align-items: center; justify-content: center; }
+.bag-item .th svg { width: 80%; height: auto; }
+.bag-item h4 { margin: 0; font-weight: 400; font-size: 14px; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); margin-top: 8px; }
+.qty button { width: 32px; height: 32px; border: 0; background: none; cursor: pointer; font-size: 16px; color: var(--ink); }
+.qty span { min-width: 26px; text-align: center; font-variant-numeric: tabular-nums; }
+.bag-item .rm { background: none; border: 0; color: var(--muted); font-size: 12px; text-decoration: underline; cursor: pointer; margin-top: 6px; padding: 0; }
+.bag-foot { border-top: 1px solid var(--line); padding: 18px 20px calc(18px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 10px; }
+.bag-foot .row { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+.bag-foot .row.total { font-size: 18px; font-weight: 600; }
+.bag-foot small { color: var(--muted); font-size: 12px; }
+.bag-empty { padding: 48px 8px; text-align: center; color: var(--muted); display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+.modal { position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center; padding: 16px; pointer-events: none; }
+.modal-card { background: #FFFFFF; width: min(940px, 100%); max-height: calc(100% - 16px); overflow-y: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); opacity: 0; transform: translateY(16px); transition: opacity 250ms ease, transform 250ms ease; pointer-events: none; position: relative; }
+.modal.on .modal-card { opacity: 1; transform: none; pointer-events: auto; }
+.m-gallery { background: var(--soft); display: flex; flex-direction: column; }
+.m-main { aspect-ratio: 4 / 5; max-width: 100%; display: flex; align-items: center; justify-content: center; }
+.m-main svg { width: 72%; height: auto; }
+.m-thumbs { display: flex; gap: 8px; padding: 0 16px 16px; }
+.m-thumbs button { width: 64px; aspect-ratio: 1 / 1; border: 1px solid var(--line); background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 6px; }
+.m-thumbs button[aria-pressed="true"] { border-color: var(--ink); }
+.m-thumbs svg { width: 100%; height: auto; }
+.m-info { padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+.m-info h2 { font-size: 30px; }
+.m-info .prices strong { font-size: 24px; }
+.m-info ul { margin: 0; padding-left: 18px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+.m-close { position: absolute; top: 10px; right: 10px; z-index: 2; }
+@media (max-width: 720px) { .modal { padding: 0; align-items: flex-end; } .modal-card { grid-template-columns: minmax(0, 1fr); max-height: 92vh; } .m-main { aspect-ratio: 1 / 1; } .m-info { padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); } }
+
+.toast { position: fixed; left: 50%; bottom: calc(90px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 16px); background: var(--ink); color: #FFFFFF; padding: 12px 18px; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity 200ms ease, transform 200ms ease; z-index: 80; white-space: nowrap; max-width: calc(100% - 32px); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.empty-grid { grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--line); }
+/* ---------- atendimento ---------- */
+.hero-help { font-size: 14px; color: var(--muted); margin: 0; }
+.hero-help .dot { vertical-align: middle; margin-right: 8px; position: relative; top: -1px; }
+.hero-help button { background: none; border: 0; padding: 0; font: inherit; color: var(--wine); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #9C908D; display: inline-block; flex: none; }
+.dot.on { background: #2DB36A; box-shadow: 0 0 0 3px rgba(45,179,106,0.2); }
+
+.care-fab { position: fixed; right: 18px; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 45; width: 62px; height: 62px; border-radius: 50%; border: 0; background: var(--wine); color: #E9CB80; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 12px 28px rgba(91,31,46,0.35); font: 500 30px/1 var(--f-display); transition: transform 250ms ease; animation: pop 600ms 1200ms both; }
+.care-fab:hover { transform: scale(1.06); }
+.care-fab .wa-mini { position: absolute; right: -2px; bottom: -2px; width: 24px; height: 24px; border-radius: 50%; background: var(--wa); color: #FFFFFF; display: flex; align-items: center; justify-content: center; border: 2px solid #FFFFFF; }
+.care-fab .wa-mini svg { width: 13px; height: 13px; }
+.care-fab .dot { position: absolute; left: 4px; top: 4px; border: 2px solid #FFFFFF; width: 12px; height: 12px; box-shadow: none; }
+.care-bubble { position: fixed; right: 18px; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); z-index: 45; width: min(300px, calc(100% - 36px)); background: #FFFFFF; border: 1px solid var(--line); box-shadow: 0 14px 34px rgba(34,28,29,0.16); padding: 14px 40px 14px 16px; font-size: 14px; cursor: pointer; animation: pop 450ms cubic-bezier(.2,.7,.2,1) both; }
+.care-bubble::after { content: ""; position: absolute; right: 26px; bottom: -7px; width: 12px; height: 12px; background: #FFFFFF; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+.care-bubble b { display: block; font-weight: 500; margin-bottom: 2px; }
+.care-bubble small { color: var(--muted); display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; }
+.care-bubble .x { position: absolute; top: 6px; right: 6px; width: 30px; height: 30px; border: 0; background: none; cursor: pointer; color: var(--muted); font-size: 18px; }
+.care-panel { position: fixed; right: 18px; bottom: calc(92px + env(safe-area-inset-bottom, 0px)); z-index: 55; width: min(360px, calc(100% - 36px)); max-height: calc(100vh - 120px); overflow-y: auto; background: #FFFFFF; box-shadow: 0 20px 50px rgba(34,28,29,0.25); opacity: 0; transform: translateY(16px) scale(0.98); transform-origin: bottom right; pointer-events: none; transition: opacity 220ms ease, transform 220ms ease; }
+.care-panel.on { opacity: 1; transform: none; pointer-events: auto; }
+.care-head { background: var(--wine); color: #F6E7E2; padding: 18px 18px 16px; display: flex; gap: 12px; align-items: center; position: relative; }
+.care-head .mono { width: 46px; height: 46px; border-radius: 50%; background: #FFFFFF; color: var(--wine); display: flex; align-items: center; justify-content: center; font: 500 22px/1 var(--f-display); flex: none; }
+.care-head b { display: block; font: 500 19px/1.2 var(--f-display); color: #FFFFFF; }
+.care-head small { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #E8D3D8; margin-top: 4px; }
+.care-head .icon-btn { position: absolute; top: 8px; right: 8px; color: #FFFFFF; width: 36px; height: 36px; }
+.care-head .icon-btn:hover { background: rgba(255,255,255,0.12); }
+.care-body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+.care-msg { background: var(--soft); padding: 12px 14px; font-size: 14px; margin-bottom: 6px; position: relative; }
+.care-opt { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); background: #FFFFFF; text-decoration: none; color: var(--ink); font-size: 14px; cursor: pointer; text-align: left; font-family: inherit; width: 100%; transition: border-color 160ms ease, background 160ms ease, transform 160ms ease; }
+.care-opt:hover { border-color: var(--wine); background: #FCF7F6; transform: translateX(3px); }
+.care-opt svg:first-child { color: var(--gold-deep); flex: none; }
+.care-opt span { flex: 1; }
+.care-opt .go { color: var(--muted); }
+.care-foot { font-size: 12px; color: var(--muted); text-align: center; margin-top: 6px; }
+@media (max-width: 520px) {
+  .care-panel { right: 0; left: 0; bottom: 0; width: 100%; max-height: 88vh; transform: translateY(100%); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .care-panel.on { transform: none; }
+  .care-fab { width: 56px; height: 56px; font-size: 26px; }
+  .care-bubble { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* como funciona */
+.how { text-align: center; }
+.how .sec-head { justify-content: center; text-align: center; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; counter-reset: st; margin-top: 8px; }
+.step { position: relative; padding: 30px 24px 26px; background: var(--soft); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.step .n { width: 46px; height: 46px; border-radius: 50%; background: #FFFFFF; color: var(--wine); display: flex; align-items: center; justify-content: center; font: 500 22px/1 var(--f-display); box-shadow: 0 0 0 1px var(--line); }
+.step h3 { font-size: 22px; }
+.step p { margin: 0; color: var(--muted); max-width: 30ch; }
+.step:not(:last-child)::after { content: ""; position: absolute; right: -18px; top: 52px; width: 12px; height: 12px; border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); transform: rotate(45deg); }
+.how-note { margin: 18px auto 0; color: var(--muted); font-size: 14px; }
+.how-note b { color: var(--ink); font-weight: 500; }
+@media (max-width: 760px) { .steps { grid-template-columns: minmax(0, 1fr); gap: 12px; } .step { flex-direction: row; text-align: left; align-items: flex-start; padding: 18px; } .step > div { display: flex; flex-direction: column; gap: 4px; } .step h3 { font-size: 20px; } .step:not(:last-child)::after { display: none; } .n { flex: none; } }
+
+/* presente */
+.gift { margin-top: 72px; background: linear-gradient(115deg, #F7EFEC 0%, #EFDDD7 100%); }
+.gift .wrap { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 40px; align-items: center; padding-block: 56px; }
+.gift h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 8px; }
+.gift h2 i { color: var(--wine); }
+.gift .lead { color: var(--muted); margin: 12px 0 0; max-width: 40ch; }
+.gift-form { background: #FFFFFF; padding: 24px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0 18px 40px rgba(91,31,46,0.08); }
+.gq { display: flex; flex-direction: column; gap: 8px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.gq legend, .gq > span { font-weight: 500; font-size: 14px; padding: 0; margin-bottom: 8px; }
+.gq legend small, .gq > span small { color: var(--muted); font-weight: 400; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chip span { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); font-size: 14px; cursor: pointer; transition: border-color 160ms ease, background 160ms ease, color 160ms ease; }
+.chip input:checked + span { border-color: var(--wine); background: #F4E6E9; color: var(--wine); font-weight: 500; }
+.chip input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+.gift-form select, .gift-form .txt { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid var(--line); background: #FFFFFF; font: inherit; color: var(--ink); }
+.gift-form .btn { align-self: stretch; }
+@media (max-width: 860px) { .gift .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 44px; } .gift-form { padding: 18px; } }
+
+/* atendimento de verdade */
+.real { margin-top: 72px; background: var(--wine); color: #F4E7E3; overflow: hidden; }
+.real .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; padding-block: 64px; }
+.real .eyebrow { color: #E9CB80; }
+.real h2 { font-size: clamp(30px, 4vw, 46px); color: #FFFFFF; margin-top: 10px; }
+.real h2 i { color: #E9CB80; }
+.real p { color: #E1CCD1; max-width: 46ch; margin: 14px 0 0; }
+.real ul { list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.real li { display: flex; gap: 10px; align-items: flex-start; }
+.real li svg { color: #E9CB80; flex: none; margin-top: 2px; }
+.real .acts { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 26px; }
+.real .addr { font-size: 13px; color: #D9BDC3; }
+.chat { background: #FFFFFF; color: var(--ink); padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.25); transform: rotate(1.5deg); }
+.chat-top { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.chat-top .mono { width: 36px; height: 36px; border-radius: 50%; background: var(--wine); color: #E9CB80; display: flex; align-items: center; justify-content: center; font: 500 18px/1 var(--f-display); }
+.chat-top b { font-weight: 500; display: block; font-size: 14px; } .chat-top small { font-size: 12px; color: var(--wa); }
+.msg { max-width: 82%; padding: 9px 12px; font-size: 14px; line-height: 1.4; }
+.msg.me { align-self: flex-end; background: #DCF3E4; }
+.msg.us { align-self: flex-start; background: var(--soft); }
+.chat-cap { font-size: 11px; color: var(--muted); text-align: center; margin-top: 2px; }
+@media (max-width: 860px) { .real .wrap { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 48px; } .chat { transform: none; } }
+
+/* dica + ações na peça */
+.m-links { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14px; }
+.m-links a, .m-links button { background: none; border: 0; padding: 0; font: inherit; color: var(--wine); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.sizes { border: 1px solid var(--line); padding: 12px 14px; font-size: 13px; }
+.sizes table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 8px; }
+.sizes th, .sizes td { text-align: left; padding: 5px 4px; border-top: 1px solid var(--line); }
+.sizes p { margin: 8px 0 0; color: var(--muted); }
+.bag-note { background: var(--soft); padding: 10px 12px; font-size: 13px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start; }
+.bag-note svg { flex: none; color: var(--gold-deep); margin-top: 1px; }
+footer .human { color: var(--ink); font-weight: 500; }
+
+/* convite de ajuda (2 min sem escolher) */
+.help-bg { position: fixed; inset: 0; z-index: 75; background: rgba(34,28,29,0.45); display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; pointer-events: none; transition: opacity 300ms ease; }
+.help-bg.on { opacity: 1; pointer-events: auto; }
+.help { position: relative; width: min(760px, 100%); background: #FFFFFF; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); overflow: hidden; box-shadow: 0 30px 80px rgba(34,28,29,0.3); transform: translateY(24px) scale(0.97); transition: transform 400ms cubic-bezier(.2,.7,.2,1); }
+.help-bg.on .help { transform: none; }
+.help-art { background: linear-gradient(150deg, #F7EFEC 0%, #EFDDD7 60%, #E6CFC7 100%); display: flex; align-items: center; justify-content: center; position: relative; min-height: 320px; }
+.help-art .disc { position: absolute; width: 78%; aspect-ratio: 1 / 1; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #FFFFFF 0%, #F6E8E3 60%, #EAD5CD 100%); box-shadow: 0 24px 50px rgba(91,31,46,0.12); }
+.help-art svg.main { position: relative; width: 82%; height: auto; overflow: visible; }
+.help-art .talk { position: absolute; right: 12%; top: 14%; background: var(--wine); color: #FFFFFF; padding: 10px 14px; font: italic 500 16px/1 var(--f-display); box-shadow: 0 10px 24px rgba(91,31,46,0.3); animation: pop 600ms 500ms cubic-bezier(.2,.7,.2,1) both; }
+.help-art .talk::after { content: ""; position: absolute; left: 14px; bottom: -7px; width: 14px; height: 14px; background: var(--wine); transform: rotate(45deg); }
+.help-copy { padding: 40px 36px 32px; display: flex; flex-direction: column; gap: 14px; }
+.help-copy h2 { font-size: clamp(28px, 3.4vw, 36px); }
+.help-copy h2 i { color: var(--wine); }
+.help-copy p { margin: 0; color: var(--muted); }
+.help-copy .acts { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.help-copy .later { background: none; border: 0; padding: 6px; font: inherit; font-size: 14px; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; align-self: center; }
+.help-copy small { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.help:focus { outline: none; }
+.help .x { position: absolute; top: 10px; right: 10px; z-index: 2; }
+@media (max-width: 680px) {
+  .help-bg { padding: 0; align-items: flex-end; }
+  .help { grid-template-columns: minmax(0, 1fr); max-height: 94vh; overflow-y: auto; transform: translateY(100%); }
+  .help-art { min-height: 200px; }
+  .help-art .disc { width: 52%; } .help-art svg.main { width: 56%; }
+  .help-art .talk { right: auto; left: 12%; top: 12%; }
+  .help-copy { padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); gap: 10px; }
+}
+
+/* cuidados */
+.care-tips { margin-top: 72px; }
+.ct-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 24px; }
+.ct-head h2 { font-size: clamp(28px, 4vw, 40px); }
+.ct-head p { margin: 8px 0 0; color: var(--muted); max-width: 52ch; }
+.ct-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ct { background: var(--soft); padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; border: 0; text-align: left; font: inherit; color: inherit; cursor: pointer; transition: transform 250ms ease, box-shadow 250ms ease, background 250ms ease; }
+.ct:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(91,31,46,0.1); background: #F4E8E4; }
+.ct svg { color: var(--gold-deep); }
+.ct b { font: 500 19px/1.2 var(--f-display); }
+.ct span { color: var(--muted); font-size: 14px; }
+@media (max-width: 860px) { .ct-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .ct { padding: 18px 16px; } }
+.guide-bg { position: fixed; inset: 0; z-index: 76; background: rgba(34,28,29,0.45); display: flex; justify-content: flex-end; opacity: 0; pointer-events: none; transition: opacity 250ms ease; }
+.guide-bg.on { opacity: 1; pointer-events: auto; }
+.guide { width: min(720px, 100%); height: 100%; background: #FFFFFF; overflow-y: auto; transform: translateX(40px); transition: transform 350ms cubic-bezier(.2,.7,.2,1); position: relative; outline: none; }
+.guide-bg.on .guide { transform: none; }
+.guide-hero { background: linear-gradient(140deg, #F7EFEC 0%, #EFDDD7 70%); padding: 48px 40px 36px; position: relative; overflow: hidden; }
+.guide-hero h2 { font-size: clamp(32px, 5vw, 46px); max-width: 14ch; }
+.guide-hero h2 i { color: var(--wine); }
+.guide-hero p { color: var(--muted); max-width: 46ch; margin: 12px 0 0; }
+.guide-hero svg.deco { position: absolute; right: -20px; bottom: -30px; width: 220px; opacity: 0.9; }
+.guide .x { position: sticky; top: 12px; float: right; margin: 12px 12px 0 0; z-index: 3; background: #FFFFFF; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.guide-body { padding: 8px 40px 48px; }
+.gsec { padding: 28px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 16px; }
+.gsec:first-child { border-top: 0; }
+.gsec > svg { color: var(--gold-deep); margin-top: 2px; }
+.gsec h3 { font-size: 24px; margin-bottom: 10px; }
+.gsec p { margin: 0 0 10px; color: var(--ink); }
+.gsec ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: var(--ink); }
+.gsec li::marker { color: var(--gold); }
+.gsec .note { background: var(--soft); padding: 12px 14px; font-size: 14px; color: var(--muted); margin-top: 12px; }
+.gsec .note b { color: var(--ink); font-weight: 500; }
+.dodont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+.dodont > div { padding: 14px 16px; }
+.dodont .do { background: #EAF5EE; } .dodont .dont { background: #F7E9EC; }
+.dodont h4 { margin: 0 0 8px; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
+.dodont .do h4 { color: var(--wa); } .dodont .dont h4 { color: var(--wine); }
+.dodont ul { padding-left: 16px; font-size: 14px; }
+.guide-cta { background: var(--wine); color: #F4E7E3; padding: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-top: 12px; }
+.guide-cta b { font: 500 22px/1.2 var(--f-display); color: #FFFFFF; display: block; }
+.guide-cta span { font-size: 14px; color: #E1CCD1; }
+@media (max-width: 640px) { .guide-hero { padding: 40px 20px 28px; } .guide-body { padding: 4px 20px 40px; } .gsec { grid-template-columns: minmax(0, 1fr); gap: 8px; } .dodont { grid-template-columns: minmax(0, 1fr); } .guide-hero svg.deco { width: 150px; opacity: 0.5; } }
+
+/* ---------- motion ---------- */
+@keyframes up { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
+@keyframes down { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+@keyframes pop { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: none; } }
+@keyframes swing { 0%, 100% { transform: rotate(-3.5deg); } 50% { transform: rotate(3.5deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(0.3); } 45%, 55% { opacity: 1; transform: scale(1); } }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: none; } }
+@keyframes bump { 0% { transform: scale(1); } 40% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+header.site { animation: down 700ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > * { animation: up 900ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-copy > *:nth-child(1) { animation-delay: 150ms; }
+.hero-copy > *:nth-child(2) { animation-delay: 260ms; }
+.hero-copy > *:nth-child(3) { animation-delay: 380ms; }
+.hero-copy > *:nth-child(4) { animation-delay: 500ms; }
+.hero h1 i { display: inline-block; animation: wipe 1100ms 650ms cubic-bezier(.6,0,.2,1) both; }
+.hero-art .disc { animation: pop 1200ms 200ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-art svg { overflow: visible; }
+.swing { transform-origin: 100px 20px; transform-box: view-box; animation: swing 6s ease-in-out infinite; }
+.spark { transform-box: fill-box; transform-origin: center; animation: twinkle 3.2s ease-in-out infinite; }
+
+.marquee { background: var(--ink); color: #F1E4DF; overflow: hidden; white-space: nowrap; border-block: 1px solid #3A3133; }
+.marquee .track { display: inline-flex; gap: 48px; padding-block: 14px; animation: marquee 32s linear infinite; }
+.marquee span { font: italic 400 20px/1 var(--f-display); display: inline-flex; align-items: center; gap: 48px; }
+.marquee span::after { content: "✦"; font-style: normal; font-size: 12px; color: var(--gold); }
+.marquee:hover .track { animation-play-state: paused; }
+
+.pre { opacity: 0; transform: translateY(28px); }
+.in { animation: up 850ms cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 80ms); }
+.card.anim { animation: pop 600ms cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 60ms); }
+
+.pic::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.6) 50%, transparent 65%); transform: translateX(-130%); pointer-events: none; }
+.card:hover .pic::after { transform: translateX(130%); transition: transform 900ms ease; }
+.pic .face svg { transition: transform 700ms cubic-bezier(.2,.7,.2,1); }
+.card:hover .pic .face.b svg { transform: rotate(-8deg) scale(1.08); }
+.card h3 { transition: color 200ms ease; }
+.card:hover h3 { color: var(--wine); }
+.fav { transition: transform 200ms ease; }
+.fav:active { transform: scale(0.85); }
+.fav[aria-pressed="true"] svg { animation: bump 400ms ease; }
+
+.circle .ring { transition: transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms ease; }
+.circle .ring svg { transition: transform 600ms cubic-bezier(.2,.7,.2,1); }
+.circle:hover .ring { box-shadow: 0 0 0 5px #FFFFFF, 0 0 0 6px var(--gold), 0 16px 30px rgba(91,31,46,0.14); }
+.circle:hover .ring svg { transform: scale(1.12) rotate(-8deg); }
+
+.banner .art { animation: floaty 7s ease-in-out infinite; }
+.banner .btn { transition: background 200ms ease, color 200ms ease, transform 200ms ease; }
+.banner:hover .btn { background: var(--gold); color: #FFFFFF; transform: translateX(6px); }
+
+.bag-item { animation: slideIn 450ms cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 60ms); }
+.bump { animation: bump 450ms ease; }
+.fly { position: fixed; z-index: 90; width: 46px; height: 46px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 20px rgba(0,0,0,0.18); display: flex; align-items: center; justify-content: center; pointer-events: none; }
+.fly svg { width: 80%; height: auto; }
+.modal-card { transform: translateY(24px) scale(0.97); }
+.modal.on .modal-card { transform: none; }
+.m-main svg { animation: pop 500ms cubic-bezier(.2,.7,.2,1) both; }
+
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .pre { opacity: 1; transform: none; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3DFA2"/><stop offset="0.35" stop-color="#D4A955"/><stop offset="0.6" stop-color="#B8893A"/><stop offset="1" stop-color="#E9CB80"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.4" stop-color="#C9CDD2"/><stop offset="0.7" stop-color="#9AA1A8"/><stop offset="1" stop-color="#E3E6E9"/>
+    </linearGradient>
+    <radialGradient id="gem" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.45" stop-color="#EEF2F6"/><stop offset="1" stop-color="#B9C3CE"/>
+    </radialGradient>
+    <radialGradient id="pearl" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.6" stop-color="#F4ECE6"/><stop offset="1" stop-color="#D9CBC1"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<div class="promo" id="promo">Atendimento de verdade pelo WhatsApp</div>
+
+<header class="site">
+  <div class="wrap head-row">
+    <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="sr" for="q">Buscar peças</label><input id="q" type="search" placeholder="Buscar peças"></div>
+    <a class="logo" href="#top" aria-label="Orvalha Semijoias, página inicial"><b>ORVALHA</b><span>Semijoias</span></a>
+    <div class="head-icons">
+      <button class="icon-btn m-search" type="button" id="mSearchBtn" aria-label="Buscar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+      <button class="icon-btn" type="button" id="favBtn" aria-label="Favoritos"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="badge-count" id="favCount" hidden>0</span></button>
+      <button class="icon-btn" type="button" id="bagBtn" aria-label="Abrir sacola"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge-count" id="bagCount" hidden>0</span></button>
+    </div>
+  </div>
+  <div class="wrap m-search-row" id="mSearchRow" hidden><div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><label class="sr" for="q2">Buscar peças</label><input id="q2" type="search" placeholder="Buscar peças"></div></div>
+  <nav class="cats" aria-label="Categorias"><div class="wrap"><ul id="catNav"></ul></div></nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Nova coleção">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">Nova coleção · Brilho do Norte</span>
+        <h1>Peças para <i>brilhar</i> todos os dias</h1>
+        <p>Semijoias delicadas para usar todo dia e para presentear quem você ama.</p>
+        <div class="acts"><button class="btn btn-dark" type="button" data-cat="all" data-scroll="1">Ver coleção</button><button class="btn btn-line" type="button" data-cat="Conjuntos" data-scroll="1">Conjuntos</button></div>
+        <p class="hero-help">Ficou em dúvida? <button type="button" data-care="1">Fale com a gente</button>, quem responde é gente de verdade.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="disc"></div><svg viewBox="0 0 200 200" id="heroArt"></svg></div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="track">
+    <span>Atendimento de verdade</span><span>Ajuda para presentear</span><span>Troca fácil</span><span>Feito para presentear</span><span>Entrega rápida</span><span>5% off no Pix</span>
+    <span>Atendimento de verdade</span><span>Ajuda para presentear</span><span>Troca fácil</span><span>Feito para presentear</span><span>Entrega rápida</span><span>5% off no Pix</span>
+  </div></div>
+
+  <section class="block wrap" aria-labelledby="catH">
+    <div class="sec-head" data-reveal><h2 id="catH">Compre por <i>categoria</i></h2></div>
+    <div class="circles" id="circles" data-reveal></div>
+  </section>
+
+  <section class="block wrap" id="shop" aria-labelledby="shopH">
+    <div class="sec-head" data-reveal><div><span class="eyebrow" id="shopEyebrow">Mais amadas</span><h2 id="shopH">Mais vendidos</h2></div><button class="link-more" type="button" id="showAll" hidden>Ver todas as peças</button></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="block wrap" aria-label="Coleções por material">
+    <div class="duo">
+      <button class="banner gold" data-reveal type="button" data-mat="Ouro 18k"><svg class="art" viewBox="0 0 200 200" aria-hidden="true" id="bGold"></svg><span class="eyebrow" style="color:#E9CB80;position:relative">Coleção dourada</span><h3>Clássicos dourados</h3><p>Argolas, correntes e pontos de luz que vão com tudo.</p><span class="btn">Ver peças</span></button>
+      <button class="banner silver" data-reveal style="--i:1" type="button" data-mat="Prata 925"><svg class="art" viewBox="0 0 200 200" aria-hidden="true" id="bSilver"></svg><span class="eyebrow" style="color:#DDE1E5;position:relative">Coleção prata</span><h3>Prata delicada</h3><p>Brilho frio, peças leves para o dia a dia.</p><span class="btn">Ver peças</span></button>
+    </div>
+  </section>
+
+  <section class="block wrap" aria-labelledby="newH">
+    <div class="sec-head" data-reveal><div><span class="eyebrow">Acabaram de chegar</span><h2 id="newH"><i>Lançamentos</i></h2></div></div>
+    <div class="grid" id="gridNew"></div>
+  </section>
+
+  <section class="block wrap how" id="how" aria-labelledby="howH">
+    <div class="sec-head" data-reveal><div><span class="eyebrow">Simples e sem pressa</span><h2 id="howH">Como funciona comprar <i>com a gente</i></h2></div></div>
+    <div class="steps">
+      <div class="step" data-reveal><span class="n">1</span><div><h3>Escolha com calma</h3><p>Monte sua sacola aqui no site. Nada é cobrado agora.</p></div></div>
+      <div class="step" data-reveal style="--i:1"><span class="n">2</span><div><h3>Converse com a gente</h3><p>Sua sacola chega no nosso WhatsApp. A gente confirma as peças e tira todas as suas dúvidas.</p></div></div>
+      <div class="step" data-reveal style="--i:2"><span class="n">3</span><div><h3>Receba ou retire</h3><p>Entregamos em Ji-Paraná ou você retira na loja. Para outras cidades, a gente combina o envio e o frete com você. Pague no Pix, cartão ou dinheiro.</p></div></div>
+    </div>
+    <p class="how-note" data-reveal>Prefere ir direto? <b>Fale com a gente</b> e a gente separa para você.</p>
+  </section>
+
+  <section class="gift" id="gift" aria-labelledby="giftH">
+    <div class="wrap">
+      <div data-reveal><span class="eyebrow">Ajuda para presente</span><h2 id="giftH">Não sabe o que dar? <i>A gente ajuda.</i></h2><p class="lead">Conte para quem é e quanto quer gastar. A gente responde no WhatsApp com sugestões e fotos das peças.</p></div>
+      <form class="gift-form" id="giftForm" data-reveal style="--i:1">
+        <fieldset class="gq"><legend>Para quem é?</legend><div class="chips"><label class="chip"><input type="radio" name="gWho" value="Mãe" checked><span>Mãe</span></label><label class="chip"><input type="radio" name="gWho" value="Namorada"><span>Namorada</span></label><label class="chip"><input type="radio" name="gWho" value="Amiga"><span>Amiga</span></label><label class="chip"><input type="radio" name="gWho" value="Filha"><span>Filha</span></label><label class="chip"><input type="radio" name="gWho" value="Para mim"><span>Para mim</span></label></div></fieldset>
+        <label class="gq" for="gOcc"><span>Qual a ocasião?</span><select id="gOcc"><option>Aniversário</option><option>Dia das Mães</option><option>Natal</option><option>Namoro</option><option>Formatura</option><option>Só porque sim</option></select></label>
+        <fieldset class="gq"><legend>Quanto quer gastar?</legend><div class="chips"><label class="chip"><input type="radio" name="gBud" value="Até R$ 100"><span>Até R$ 100</span></label><label class="chip"><input type="radio" name="gBud" value="R$ 100 a R$ 200" checked><span>R$ 100 a R$ 200</span></label><label class="chip"><input type="radio" name="gBud" value="Acima de R$ 200"><span>Acima de R$ 200</span></label></div></fieldset>
+        <label class="gq" for="gNote"><span>Algum detalhe? <small>(opcional)</small></span><input class="txt" id="gNote" placeholder="Ex.: ela prefere prata, usa brinco pequeno"></label>
+        <button class="btn btn-wa" type="submit"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Pedir sugestões no WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="benefits" aria-label="Vantagens">
+    <div class="wrap">
+      <div class="benefit" data-reveal><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3l3 18 3-18"/></svg><div><b>Antialérgicas</b><span>Livres de níquel, para usar todo dia</span></div></div>
+      <div class="benefit" data-reveal><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><b>Garantia de [X] meses</b><span>No banho das peças</span></div></div>
+      <div class="benefit" data-reveal><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>Entrega em Ji-Paraná</b><span>Outras cidades: frete a combinar</span></div></div>
+      <div class="benefit" data-reveal><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>5% off no Pix</b><span>Ou em até 3x sem juros</span></div></div>
+    </div>
+  </section>
+
+  <section class="real" aria-labelledby="realH">
+    <div class="wrap">
+      <div data-reveal>
+        <span class="eyebrow">Atendimento de verdade</span>
+        <h2 id="realH">Aqui quem te responde é <i>gente</i>, não robô.</h2>
+        <p>Somos uma loja pequena e cada peça é conferida, embalada e entregue pela gente. Ficou em dúvida sobre tamanho, cor ou se combina? É só chamar.</p>
+        <ul>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Ajuda para escolher presente, sem compromisso</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Não serviu? A gente troca</li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>Retire na loja, receba em casa ou combine o envio para sua cidade</li>
+        </ul>
+        <div class="acts"><button class="btn btn-wa" type="button" data-care="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Falar com a gente</button><span class="addr">Av. Marechal Rondon, [nº] · Centro · Ji-Paraná</span></div>
+      </div>
+      <div data-reveal style="--i:1">
+        <div class="chat" aria-hidden="true">
+          <div class="chat-top"><span class="mono">O</span><div><b>Orvalha Semijoias</b><small>online</small></div></div>
+          <div class="msg me">Oi! Esse colar ponto de luz fica muito curto?</div>
+          <div class="msg us">Oi! Ele fica na altura da clavícula, bem delicado. Quer que eu separe um pra você? 😊</div>
+          <div class="msg me">Quero sim! Dá pra entregar hoje?</div>
+          <div class="msg us">Dá sim, a gente entrega ainda hoje 💛</div>
+        </div>
+        <p class="chat-cap">Exemplo de como é o atendimento</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block wrap" aria-labelledby="igH">
+    <div class="sec-head" data-reveal><div><span class="eyebrow">Siga a gente</span><h2 id="igH">@orvalha.semijoias</h2></div><a href="https://instagram.com" target="_blank" rel="noopener">Ver Instagram</a></div>
+    <div class="insta" id="insta"></div>
+  </section>
+
+  <section class="block wrap care-tips" aria-labelledby="ctH">
+    <div class="ct-head" data-reveal><div><span class="eyebrow">Para durar muito</span><h2 id="ctH">Cuidados com <i>suas peças</i></h2><p>Com alguns cuidados simples, sua semijoia mantém o brilho por muito mais tempo.</p></div><button class="link-more" type="button" data-guide="1">Ver o guia completo</button></div>
+    <div class="ct-grid">
+      <button class="ct" type="button" data-guide="use" data-reveal><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="3"/></svg><b>Última a colocar</b><span>Coloque depois do perfume e do creme, e tire antes de dormir.</span></button>
+      <button class="ct" type="button" data-guide="avoid" data-reveal style="--i:1"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M4 4l16 16"/></svg><b>Longe da água</b><span>Tire para tomar banho, ir à piscina, ao mar ou à academia.</span></button>
+      <button class="ct" type="button" data-guide="clean" data-reveal style="--i:2"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5 3 7 9"/><path d="M8 7c1-2 2.5-3 4-3s3 1 4 3"/></svg><b>Limpe com flanela</b><span>Depois de usar, passe uma flanela macia e seca.</span></button>
+      <button class="ct" type="button" data-guide="keep" data-reveal style="--i:3"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 12h16M9 8V5h6v3"/></svg><b>Guarde separada</b><span>Cada peça no seu saquinho, em lugar seco.</span></button>
+    </div>
+  </section>
+
+  <section class="news" aria-labelledby="newsH">
+    <div class="wrap" data-reveal>
+      <div><h2 id="newsH">Receba os lançamentos primeiro</h2><p>Novidades e promoções direto no seu e-mail.</p></div>
+      <form id="newsForm"><label class="sr" for="newsEmail">Seu e-mail</label><input id="newsEmail" type="email" placeholder="Seu e-mail" required><button class="btn" type="submit">Assinar</button></form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div><a class="logo" href="#top" style="align-items:flex-start"><b style="font-size:26px">ORVALHA</b><span>Semijoias</span></a><p style="color:var(--muted);margin:14px 0 0;max-width:34ch">Semijoias para o dia a dia e ocasiões especiais, em Ji-Paraná, Rondônia.</p></div>
+    <div><h4>Categorias</h4><ul id="footCats"></ul></div>
+    <div><h4>Ajuda</h4><ul><li><a href="#how">Como comprar</a></li><li><a href="#gift">Ajuda para presente</a></li><li><a href="#" data-guide="g-warranty">Trocas e garantia</a></li><li><a href="#" data-guide="1">Cuidados com as peças</a></li><li>Política de privacidade</li></ul></div>
+    <div><h4>Atendimento</h4><ul><li class="human">Por gente de verdade, não robô</li><li>WhatsApp (69) 99999-0000</li><li>Seg a sex · 9h às 18h</li><li>Sábado · 9h às 13h</li><li>Av. Marechal Rondon, [nº] · Centro · Ji-Paraná/RO</li></ul></div>
+  </div>
+  <div class="wrap bottom"><span>© 2026 Orvalha Semijoias · CNPJ [00.000.000/0001-00] · Mockup com marca e imagens provisórias</span><span class="pay"><span>PIX</span><span>VISA</span><span>MASTER</span><span>ELO</span></span></div>
+</footer>
+
+<button class="care-fab" type="button" id="careFab" aria-label="Falar com o atendimento" aria-expanded="false" aria-controls="carePanel">O<span class="wa-mini"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></span></button>
+<div class="care-bubble" id="careBubble" hidden><button class="x" type="button" id="bubbleX" aria-label="Fechar">×</button><b id="bubbleText">Oi! Quer ajuda pra escolher?</b>Fala com a gente, quem responde é gente de verdade 😊</div>
+<div class="care-panel" id="carePanel" role="dialog" aria-modal="false" aria-labelledby="careH">
+  <div class="care-head"><span class="mono">O</span><div><b id="careH">Atendimento Orvalha</b><small>A gente responde rapidinho pelo WhatsApp</small></div><button class="icon-btn" type="button" id="careClose" aria-label="Fechar atendimento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="care-body"><div class="care-msg" id="careWelcome">Oi! Quer ajuda pra escolher? Fala com a gente 😊</div><div id="careOpts" style="display:flex;flex-direction:column;gap:8px"></div><p class="care-foot" id="careFoot"></p></div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Sacola" aria-hidden="true">
+  <div class="drawer-head"><h2>Sua sacola</h2><button class="icon-btn" type="button" id="bagClose" aria-label="Fechar sacola"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="bag-list" id="bagList"></div>
+  <div class="bag-foot" id="bagFoot"></div>
+</aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-card">
+    <button class="icon-btn m-close" type="button" id="mClose" aria-label="Fechar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="m-gallery"><div class="m-main" id="mMain"></div><div class="m-thumbs" id="mThumbs"></div></div>
+    <div class="m-info" id="mInfo"></div>
+  </div>
+</div>
+<div class="guide-bg" id="guideBg" aria-hidden="true">
+  <article class="guide" id="guide" role="dialog" aria-modal="true" aria-labelledby="guideH" tabindex="-1">
+    <button class="icon-btn x" type="button" id="guideX" aria-label="Fechar guia"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <header class="guide-hero"><span class="eyebrow">Guia de cuidados</span><h2 id="guideH">Sua semijoia <i>brilhando</i> por muito mais tempo</h2><p>A semijoia tem uma camada de banho sobre o metal. Tudo o que desgasta essa camada (atrito, umidade e produtos químicos) encurta a vida da peça. Os cuidados abaixo evitam isso.</p><svg class="deco" viewBox="0 0 200 200" aria-hidden="true" id="guideArt"></svg></header>
+    <div class="guide-body">
+      <section class="gsec" id="g-use"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="3"/></svg><div><h3>No dia a dia</h3><p>A regra de ouro: <b>a semijoia é a última a colocar e a primeira a tirar.</b></p><ul><li>Passe perfume, hidratante, protetor solar e maquiagem antes e espere secar.</li><li>Tire antes de dormir, para não amassar nem enroscar no lençol.</li><li>Evite usar a mesma peça todos os dias sem descanso: revezar ajuda o banho a durar.</li><li>Cuidado com batidas e atrito, principalmente em anéis e pulseiras.</li></ul></div></section>
+      <section class="gsec" id="g-avoid"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M4 4l16 16"/></svg><div><h3>O que evitar</h3><div class="dodont"><div class="do"><h4>✓ Pode</h4><ul><li>Usar no trabalho e em passeios</li><li>Usar em festas e ocasiões especiais</li><li>Limpar com flanela seca</li></ul></div><div class="dont"><h4>✕ Evite</h4><ul><li>Banho, piscina, mar e sauna</li><li>Academia e atividades com muito suor</li><li>Perfume, álcool em gel e cremes direto na peça</li><li>Produtos de limpeza (cloro, água sanitária)</li><li>Lavar louça ou mexer na terra usando anéis</li></ul></div></div></div></section>
+      <section class="gsec" id="g-clean"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c2-6 4-9 7-9s5 3 7 9"/><path d="M8 7c1-2 2.5-3 4-3s3 1 4 3"/></svg><div><h3>Como limpar</h3><ul><li>Depois de usar, passe uma <b>flanela macia e seca</b> para tirar suor e oleosidade.</li><li>Se precisar, use um pano levemente úmido com água e sabão neutro e seque muito bem em seguida.</li><li>Nunca use escova, pasta de dente, bicarbonato ou produtos abrasivos: eles riscam e removem o banho.</li></ul><p class="note"><b>Peças de prata 925:</b> é natural escurecerem com o tempo, por causa do contato com o ar e a pele. Uma flanela própria para prata devolve o brilho.</p></div></section>
+      <section class="gsec" id="g-keep"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="1"/><path d="M4 12h16M9 8V5h6v3"/></svg><div><h3>Como guardar</h3><ul><li>Guarde cada peça separada, no saquinho ou na caixinha que acompanha, para uma não riscar a outra.</li><li>Prefira um lugar seco e fechado. <b>Evite o banheiro</b>, onde a umidade é maior.</li><li>Feche correntes e colares antes de guardar, para não embolar.</li><li>Um saquinho de sílica dentro da caixa ajuda a segurar a umidade.</li></ul></div></section>
+      <section class="gsec" id="g-shine"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg><div><h3>Brilho que muda com o tempo</h3><p>Com o uso, é normal o banho ir perdendo um pouco do brilho. Quanto mais a peça encosta em pele, suor e produtos, mais rápido isso acontece. Seguindo os cuidados acima, ela dura muito mais.</p></div></section>
+      <section class="gsec" id="g-warranty"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><div><h3>Garantia</h3><p>Nossas peças têm <b>garantia de [X] meses no banho</b>, contra defeito de fabricação. A garantia não cobre peças amassadas, quebradas ou com desgaste por mau uso.</p><p>Notou algo diferente na sua peça? Fale com a gente que a gente olha com carinho.</p></div></section>
+      <div class="guide-cta"><div><b>Ficou com alguma dúvida?</b><span>Manda uma foto da sua peça que a gente te ajuda.</span></div><a class="btn btn-wa" id="guideWa" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Falar com a gente</a></div>
+    </div>
+  </article>
+</div>
+<div class="help-bg" id="helpBg" aria-hidden="true">
+  <div class="help" id="helpBox" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="helpH">
+    <button class="icon-btn x" type="button" id="helpX" aria-label="Fechar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="help-art" aria-hidden="true"><div class="disc"></div><svg class="main" viewBox="0 0 200 200" id="helpArt"></svg><span class="talk">Oi! 💛</span></div>
+    <div class="help-copy">
+      <span class="eyebrow">Uma ajudinha?</span>
+      <h2 id="helpH">Ficou na dúvida? <i>A gente te ajuda</i> a escolher.</h2>
+      <p>São tantas peças lindas que às vezes fica difícil decidir. Conta pra nossa atendente o que você procura, seu estilo ou para quem é, e ela separa as opções certinhas pra você.</p>
+      <p><b style="color:var(--ink);font-weight:500">Vai ser um prazer te atender.</b></p>
+      <div class="acts">
+        <a class="btn btn-wa" id="helpWa" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Falar com a atendente</a>
+        <button class="btn btn-line" type="button" id="helpGift">É para presente</button>
+        <button class="later" type="button" id="helpLater">Agora não, obrigada</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var WA = "5569999990000";
+  var $ = function (id) { return document.getElementById(id); };
+  var brl = function (n) { return "R$ " + n.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, "."); };
+
+  /* ---------- illustrations ---------- */
+  function metal(m) { return m === "Prata 925" ? "url(#silver)" : "url(#gold)"; }
+  function linkChain(cx, cy, rx, ry, n, size, m, from, to) {
+    var s = ""; from = from || 0; to = to || Math.PI * 2;
+    for (var i = 0; i < n; i++) {
+      var t = from + (to - from) * (i / (n - 1 || 1));
+      var x = cx + rx * Math.cos(t), y = cy + ry * Math.sin(t);
+      var rot = (t * 180 / Math.PI) + 90;
+      s += '<ellipse cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" rx="' + size + '" ry="' + (size * 0.6).toFixed(1) + '" transform="rotate(' + rot.toFixed(0) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')" fill="none" stroke="' + metal(m) + '" stroke-width="2.4"/>';
+    }
+    return s;
+  }
+  var ART = {
+    hoop: function (m) { return '<circle cx="66" cy="112" r="38" fill="none" stroke="' + metal(m) + '" stroke-width="9"/><circle cx="136" cy="112" r="38" fill="none" stroke="' + metal(m) + '" stroke-width="9"/><rect x="62" y="66" width="8" height="10" rx="3" fill="' + metal(m) + '"/><rect x="132" y="66" width="8" height="10" rx="3" fill="' + metal(m) + '"/>'; },
+    drop: function (m) { var e = function (x) { return '<circle cx="' + x + '" cy="58" r="9" fill="' + metal(m) + '"/><line x1="' + x + '" y1="67" x2="' + x + '" y2="92" stroke="' + metal(m) + '" stroke-width="3"/><path d="M' + x + ' 92 C ' + (x + 22) + ' 120, ' + (x + 16) + ' 150, ' + x + ' 150 C ' + (x - 16) + ' 150, ' + (x - 22) + ' 120, ' + x + ' 92 Z" fill="url(#gem)" stroke="' + metal(m) + '" stroke-width="4"/>'; }; return e(70) + e(130); },
+    cuff: function (m) { return '<path d="M70 150 C 40 120, 45 60, 95 45 C 140 32, 165 70, 150 100" fill="none" stroke="' + metal(m) + '" stroke-width="10" stroke-linecap="round"/><path d="M80 140 C 58 112, 62 72, 98 60 C 130 50, 150 76, 140 98" fill="none" stroke="' + metal(m) + '" stroke-width="4" stroke-linecap="round" opacity="0.8"/><circle cx="96" cy="47" r="7" fill="url(#gem)"/>'; },
+    point: function (m) { return '<path d="M28 34 Q100 150 172 34" fill="none" stroke="' + metal(m) + '" stroke-width="2.6"/><circle cx="100" cy="98" r="14" fill="url(#gem)" stroke="' + metal(m) + '" stroke-width="4"/><circle cx="95" cy="93" r="3.5" fill="#FFFFFF"/>'; },
+    heart: function (m) { return '<path d="M28 30 Q100 140 172 30" fill="none" stroke="' + metal(m) + '" stroke-width="2.6"/><path d="M100 136 C 60 112, 64 80, 84 80 C 94 80, 100 88, 100 94 C 100 88, 106 80, 116 80 C 136 80, 140 112, 100 136 Z" fill="none" stroke="' + metal(m) + '" stroke-width="7" stroke-linejoin="round"/>'; },
+    riviera: function (m) { var s = '<path d="M30 50 Q100 140 170 50" fill="none" stroke="' + metal(m) + '" stroke-width="2"/>'; for (var i = 0; i <= 14; i++) { var t = i / 14, x = (1 - t) * (1 - t) * 30 + 2 * (1 - t) * t * 100 + t * t * 170, y = (1 - t) * (1 - t) * 50 + 2 * (1 - t) * t * 140 + t * t * 50; s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="6.5" fill="url(#gem)" stroke="' + metal(m) + '" stroke-width="2"/>'; } return s; },
+    solitaire: function (m) { return '<ellipse cx="100" cy="128" rx="46" ry="48" fill="none" stroke="' + metal(m) + '" stroke-width="10"/><path d="M84 82 L100 58 L116 82 Z" fill="' + metal(m) + '"/><path d="M100 40 L120 62 L100 84 L80 62 Z" fill="url(#gem)" stroke="' + metal(m) + '" stroke-width="3"/><path d="M80 62 H120 M100 40 L92 62 L100 84 L108 62 Z" fill="none" stroke="#FFFFFF" stroke-width="1.2" opacity="0.8"/>'; },
+    band: function (m) { var s = '<ellipse cx="100" cy="112" rx="50" ry="52" fill="none" stroke="' + metal(m) + '" stroke-width="12"/>'; for (var i = 0; i < 7; i++) { var t = Math.PI * (1.12 + i * 0.13), x = 100 + 50 * Math.cos(t), y = 112 + 52 * Math.sin(t); s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4.2" fill="url(#gem)"/>'; } return s; },
+    chain: function (m) { return linkChain(100, 104, 62, 46, 22, 8, m); },
+    tennis: function (m) { var s = '<ellipse cx="100" cy="104" rx="64" ry="46" fill="none" stroke="' + metal(m) + '" stroke-width="5"/>'; for (var i = 0; i < 20; i++) { var t = i / 20 * Math.PI * 2, x = 100 + 64 * Math.cos(t), y = 104 + 46 * Math.sin(t); s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="5" fill="url(#gem)" stroke="' + metal(m) + '" stroke-width="1.5"/>'; } return s; },
+    pearlset: function (m) { var s = '<path d="M34 30 Q100 128 166 30" fill="none" stroke="' + metal(m) + '" stroke-width="2"/><circle cx="100" cy="84" r="12" fill="url(#pearl)" stroke="' + metal(m) + '" stroke-width="2.5"/>'; s += '<circle cx="62" cy="150" r="10" fill="url(#pearl)" stroke="' + metal(m) + '" stroke-width="2.5"/><circle cx="62" cy="134" r="4" fill="' + metal(m) + '"/><circle cx="138" cy="150" r="10" fill="url(#pearl)" stroke="' + metal(m) + '" stroke-width="2.5"/><circle cx="138" cy="134" r="4" fill="' + metal(m) + '"/>'; return s; },
+    choker: function (m) { return '<path d="M30 60 Q100 130 170 60" fill="none" stroke="' + metal(m) + '" stroke-width="7"/><path d="M30 72 Q100 142 170 72" fill="none" stroke="' + metal(m) + '" stroke-width="2.4"/><circle cx="100" cy="112" r="6" fill="url(#gem)"/>'; },
+    piercing: function (m) { return '<circle cx="80" cy="100" r="22" fill="none" stroke="' + metal(m) + '" stroke-width="5"/><circle cx="130" cy="100" r="15" fill="none" stroke="' + metal(m) + '" stroke-width="5"/><circle cx="102" cy="78" r="4.5" fill="url(#gem)"/><circle cx="80" cy="122" r="4" fill="url(#gem)"/>'; }
+  };
+  function svg(art, m) { return '<svg viewBox="0 0 200 200" aria-hidden="true">' + ART[art](m) + '</svg>'; }
+
+  /* ---------- data ---------- */
+  var CATS = ["Brincos", "Colares", "Anéis", "Pulseiras", "Conjuntos", "Piercings"];
+  var CAT_ART = { "Brincos": "hoop", "Colares": "point", "Anéis": "solitaire", "Pulseiras": "chain", "Conjuntos": "pearlset", "Piercings": "piercing" };
+  var P = [
+    { id: 1, name: "Argola Lisa Média", cat: "Brincos", mat: "Ouro 18k", art: "hoop", price: 89.9, best: 1 },
+    { id: 2, name: "Brinco Gota Zircônia", cat: "Brincos", mat: "Ouro 18k", art: "drop", price: 119.9, old: 139.9, best: 1 },
+    { id: 3, name: "Colar Ponto de Luz", cat: "Colares", mat: "Ouro 18k", art: "point", price: 99.9, best: 1 },
+    { id: 4, name: "Anel Solitário Zircônia", cat: "Anéis", mat: "Prata 925", art: "solitaire", price: 79.9, best: 1 },
+    { id: 5, name: "Pulseira Elos Portugueses", cat: "Pulseiras", mat: "Ouro 18k", art: "chain", price: 149.9, best: 1 },
+    { id: 6, name: "Choker Riviera", cat: "Colares", mat: "Prata 925", art: "riviera", price: 189.9, old: 219.9, best: 1 },
+    { id: 7, name: "Conjunto Pérola Clássica", cat: "Conjuntos", mat: "Ouro 18k", art: "pearlset", price: 219.9, best: 1 },
+    { id: 8, name: "Anel Aparador Cravejado", cat: "Anéis", mat: "Ouro 18k", art: "band", price: 69.9, best: 1 },
+    { id: 9, name: "Ear Cuff Trançado", cat: "Brincos", mat: "Prata 925", art: "cuff", price: 69.9, isNew: 1 },
+    { id: 10, name: "Colar Coração Vazado", cat: "Colares", mat: "Ouro 18k", art: "heart", price: 129.9, isNew: 1 },
+    { id: 11, name: "Pulseira Riviera", cat: "Pulseiras", mat: "Prata 925", art: "tennis", price: 199.9, isNew: 1 },
+    { id: 12, name: "Choker Fio Duplo", cat: "Colares", mat: "Ouro 18k", art: "choker", price: 109.9, isNew: 1 },
+    { id: 13, name: "Piercing Fake Duo", cat: "Piercings", mat: "Ouro 18k", art: "piercing", price: 49.9, isNew: 1 },
+    { id: 14, name: "Argola Prata Fina", cat: "Brincos", mat: "Prata 925", art: "hoop", price: 79.9, isNew: 1 }
+  ];
+  var waUrl = function (text) { return "https://wa.me/" + WA + "?text=" + encodeURIComponent(text); };
+  var byId = function (id) { return P.filter(function (p) { return p.id === id; })[0]; };
+
+  var state = { cat: "all", mat: "", q: "" };
+  var bag = []; var favs = {};
+
+  /* ---------- render helpers ---------- */
+  function card(p, i) {
+    var pct = p.old ? Math.round((1 - p.price / p.old) * 100) : 0;
+    return '<article class="card anim" style="--i:' + (i || 0) + '">' +
+      '<div style="position:relative;overflow:hidden">' +
+        '<button class="pic" type="button" data-open="' + p.id + '" aria-label="Ver ' + p.name + '">' +
+          '<span class="face a">' + svg(p.art, p.mat) + '</span><span class="face b">' + svg(p.art, p.mat) + '</span>' +
+        '</button>' +
+        (pct ? '<span class="tag">-' + pct + '%</span>' : (p.isNew ? '<span class="tag new">Novo</span>' : '')) +
+        '<button class="fav" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs[p.id] ? 'true' : 'false') + '" aria-label="Favoritar ' + p.name + '"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></button>' +
+        '<div class="quick"><button class="btn btn-dark" type="button" data-add="' + p.id + '">Quero essa</button></div>' +
+      '</div>' +
+      '<h3>' + p.name + '</h3>' +
+      '<div class="prices">' + (p.old ? '<s>' + brl(p.old) + '</s>' : '') + '<strong>' + brl(p.price) + '</strong></div>' +
+      '<span class="inst">ou 3x de ' + brl(p.price / 3) + ' sem juros</span>' +
+      '<span class="pix">' + brl(p.price * 0.95) + ' no Pix</span>' +
+      '<button class="btn btn-line add-m" type="button" data-add="' + p.id + '">Quero essa</button>' +
+    '</article>';
+  }
+
+  function renderNav() {
+    var items = [["all", "Todas"]].concat(CATS.map(function (c) { return [c, c]; }));
+    $("catNav").innerHTML = items.map(function (it) { return '<li><button type="button" data-cat="' + it[0] + '" aria-pressed="' + (state.cat === it[0] && !state.mat && !state.q ? 'true' : 'false') + '">' + it[1] + '</button></li>'; }).join("") +
+      '<li><button type="button" class="sale" data-cat="sale">Promoções</button></li>';
+    $("circles").innerHTML = CATS.map(function (c) { return '<button class="circle" type="button" data-cat="' + c + '" data-scroll="1"><span class="ring">' + svg(CAT_ART[c], c === "Anéis" ? "Prata 925" : "Ouro 18k") + '</span>' + c + '</button>'; }).join("");
+    $("footCats").innerHTML = CATS.map(function (c) { return '<li>' + c + '</li>'; }).join("");
+  }
+
+  function renderShop() {
+    var list, title, eyebrow;
+    var q = state.q.trim().toLowerCase();
+    if (q) { list = P.filter(function (p) { return (p.name + " " + p.cat + " " + p.mat).toLowerCase().indexOf(q) > -1; }); title = 'Busca: "' + state.q.trim() + '"'; eyebrow = list.length + (list.length === 1 ? " peça" : " peças"); }
+    else if (state.mat) { list = P.filter(function (p) { return p.mat === state.mat; }); title = state.mat; eyebrow = "Material"; }
+    else if (state.cat === "sale") { list = P.filter(function (p) { return p.old; }); title = "Promoções"; eyebrow = "Por tempo limitado"; }
+    else if (state.cat !== "all") { list = P.filter(function (p) { return p.cat === state.cat; }); title = state.cat; eyebrow = "Categoria"; }
+    else { list = P.filter(function (p) { return p.best; }); title = "Mais vendidos"; eyebrow = "Mais amadas"; }
+    $("shopH").textContent = title; $("shopEyebrow").textContent = eyebrow;
+    $("showAll").hidden = !(q || state.mat || state.cat !== "all");
+    $("grid").innerHTML = list.length ? list.map(card).join("") : '<div class="empty-grid">Nenhuma peça encontrada. Fale com a gente no WhatsApp que a gente procura para você.</div>';
+    renderNav();
+  }
+  function renderNew() { $("gridNew").innerHTML = P.filter(function (p) { return p.isNew; }).slice(0, 4).map(card).join(""); }
+  function renderInsta() {
+    var tones = ["#F7EFEC", "#EFDDD7", "#E9E4DF", "#F3E6E1", "#EADBD3", "#F6F1EE"];
+    var arts = [["point", "Ouro 18k"], ["tennis", "Prata 925"], ["drop", "Ouro 18k"], ["band", "Ouro 18k"], ["heart", "Ouro 18k"], ["cuff", "Prata 925"]];
+    $("insta").innerHTML = arts.map(function (a, i) { return '<div data-reveal style="--i:' + i + ';background:' + tones[i] + '">' + svg(a[0], a[1]) + '</div>'; }).join("");
+  }
+
+  /* ---------- bag ---------- */
+  function bagTotal() { return bag.reduce(function (s, it) { return s + byId(it.id).price * it.q; }, 0); }
+  function bagQty() { return bag.reduce(function (s, it) { return s + it.q; }, 0); }
+  function updateCounts() {
+    var n = bagQty(); $("bagCount").textContent = n; $("bagCount").hidden = !n;
+    var f = Object.keys(favs).filter(function (k) { return favs[k]; }).length; $("favCount").textContent = f; $("favCount").hidden = !f;
+  }
+  function addToBag(id, src) {
+    var it = bag.filter(function (x) { return x.id === id; })[0];
+    if (it) it.q++; else bag.push({ id: id, q: 1 });
+    var done = function () { updateCounts(); renderBag(); var b = $("bagBtn"); b.classList.remove("bump"); void b.offsetWidth; b.classList.add("bump"); };
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (src && !reduce && Element.prototype.animate) {
+      var a = src.getBoundingClientRect(), z = $("bagBtn").getBoundingClientRect(), p = byId(id);
+      var f = document.createElement("div"); f.className = "fly"; f.innerHTML = svg(p.art, p.mat);
+      f.style.left = (a.left + a.width / 2 - 23) + "px"; f.style.top = (a.top + a.height / 2 - 23) + "px";
+      document.body.appendChild(f);
+      var dx = (z.left + z.width / 2) - (a.left + a.width / 2), dy = (z.top + z.height / 2) - (a.top + a.height / 2);
+      var anim = f.animate([{ transform: "translate(0,0) scale(1)", opacity: 1 }, { transform: "translate(" + dx * 0.5 + "px," + (dy * 0.5 - 80) + "px) scale(1.1)", opacity: 1, offset: 0.5 }, { transform: "translate(" + dx + "px," + dy + "px) scale(0.3)", opacity: 0.2 }], { duration: 750, easing: "cubic-bezier(.5,0,.3,1)" });
+      anim.onfinish = function () { f.remove(); done(); };
+    } else done();
+    toast(byId(id).name + " na sacola");
+  }
+  function waMessage() {
+    var lines = ["Oi! Separei essas peças no site da Orvalha:", ""];
+    bag.forEach(function (it) { var p = byId(it.id); lines.push("• " + it.q + "x " + p.name + " (" + p.mat + ") — " + brl(p.price * it.q)); });
+    lines.push("", "Total: " + brl(bagTotal()) + " (ou " + brl(bagTotal() * 0.95) + " no Pix)", "", "Pode confirmar se tem tudo disponível?");
+    return "https://wa.me/" + WA + "?text=" + encodeURIComponent(lines.join("\n"));
+  }
+  function renderBag() {
+    if (!bag.length) {
+      $("bagList").innerHTML = '<div class="bag-empty"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg><p>Sua sacola está vazia.</p><button class="btn btn-line" type="button" data-closebag="1">Ver peças</button></div>';
+      $("bagFoot").innerHTML = ""; return;
+    }
+    $("bagList").innerHTML = bag.map(function (it, bi) {
+      var p = byId(it.id);
+      return '<div class="bag-item" style="--i:' + bi + '"><div class="th">' + svg(p.art, p.mat) + '</div><div><h4>' + p.name + '</h4><div class="qty"><button type="button" data-dec="' + p.id + '" aria-label="Diminuir quantidade">−</button><span>' + it.q + '</span><button type="button" data-inc="' + p.id + '" aria-label="Aumentar quantidade">+</button></div><br><button class="rm" type="button" data-rm="' + p.id + '">Remover</button></div><strong style="font-variant-numeric:tabular-nums">' + brl(p.price * it.q) + '</strong></div>';
+    }).join("");
+    var t = bagTotal();
+    $("bagFoot").innerHTML = '<div class="row"><span>Subtotal</span><span>' + brl(t) + '</span></div>' +
+      '<div class="row" style="color:var(--wa)"><span>No Pix (5% off)</span><span>' + brl(t * 0.95) + '</span></div>' +
+      '<div class="row total"><span>Total</span><span>' + brl(t) + '</span></div>' +
+      '<small>ou 3x de ' + brl(t / 3) + ' sem juros</small>' +
+      '<div class="bag-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg><span>Sua sacola vai para o nosso WhatsApp. A gente confirma se tem as peças e combina entrega e pagamento. <b>Nada é cobrado agora.</b></span></div>' +
+      '<a class="btn btn-wa" href="' + waMessage() + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Enviar para o atendimento</a>';
+  }
+  function openBag() { renderBag(); $("drawer").classList.add("on"); $("drawer").setAttribute("aria-hidden", "false"); $("scrim").classList.add("on"); $("bagClose").focus(); }
+  function closeAll() { $("drawer").classList.remove("on"); $("drawer").setAttribute("aria-hidden", "true"); $("modal").classList.remove("on"); $("scrim").classList.remove("on"); }
+
+  /* ---------- product modal ---------- */
+  var curView = 0;
+  function openProduct(id) {
+    var p = byId(id); curView = 0;
+    var views = [svg(p.art, p.mat), '<div style="transform:rotate(-12deg) scale(1.15);width:100%;display:flex;justify-content:center">' + svg(p.art, p.mat) + '</div>', '<div style="transform:scale(1.6);width:100%;display:flex;justify-content:center">' + svg(p.art, p.mat) + '</div>'];
+    function paint() {
+      $("mMain").innerHTML = views[curView];
+      $("mThumbs").innerHTML = views.map(function (v, i) { return '<button type="button" data-view="' + i + '" aria-label="Foto ' + (i + 1) + '" aria-pressed="' + (i === curView ? 'true' : 'false') + '">' + svg(p.art, p.mat) + '</button>'; }).join("");
+    }
+    paint();
+    $("mThumbs").onclick = function (e) { var b = e.target.closest("[data-view]"); if (b) { curView = +b.dataset.view; paint(); } };
+    var ask = waUrl("Oi! Tenho uma dúvida sobre a peça " + p.name + " (" + p.mat + ", " + brl(p.price) + "): ");
+    var isRing = p.cat === "Anéis";
+    $("mInfo").innerHTML = '<span class="eyebrow">' + p.cat + '</span><h2 id="mTitle">' + p.name + '</h2>' +
+      '<div class="prices">' + (p.old ? '<s>' + brl(p.old) + '</s>' : '') + '<strong>' + brl(p.price) + '</strong></div>' +
+      '<span class="inst">ou 3x de ' + brl(p.price / 3) + ' sem juros</span><span class="pix">' + brl(p.price * 0.95) + ' no Pix</span>' +
+      '<ul><li>Banho: ' + (p.mat === "Prata 925" ? "prata 925 maciça" : "folheado a ouro 18k") + '</li><li>Antialérgico, livre de níquel</li><li>Garantia de [X] meses no banho</li><li>Acompanha caixinha para presente</li></ul>' +
+      '<button class="btn btn-dark" type="button" data-add="' + p.id + '">Quero essa</button>' +
+      '<a class="btn btn-wa" href="' + ask + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>Tirar dúvida sobre esta peça</a>' +
+      (isRing ? '<div class="m-links">' : '') + (isRing ? '<button type="button" id="sizeBtn" aria-expanded="false" aria-controls="sizeBox">Guia de tamanhos de anel</button></div>' : '') +
+      (isRing ? '<div class="sizes" id="sizeBox" hidden><b>Tamanhos de anel</b><table><thead><tr><th>Aro</th><th>Diâmetro interno</th></tr></thead><tbody><tr><td>14</td><td>17,0 mm</td></tr><tr><td>16</td><td>17,6 mm</td></tr><tr><td>18</td><td>18,2 mm</td></tr><tr><td>20</td><td>19,0 mm</td></tr></tbody></table><p>Meça um anel que você já usa por dentro. <b>Na dúvida, a gente troca.</b></p></div>' : '');
+    var sb = $("sizeBtn"); if (sb) sb.onclick = function () { var bx = $("sizeBox"); bx.hidden = !bx.hidden; sb.setAttribute("aria-expanded", String(!bx.hidden)); };
+    $("modal").classList.add("on"); $("scrim").classList.add("on"); $("mClose").focus();
+  }
+
+  function toast(msg) { var t = $("toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(function () { t.classList.remove("on"); }, 2000); }
+
+  /* ---------- events ---------- */
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-open],[data-add],[data-fav],[data-cat],[data-mat],[data-inc],[data-dec],[data-rm],[data-closebag]");
+    if (!t) return;
+    if (t.dataset.open) { openProduct(+t.dataset.open); return; }
+    if (t.dataset.add) { addToBag(+t.dataset.add, t); if (window.matchMedia("(max-width: 720px)").matches && $("modal").classList.contains("on")) { closeAll(); } return; }
+    if (t.dataset.fav) { var id = +t.dataset.fav; favs[id] = !favs[id]; t.setAttribute("aria-pressed", favs[id] ? "true" : "false"); updateCounts(); toast(favs[id] ? "Salvo nos favoritos" : "Removido dos favoritos"); return; }
+    if (t.dataset.cat) { state.cat = t.dataset.cat; state.mat = ""; state.q = ""; $("q").value = ""; $("q2").value = ""; renderShop(); if (t.dataset.scroll || t.closest("nav.cats")) $("shop").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+    if (t.dataset.mat) { state.mat = t.dataset.mat; state.cat = "all"; state.q = ""; renderShop(); $("shop").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+    var it;
+    if (t.dataset.inc) { it = bag.filter(function (x) { return x.id === +t.dataset.inc; })[0]; it.q++; }
+    if (t.dataset.dec) { it = bag.filter(function (x) { return x.id === +t.dataset.dec; })[0]; it.q--; if (it.q < 1) bag = bag.filter(function (x) { return x !== it; }); }
+    if (t.dataset.rm) { bag = bag.filter(function (x) { return x.id !== +t.dataset.rm; }); }
+    if (t.dataset.closebag) { closeAll(); $("shop").scrollIntoView({ behavior: "smooth" }); return; }
+    updateCounts(); renderBag();
+  });
+  $("showAll").addEventListener("click", function () { state.cat = "all"; state.mat = ""; state.q = ""; $("q").value = ""; $("q2").value = ""; renderShop(); });
+  $("bagBtn").addEventListener("click", openBag);
+  $("favBtn").addEventListener("click", function () { var ids = Object.keys(favs).filter(function (k) { return favs[k]; }).map(Number); if (!ids.length) { toast("Toque no coração das peças para salvar"); return; } state.q = ""; state.mat = ""; state.cat = "all"; $("grid").innerHTML = ids.map(function (i) { return card(byId(i)); }).join(""); $("shopH").textContent = "Seus favoritos"; $("shopEyebrow").textContent = ids.length + (ids.length === 1 ? " peça" : " peças"); $("showAll").hidden = false; $("shop").scrollIntoView({ behavior: "smooth" }); });
+  $("bagClose").addEventListener("click", closeAll);
+  $("mClose").addEventListener("click", closeAll);
+  $("scrim").addEventListener("click", closeAll);
+  $("modal").addEventListener("click", function (e) { if (e.target === $("modal")) closeAll(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+  $("mSearchBtn").addEventListener("click", function () { var r = $("mSearchRow"); r.hidden = !r.hidden; if (!r.hidden) $("q2").focus(); });
+  function onSearch(v) { state.q = v; state.cat = "all"; state.mat = ""; renderShop(); }
+  $("q").addEventListener("input", function (e) { onSearch(e.target.value); });
+  $("q2").addEventListener("input", function (e) { onSearch(e.target.value); });
+  $("q").addEventListener("keydown", function (e) { if (e.key === "Enter") $("shop").scrollIntoView({ behavior: "smooth" }); });
+  $("q2").addEventListener("keydown", function (e) { if (e.key === "Enter") $("shop").scrollIntoView({ behavior: "smooth" }); });
+  $("newsForm").addEventListener("submit", function (e) { e.preventDefault(); toast("Pronto! Você vai receber as novidades."); e.target.reset(); });
+
+  var promos = ["Atendimento de verdade pelo WhatsApp", "5% de desconto no Pix · Até 3x sem juros", "Dúvidas? Fale com a gente, atendimento de verdade"], pi = 0;
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(function () { pi = (pi + 1) % promos.length; $("promo").textContent = promos[pi]; }, 4000);
+
+  var star = function (x, y, s, d) { return '<path class="spark" style="animation-delay:' + d + 's" d="M' + x + ' ' + (y - s) + ' Q' + x + ' ' + y + ' ' + (x + s) + ' ' + y + ' Q' + x + ' ' + y + ' ' + x + ' ' + (y + s) + ' Q' + x + ' ' + y + ' ' + (x - s) + ' ' + y + ' Q' + x + ' ' + y + ' ' + x + ' ' + (y - s) + 'Z" fill="#FFFFFF"/>'; };
+  $("heroArt").innerHTML = '<g class="swing">' + ART.riviera("Ouro 18k") + '<g transform="translate(0 30)">' + ART.point("Ouro 18k") + '</g></g>' + star(40, 150, 9, 0) + star(168, 140, 7, 1.1) + star(150, 30, 6, 2) + star(30, 30, 5, 0.6) + star(100, 182, 6, 1.6);
+  $("bGold").innerHTML = ART.hoop("Ouro 18k");
+  $("bSilver").innerHTML = ART.tennis("Prata 925");
+
+  /* ---------- atendimento ---------- */
+  var CARE = { welcome: "Oi! Quer ajuda pra escolher? Fala com a gente 😊", hours: { wk: [9, 18], sat: [9, 13] } };
+  var CARE_OPTS = [
+    ["gift", "Ajuda para escolher um presente", '<path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7c-2-4-6-3-5 0M12 7c2-4 6-3 5 0"/>'],
+    ["Oi! Queria saber qual é o meu tamanho de anel. Como faço pra medir?", "Qual é o meu tamanho de anel?", '<circle cx="12" cy="14" r="6"/><path d="M9 4h6l-3 4z"/>'],
+    ["Oi! Como funciona a entrega? Vocês enviam para a minha cidade?", "Entrega e envio para outras cidades", '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>'],
+    ["Oi! Tenho uma dúvida:", "Outra dúvida", '<path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/>']
+  ];
+  var chev = '<svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  $("careOpts").innerHTML = CARE_OPTS.map(function (o) {
+    var ic = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + o[2] + '</svg>';
+    return o[0] === "gift" ? '<button class="care-opt" type="button" data-togift="1">' + ic + '<span>' + o[1] + '</span>' + chev + '</button>' : '<a class="care-opt" href="' + waUrl(o[0]) + '" target="_blank" rel="noopener">' + ic + '<span>' + o[1] + '</span>' + chev + '</a>';
+  }).join("");
+  $("careWelcome").textContent = CARE.welcome;
+  $("careFoot").textContent = "Abre o WhatsApp com a mensagem pronta. Seg a sex 9h às 18h · Sáb 9h às 13h";
+  var careOpen = false;
+  function setCare(on) { careOpen = on; $("carePanel").classList.toggle("on", on); $("careFab").setAttribute("aria-expanded", String(on)); hideBubble(); if (on) { var f = $("carePanel").querySelector(".care-opt"); if (f) f.focus(); } }
+  function hideBubble() { $("careBubble").hidden = true; try { sessionStorage.setItem("orvBubble", "1"); } catch (e) {} }
+  $("careFab").addEventListener("click", function () { setCare(!careOpen); });
+  $("careClose").addEventListener("click", function () { setCare(false); $("careFab").focus(); });
+  $("careBubble").addEventListener("click", function (e) { if (e.target.closest("#bubbleX")) { hideBubble(); return; } setCare(true); });
+  document.addEventListener("click", function (e) {
+    if (e.target.closest("[data-care]")) { setCare(true); return; }
+    if (e.target.closest("[data-togift]")) { setCare(false); $("gift").scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+    if (careOpen && !e.target.closest("#carePanel") && !e.target.closest("#careFab")) setCare(false);
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && careOpen) setCare(false); });
+  var seen = false; try { seen = sessionStorage.getItem("orvBubble") === "1"; } catch (e) {}
+  function showBubble() { if (!careOpen && !$("drawer").classList.contains("on") && !$("modal").classList.contains("on")) $("careBubble").hidden = false; }
+  if (!seen) {
+    if (window.matchMedia("(max-width: 520px)").matches) {
+      var onScroll = function () { if (window.scrollY > 700) { window.removeEventListener("scroll", onScroll); setTimeout(showBubble, 1200); } };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    } else setTimeout(showBubble, 5000);
+  }
+  
+
+  $("giftForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var who = (document.querySelector('input[name="gWho"]:checked') || {}).value, bud = (document.querySelector('input[name="gBud"]:checked') || {}).value, occ = $("gOcc").value, note = $("gNote").value.trim();
+    var msg = "Oi! Quero ajuda para escolher um presente 🎁\n\nPara: " + (who === "Para mim" ? "mim mesma" : who) + "\nOcasião: " + occ + "\nQuanto quero gastar: " + bud + (note ? "\nDetalhe: " + note : "") + "\n\nO que vocês sugerem?";
+    window.open(waUrl(msg), "_blank", "noopener");
+  });
+
+  /* guia de cuidados */
+  $("guideArt").innerHTML = ART.pearlset("Ouro 18k");
+  $("guideWa").href = waUrl("Oi! Tenho uma dúvida sobre os cuidados com a minha peça:");
+  function openGuide(sec) {
+    $("guideBg").classList.add("on"); $("guideBg").setAttribute("aria-hidden", "false"); $("guide").focus();
+    var g = $("guide"); g.scrollTop = 0;
+    var target = sec && sec !== "1" ? $(sec.indexOf("g-") === 0 ? sec : "g-" + sec) : null;
+    if (target) setTimeout(function () { g.scrollTo({ top: target.offsetTop - 16, behavior: "smooth" }); }, 250);
+  }
+  function closeGuide() { $("guideBg").classList.remove("on"); $("guideBg").setAttribute("aria-hidden", "true"); }
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-guide]"); if (b) { e.preventDefault(); openGuide(b.dataset.guide); } });
+  $("guideX").addEventListener("click", closeGuide);
+  $("guideBg").addEventListener("click", function (e) { if (e.target === $("guideBg")) closeGuide(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeGuide(); });
+
+  /* convite: 2 minutos no site sem colocar nada na sacola, uma vez por visita */
+  var HELP_AFTER = 120000, helpShown = false;
+  try { helpShown = sessionStorage.getItem("orvHelp") === "1"; } catch (e) {}
+  var star2 = function (x, y, s, d) { return '<path class="spark" style="animation-delay:' + d + 's" d="M' + x + ' ' + (y - s) + ' Q' + x + ' ' + y + ' ' + (x + s) + ' ' + y + ' Q' + x + ' ' + y + ' ' + x + ' ' + (y + s) + ' Q' + x + ' ' + y + ' ' + (x - s) + ' ' + y + ' Q' + x + ' ' + y + ' ' + x + ' ' + (y - s) + 'Z" fill="#FFFFFF"/>'; };
+  $("helpArt").innerHTML = '<g class="swing">' + ART.heart("Ouro 18k") + '</g><g transform="translate(118 112) scale(0.42)">' + ART.drop("Ouro 18k") + '</g>' + star2(38, 150, 8, 0) + star2(160, 40, 6, 1) + star2(30, 40, 5, 1.8);
+  $("helpWa").href = waUrl("Oi! Estou olhando o site e queria uma ajudinha pra escolher uma peça 😊");
+  function openHelp() {
+    if (helpShown || bag.length || careOpen || $("guideBg").classList.contains("on") || $("drawer").classList.contains("on") || $("modal").classList.contains("on")) return false;
+    helpShown = true; try { sessionStorage.setItem("orvHelp", "1"); } catch (e) {}
+    hideBubble();
+    $("helpBg").classList.add("on"); $("helpBg").setAttribute("aria-hidden", "false"); $("helpBox").focus();
+    return true;
+  }
+  function closeHelp() { $("helpBg").classList.remove("on"); $("helpBg").setAttribute("aria-hidden", "true"); }
+  var helpTimer = setInterval(function () { if (helpShown || bag.length) { clearInterval(helpTimer); return; } if (openHelp()) clearInterval(helpTimer); }, HELP_AFTER);
+  $("helpX").addEventListener("click", closeHelp);
+  $("helpLater").addEventListener("click", function () { closeHelp(); toast("Tudo bem! Se precisar, é só tocar no botão da Orvalha"); });
+  $("helpWa").addEventListener("click", closeHelp);
+  $("helpGift").addEventListener("click", function () { closeHelp(); $("gift").scrollIntoView({ behavior: "smooth", block: "start" }); });
+  $("helpBg").addEventListener("click", function (e) { if (e.target === $("helpBg")) closeHelp(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeHelp(); });
+
+  renderShop(); renderNew(); renderInsta(); updateCounts(); renderBag();
+
+  /* reveal on scroll: only what starts below the fold, so the first screen is complete at rest */
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.remove("pre"); en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]"), function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add("pre"); io.observe(el); }
+    });
+  }
+})();
+</script>
+
+</body></html>
